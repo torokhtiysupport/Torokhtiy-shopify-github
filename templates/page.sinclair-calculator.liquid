@@ -1,0 +1,330 @@
+<style type="text/css">
+.tablefontsize {
+  font-size: 16px;
+}
+
+.weight {
+  width: 40px;
+}
+
+.reps {
+}
+  input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: inner-spin-button; 
+  margin: 0; 
+  padding: 0;
+}
+.tabler tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+table, th, td {
+    border: 2px solid #ddd;
+}
+.table {
+    margin-top: 20px;
+}
+
+</style>
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+      {{ page.content }} 
+    
+    <div style="overflow-x:auto;">
+<table border="0">
+<tbody><tr>
+<td colspan="2" align="center" style="background-color:#c76041; color=#white; font-size:14pt; font-weight:bold;">
+<p style="color:white">Sinclair Total Calculator</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<input type="radio" name="radioSex" id="radioSexM" value="m" checked="true"> Male
+<input type="radio" name="radioSex" id="radioSexF" value="f"> Female <br><br>
+					</td>
+				</tr>
+				<tr>
+					<td>Bodyweight (kg):</td>
+					<td><input type="text" id="txtWeight" size="20"><br></td>
+				</tr>
+				<tr>
+					<td>Total (kg):</td>
+					<td><input type="text" id="txtTotal" size="20"></td>
+				</tr>
+  <tr>
+					<td colspan="2">
+						<input type="button" value="Calculate" onclick="calculate()" style="background-color:#f42727;  color: white; border-radius: 2px; width: 250px; font-size: 20px;">
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Sinclair Total:</strong></td>
+					<td><strong><span id="spanSCTotal" style="background-color:#fff; font-size: 20px;"></span></strong></td>
+				</tr>
+				
+			</tbody>
+			</table>
+
+    </div>
+		</div>	
+		<script language="javascript">
+			function calculate(){
+				var w = document.getElementById("txtWeight").value;
+				var t = document.getElementById("txtTotal").value;
+				
+				var s = (document.getElementById("radioSexM").checked)?"m":"f";
+				var A = (s=="m")?0.751945030:0.783497476;
+				var b = (s=="m")?175.508:153.655;
+				var X = (Math.log(w/b))/(Math.log(10));				
+				var AX2 = A*(X*X);
+				var SdotC = Math.pow(10,AX2);
+				var SinclairTotal = t*SdotC;
+				SinclairTotal = Math.round(SinclairTotal*100)/100;
+				document.getElementById("spanSCTotal").innerHTML = SinclairTotal;
+			}
+		</script>
+  
+   <br> <div class="content_hint"></div><br>
+    <h2 class="gf_gs-text-heading-2">What is sinclair coefficient?</h2>
+<p>In competition, the idea is to lift as much weight as you can on a given day. Whoever lifts the most weight for a given movement is the winner.</p><p>Lifting isn't just dependent on athletic ability. Factors such as height, body type, age, gender, flexibility. and limb length all play a part.&nbsp;</p><p>During competition, athletes are categorized based on age, gender, and body weight. Other factors such as height, body type, flexibility, and limb length are not taken into account, meaning lifters may benefit depending on their given genetics.&nbsp;</p><p>With all these variables, how do we eliminate them and work out who is the best lifter?</p>
+<h2 class="gf_gs-text-heading-2">History</h2>
+<p>In 1987, Dr. Roy Sinclair developed the Sinclair Formula, based on the question ‘What would be the total of an athlete weighing x kg if they were in the heaviest class at the same ability level’.</p><p>Whilst other methods were readily available, Dr. Sinclair’s formula became well recognized by the International Weightlifting Foundation and is still widely used today.</p>        
+<h2 class="gf_gs-text-heading-2">How to Calculate?</h2>
+<p>To calculate the Sinclair score, take an athlete's total and multiply it by the Sinclair coefficient. A coefficient is a constant number by which a variable is multiplied.</p>
+<h2 class="gf_gs-text-heading-2">This gives the formula:</h2>
+<p><font color="#000000"><strong>ACTUAL TOTAL X SINCLAIR COEFFICIENT = SINCLAIR TOTAL</strong></font></p>
+<p>In simple terms, the coefficient is the number Dr. Sinclair came up with to represent an athlete's body weight and the variable, in this case, the actual total, is the amount lifted by the athlete.</p>
+<p><font color="#000000"><strong>For example:</strong></font></p>
+<p>A 100 kg male has a Sinclair coefficient of 1.108860 and a total of 280 kg. The Sinclair weightlifting total would look like this:</p>
+<p><font color="#000000"><strong> 280 kg (total) x 1.108860 = 310.5 kg </strong></font></p>
+<p>A 120 kg male has a Sinclair coefficient of 1.048386 and a total of 300 kg. The Sinclair weightlifting total would look like this:</p>
+<p><font color="#000000"><strong> 290 kg (total) x 1.048386 = 304 kg</strong></font></p>
+<p>This means that the strongest lifter would be the 100kg male. This means it's possible that whilst a lifter may not place in their category, they may still be considered the strongest lifter based on the Sinclair total. </p>
+<p>The Sinclair coefficient is based on weight class and adjusted each year depending on the current world records. The coefficients for both males and females from each weight category are readily available online to easily use. </p>
+<p color="#000000">The idea behind the Sinclair calculator is that it adjusts an athlete’s performance using their body weight and the coefficient. The end number is what the athlete could theoretically lift if they were at the highest weight class with the same ability level.</p>
+    <br>
+ <center> <h2 class="gf_gs-text-heading-2">Olympic Weightlifting Training Programs</h2></center>
+  <div class="grid grid--no-gutters grid--uniform">
+       
+      <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+<a href="https://torokhtiy.com/products/intenso-cycle" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/ea6822b5-d8e2-4035-8ba6-af7d1d045c68/-/format/auto/-/preview/3000x3000/-/quality/lighter/1%20_64_.png" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">INTENSO CYCLE</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+      <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/weightliftig-bodybuilding-summer-edition" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/d922dae0-39cf-4c9b-bb34-fcafbb17d6a3/-/format/auto/-/preview/3000x3000/-/quality/lighter/OT_WEIGHTLIFTING%20BODYB87687UILDING_Cover.png" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">
+Weightlifting Bodybuilding Summer Edition</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+      <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/deadlift-2-0" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/32fca16f-b665-4598-868c-c6478b20ce2c/-/format/auto/-/preview/3000x3000/-/quality/lighter/OT_DEADLIFT%20CYCLE%202_0%20PROGRAM_cover_1080x1080.jpg" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">
+DEADLIFT 2.0</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+      <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/crossfit-weightlifting-program" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/78d9a266-eefc-47cb-add0-59f8f1568ec6/-/format/auto/-/preview/3000x3000/-/quality/lighter/2%20_61_.jpg" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">WEIGHTLIFTING 4
+CROSSFIT</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+      
+      <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+
+
+
+
+
+<a href="https://torokhtiy.com/products/master-strength" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/b33eec5a-8a50-472d-a76f-a0760a30ede7/-/format/auto/-/preview/3000x3000/-/quality/lighter/MASTER%20STRENGTH%20PROGRAM.jpg" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">MASTER STRENGTH</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+          
+
+      </div>
+    
+      
+    
+     
+      
+  </div>
+</div>
+
+
+ 
+    
+      

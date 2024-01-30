@@ -1,0 +1,46 @@
+{% comment %}
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+    <div class="rte rte--indented-images">
+      {{ page.content }}
+    </div>
+  </div>
+  {% section 'featured-products-subsection' %}
+</div>
+{% endcomment %}
+
+
+<!-- Bold: Memberships (page) -->
+{% include 'bold-memberships-salt' %}
+{% assign subscription = false %}
+{% for tag in customer.tags %}
+  {% if tag == 'test' %}
+    {% assign subscription = true %}
+  {% endif %}
+{% endfor %}
+
+
+<!-- end Bold code -->
+<script>
+  var boldLink={%if customer %}'/apps/memberships/accountDetails/?id='+'{{customer.id}}&h='+'{{bold_memberships_hash}}'{% else %} '/pages/membership-login' {% endif %}
+  links=[
+    {href:'/pages/video-library', icon:'allvideos', title:'Video Library'},
+    {href:'/', icon:'home', title:'Torokhtiy Store'},
+    {href:boldLink, icon:'billing', title:'Subscription settings'},
+    {% if customer %}
+      {% if subscription %}
+          {href:'/account/logout', icon:'logout', title:'Log out'}
+      {% else %}
+          {href:'/pages/membership-login', icon:'login', title:'Log in'}
+      {% endif %}
+    {% else %}
+        {href:'/pages/membership-login', icon:'login', title:'Log in'}
+    {% endif %}
+
+  ]
+</script>
+<div id="container">
+</div>
+<script src="{{ 'libraryBundle.js' | asset_url }}" defer="defer"></script>
+

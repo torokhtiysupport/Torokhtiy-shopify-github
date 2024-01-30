@@ -1,0 +1,136 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!--GEM_HEADER-->
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style">
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="{{ 'gem-article-603803123783.css' | asset_url }}" class="gf_page_style">
+<link data-instant-track class="gf_fonts" data-fonts="Work Sans" href="//fonts.googleapis.com/css2?family=Work Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Montserrat" href="//fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Noto Sans" href="//fonts.googleapis.com/css2?family=Noto Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Open Sans" href="//fonts.googleapis.com/css2?family=Open Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Lobster" href="//fonts.googleapis.com/css2?family=Lobster:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<!--GEM_HEADER_END-->
+<div class="page-width">
+  <article itemscope itemtype="http://schema.org/Article" class="grid">    <div class="grid__item{% if blog.all_tags.size > 0 %} medium-up--three-quarters large-up--four-fifths{% endif %}">
+            {% assign number_of_comments = article.comments_count %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}<div class="ph4 pb4 f4-ns">  {% if article.image %}
+    <div class="content-block__full-image--large">
+      {{ article | img_url: '1024x1024' | img_tag: article.title }}
+    </div>
+  {% endif %}  <p class="blog__meta">
+    {% if article.tags.size > 0 %}
+      {% for tag in article.tags %}
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-body-color"><strong>{{ tag }}</strong></a>{% if forloop.last %} - {% else %}, {% endif %}
+      {% endfor %}
+    {% endif %}
+    {{ article.published_at | time_tag: format: 'month_day_year' }}
+  </p>  <h1 class="h1 fl-l w-100" style="height: auto;">{{ article.title }}</h1>  <div class="fl-l w-100 mt3 rte rte--indented-images"  style="text-align:justify" itemprop="articleBody">
+    <!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor"><div data-label="Text Block" class="element-wrap" data-description="" data-key="text-block" id="e-1676111589476" data-icon="gpicon-textblock" data-ver="1" data-id="1676111589476"><div class="elm text-edit gf_gs-text-paragraph-1"><p><span style="font-weight: 400;">&nbsp; &nbsp;The Romanian Deadlift (RDL) is a well-recognized and popular exercise among weightlifters. It is also widely used in powerlifting, crossfit, and bodybuilding. How to perform this exercise and what is the origin story? Find out in this article below.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; When I was a professional athlete, we used to do RDL regularly though, as it happens among young athletes, I wasn’t that interested in where exercises and their names had come from. In those years I didn’t delve into all strange exercise names. I didn’t have a clue about the history of the <span style="color: #2b00ff;"><a href="https://torokhtiy.com/pages/gakk-squat" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">Gakk Squat</a></span> or RDL, besides, I found out about the Smith machine, the Arnold Press, the Scott bench, and the <span style="color: #2b00ff;"><a href="https://torokhtiy.com/pages/french-press" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">French Press</a></span> only after I started my coaching career.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;But for the sake of justice, I should admit that I knew about the <span style="color: #2b00ff;"><a href="https://torokhtiy.com/pages/pvc-snatch-sots-press-1" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">Sots Press</a></span> as Victor Sots is my fellow countryman. Moreover, Peter Alaev, who raised this renowned weightlifter, used to be the head coach of the national team during my senior sports career.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;RDL is a well-recognized and popular exercise in weightlifting. It is also widely used in powerlifting, crossfit, and bodybuilding. In health-related fitness and rehab workouts, a unilateral RDL is often performed (a single-leg variation) in order to involve stabilizer muscles and train balance and coordination.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;I’m going to remind you of the RDL technique, just in case.&nbsp;</span></p><div class="fitVids-wrapper" style="padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/vmmKFJ5V77M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p><span style="font-weight: 400;">&nbsp; &nbsp; Grab the barbell with a clean grip (a medium grip may be used in order to activate the lats and core muscles) and perform a lifting movement from <span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/starting-position-in-snatch-and-clean" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">starting position</a></span>. Do not straighten up completely: maintain a slight bend in your knees as well as in your hip joints, keep your shoulders over the bar, your chest open, and the back straight. Then lower the bar slowly almost to the very platform (T&G is also possible), keeping your back perfectly straight and knees slightly bent, after that, return almost to the upright position.</span></p><p><strong>&nbsp; &nbsp;You should always remember 2 crucial details:</strong></p><ol><li style="font-weight: 400;"><span style="font-weight: 400;">maintain your back straight all the time</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">always keep a slight bend in the knees</span></li></ol><p><span style="font-weight: 400;">&nbsp; &nbsp;By following this technique, you actively involve back muscles (especially the lower back), glutes, and hamstrings.</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;I was frankly fascinated by the RDL origin story when I first heard it from my American friend and a weightlifting coach. He had found out about it during a coaching seminar from the legendary Jim Smiths - the coach of the USA Olympic weightlifting team in 1980, 1988, and 1992.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;It all happened in his own gym in San Francisco in 1990. The Olympic champion, world champion, and world record holder Nicu Vlad from Romania and his coach Dragomir Cioroslan used to work out there.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;For those who don’t know, Nicu Vlad is the only athlete who managed to snatch 200 kilos in the weight category 100 kg at the international competition.</span></p><p><span style="font-weight: 400;"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/2022-02-15_15.44.17.png?v=1644934740" alt="" style="display: block; margin-left: auto; margin-right: auto;"></span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; They were in the USA at the Goodwill Games in 1990 which took place in Seattle. The USA Weightlifting Federation invited Nicu and Dragomir to conduct a small training tournament around some gyms in the USA and Jim’s one was among them. At that workout, Nicu lifted 220-230 kg in the Clean and Jerk and then started doing this exercise - a dynamic deadlift without full extension. He did a series of 250 kg for 3 reps.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;Someone from the viewers asked what exercise he was doing. Nicu just shaked his shoulders and said that they performed this exercise to train their back and make the Clean faster. Either said Dragomir. It captured everybody’s attention so they asked Nicu to show that with a lighter weight and explain how to perform that step by step. One man did some notes and asked about the exercise name. A long pause followed as Nicu and Dragomir had no name for that deadlift so Jim Smiths suggested: “Let’s call it the Romanian Deadlift or RDL in shorthand.” Everyone agreed. That was how RDL was born.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;It’s fair to say that this exercise had been used even before but had no special name. For example, the Japanese athlete </span><span style="font-weight: 400;">Yoshinobu Miyake (the Olympic champion of 1964 and 1968) also regularly used the same deadlift. Some people do the Good Morning in the same way without full extension.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;I suggest including this exercise in your preparatory period. Use the weight of 80%-100% of your best Clean and Jerk and perform 3-5 reps.</span></p><div class="fitVids-wrapper" style="padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/fffGiyxqhms" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p><span style="font-weight: 400;">&nbsp; &nbsp;In my own practice, I also perform RDL from a higher platform and combine it with the Shrugs. I choose rather light and comfortable weights in this case to train the backline. Usually, I do RDL during the preparatory period for some additional load or at the transition period as a rest from ordinary pulls. You may also use this complex without <a href="https://torokhtiy.com/blogs/reviews/best-lifting-straps">lifting&nbsp;straps</a> in order to improve the strength in your forearms and the <span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/how-to-properly-hook-grip-the-bar" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">grip</a></span>.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; Finally, I’d like to remind all the athletes, who <span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/programming-tips" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">plan workouts</a></span> on their own, to take into account all deadlifts with over 70% of load and include them into calculations to avoid disbalance and overtraining. </span></p><p><strong>You might be interested in:</strong></p><p><a href="https://torokhtiy.com/products/strong-core-and-healthy-back"><span>beginner core workout plan </span></a></p><p><a href="https://torokhtiy.com/products/overhead-mobility-cycle"><span>overhead flexibility routine</span></a></p><p><a href="https://torokhtiy.com/products/masters-training-program"><span>masters weightlifting program</span></a></p><p><a href="https://torokhtiy.com/products/intenso-cycle"><span>8 week olympic weightlifting program</span></a></p><p><a href="https://torokhtiy.com/products/weightlifting-bodybuilding"><span>olympic weightlifting bodybuilding program</span></a></p><p><a href="https://torokhtiy.com/products/emom-weightlifting"><span>barbell emom program</span></a></p></div></div><!--gfsplit--><script>window.__gemStoreData = {};window.__gemStoreData.gemKeyValid = {};window.__gemStoreData.gemKeyValid.bestWayAddToCart = 1;</script></div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+  </div>  {% if section.settings.social_sharing_blog %}
+    <hr>
+    {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+  {% endif %}
+</div>{% if blog.comments_enabled? %}
+  {% if number_of_comments > 0 %}
+    <div class="content-block">
+      <h2 class="h3">{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h2>      {% paginate article.comments by 5 %}        
+        <div id="comments">          {% if comment and comment.created_at %}
+            <p class="form-success">
+              {% if blog.moderated? %}
+                {{ 'blogs.comments.success_moderated' | t }}
+              {% else %}
+                {{ 'blogs.comments.success' | t }}
+              {% endif %}
+            </p>
+          {% endif %}          {% if number_of_comments > 0 %}
+            <ul class="comments list--no-bullets">
+              
+              {% if comment and comment.created_at %}
+                <li id="{{ comment.id }}" class="comment">
+                  {% include 'comment' %}
+                </li>
+              {% endif %}              {% for comment in article.comments %}
+                <li id="{{ comment.id }}" class="comment">
+                  {% include 'comment' %}
+                </li>
+              {% endfor %}
+            </ul>            {% if paginate.pages > 1 %}
+              <div class="pagination">
+                {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endpaginate %}
+    </div>
+  {% endif %}  <div class="content-block">
+    <div class="comment-form form-vertical">
+      {% form 'new_comment', article %}        <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>        {{ form.errors | default_errors }}        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+            <label for="CommentAuthor" class="label--hidden">{{ 'blogs.comments.name' | t }}</label>
+            <input type="text" name="comment[author]" id="CommentAuthor" class="{% if form.errors contains 'author' %} input--error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}">
+          </div>          <div class="grid__item medium-up--one-half">
+            <label for="CommentEmail" class="label--hidden">{{ 'blogs.comments.email' | t }}</label>
+            <input type="email" name="comment[email]" id="CommentEmail" class="{% if form.errors contains 'email' %} input--error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+          </div>
+        </div>        <label for="CommentBody" class="label--hidden">{{ 'blogs.comments.message' | t }}</label>
+        <textarea name="comment[body]" id="CommentBody" class="{% if form.errors contains 'body' %} input--error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>        <input type="submit" onClick='$.ajax({
+                	url: "https://hooks.zapier.com/hooks/catch/2032528/s6d11m/", // url where to submit the request
+                	type : "POST", // type of action POST || GET
+                	dataType : "json", // data type
+                	data : $("#comment_form").serialize()+"&article="+"{{article.title}}",  // post data || get data
+                	success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                	},
+                	error: function(xhr, resp, text) {
+                    	console.log(xhr, resp, text);
+                	}
+            	})' class="btn" value="{{ 'blogs.comments.post' | t }}">        {% if blog.moderated? %}
+          <p class="text-center"><small>{{ 'blogs.comments.moderated' | t }}</small></p>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+{% endif %}      {% section 'featured-products-subsection' %}      <div class="full-width full-width--return-link">
+        <a href="{{ blog.url }}" class="h1 return-link">
+          {% include 'icon-arrow-thin-left' %}
+          {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+        </a>
+      </div>
+    </div>    {% if blog.all_tags.size > 0 %}
+      <div class="grid__item medium-up--one-quarter large-up--one-fifth small--hide">
+        <div class="content-block content-block--small">
+          <h3 class="h6 content-block__title">{{ 'blogs.article.tags' | t }}</h3>
+          <ul class="list--no-bullets list--bold">
+            {% for tag in blog.all_tags %}
+              {% if current_tags contains tag %}
+              <li>{{ tag }}</li>
+              {% else %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}  </article>
+</div>
+<!--GEM_FOOTER-->
+{% capture GEM_FOOTER_SCRIPT %}
+<script data-instant-track type="text/javascript">
+	var pageLibs = [		'{{ 'gem-article-603803123783.js' | asset_url }}',	];
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+{% endcapture %}
+<!--GEM_FOOTER_END-->

@@ -1,0 +1,710 @@
+{% if customer %}
+
+
+
+<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+
+
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  {% if page.content != blank %}
+    <div class="content-block">
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  {% endif %}
+  <div class="content-block">
+    	{% for order in customer.orders %}
+  		{% if order.financial_status == 'paid' %}
+			{% for line_item in order.line_items %}
+  				{% if line_item.title contains 'training program' %}
+ 				{% assign showQuestionnaire=true%}
+				{% endif %}
+    			{% if line_item.title contains 'CHAMPION' %}
+ 				{% assign showQuestionnaire=true%}
+				{% endif %}
+			{% endfor %}
+  		{% endif %}
+    {% endfor %} 
+    {% if showQuestionnaire == true %}
+    	   <div class="contact-form form-vertical">
+      <form id="form" name="athleteform" class="athleteform cf w-100" style="color:4a3030">
+        <div id="confirmation" class="f3 pa3 mb3 cf form-submitted w-100" style="display:none"><span class="w-90 fl">Thank you! We will send you your personal program in about 7 days.</span><span class="w-10 tr white close">&times;</span></div>
+        <div id="error" class="f3 pv3 red" style="display:none"></div>
+        
+        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+ 		       <label for="firstName">First name</label>
+       		   <input class="inputs" id="firstName" name="firstName" value="{{customer.first_name}}" required>
+          </div>
+          <div class="grid__item medium-up--one-half">
+		       <label for="lastName">Last name</label>
+	           <input class="inputs" id="lastName" name="lastName" value="{{customer.last_name}}" required>
+          </div>
+        </div>
+        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+ 		       <label for="email">Contact e-mail</label>
+       		   <input type="email" class="inputs" id="email" name="email" value="{{customer.email}}" required>
+          </div>
+        </div>
+        
+        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+ 		       <label for="country">Country</label>
+       		   <input class="inputs" id="country" name="country" value="{{customer_address.country}}" required>
+          </div>
+          <div class="grid__item medium-up--one-half">
+		       <label for="city">City</label>
+	           <input class="inputs" id="city" name="city" value="{{customer_address.city}}" required>
+          </div>
+        </div>
+        <div class="grid grid--third-gutters">
+          <div class="grid__item medium-up--one-third">
+ 		       <label for="age" >Age</label>
+       		   <input class="inputs" id="age" name="age" required>
+          </div>
+          <div class="grid__item medium-up--one-third">
+		       <label for="weight" >Current body weight</label>
+	           <input class="inputs" id="weight" name="weight" required>
+          </div>
+          <div class="grid__item medium-up--one-third">
+		       <label for="height" >Height</label>
+	           <input class="inputs" id="height" name="height" required>
+          </div>
+        </div>
+        <div class="grid__item medium-up--one-half" style="padding-left:0px">
+        <div class="w-100">
+		  <label for="olympicExperience">Olympic weightlifting experience (years)</label>
+	      <input class="inputs" id="olympicExperience" name="olympicExperience" required >
+        </div>
+        <div class="w-100">
+		  <label for="currentSessions">How many training sessions per week do you have?</label>
+	      <input class="inputs"  id="currentSessions" name="currentSessions" required>
+        </div>
+        <div class="w-100">
+		  <label for="desiredSessions">How many training sessions per week would you like to have in your plan?</label>
+	      <input class="inputs"  id="desiredSessions" name="desiredSessions" required>
+        </div>
+        <div class="w-100">
+		  <label for="weekdays">Which weekdays are best for you to work out?</label><br>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Mon" >Mon</label>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Tue">Tue</label>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Wed" >Wed</label>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Thu" >Thu</label>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Fri">Fri</label>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Sat">Sat</label>
+          <label style="cursor:pointer"><input id="weekdays" class="weekday" type="checkbox" name="weekday" value="Sun">Sun</label>
+          
+        </div>
+        <div class="w-100">
+		  <label for="sessionLength">How much time would you commit per training session?</label>
+	      <input class="inputs"  id="sessionLength" name="sessionLength" placeholder="Example: 60-90 min" required>
+        </div>
+        <div class=" w-100">
+		  <label for="anotherSport">Are you going to combine Olympic weightlifting training sessions with any other type of sport? If yes, please specify.</label>
+	      <input class="inputs"  id="anotherSport" name="anotherSport" required>
+        </div>
+        <div class=" w-100">
+		  <label for="injuries">Do you have any injuries?</label>
+	      <input class="inputs"  id="injuries" name="injuries" required>
+        </div>
+        <div class=" w-100">
+		  <label for="medical">Do you have any medical conditions I should know about?</label>
+	      <input class="inputs"  id="medical" name="medical" required>
+        </div>  
+          
+        <div class=" w-100">
+          <label >What is your goal?</label><br>
+          <label for="fun">
+            <input class="goal" type="radio" id="fun" name="goal" value="fun" style="margin-top: 1rem;" onclick="hideMoreCompetitionQs(this);">
+            Have some fun
+          </label><br>
+ 			<label for="competition">
+              <input class="goal" type="radio" id="competition" name="goal" value="competition" style="margin-top: 1rem;" onclick="showMoreCompetitionQs(this)">
+              Prepare for competition
+            </label>
+
+	    </div>
+          
+        <div class="moreCompetitionInfo" style="display:none">
+          <h5>Please specify the following:</h5>
+        <div class=" w-100">
+		  <label for="nextcompetition">Date of next competition</label>
+	      <input  class="ifcompetition" id="nextcompetition" name="nextcompetition"  required>
+        </div>
+        <div class=" w-100">
+		  <label for="weightClass">Your planned weight class</label>
+	      <input  class="ifcompetition" id="weightClass" name="weightClass" required>
+        </div>
+        <div class=" w-100">
+		  <label for="plannedResult">Your planned result in competition</label>
+	      <input  class="ifcompetition" id="plannedResult" name="plannedResult" required>
+        </div>
+        <div class=" w-100">
+		  <label for="previousPrograms">Could you provide us with your previous training programs?</label>
+	      <input  class="ifcompetition" id="previousPrograms" name="previousPrograms" required>
+        </div>
+          </div>
+      
+          
+          
+        </div>
+        <div class="grid__item  w-100" style="padding-left:0px">
+		  <label for="competitionExperience">Please 
+            give a brief description of your competition experience for the last 2 years: 
+            rank of the competitions, results in SNATCH and CLEAN&JERK, 
+            describe your performance in the competition attempts, specify successful and unsuccessful ones</label>
+          <textarea  class="inputs" form="form" rows="5" id="competitionExperience" name="competitionExperience"  required></textarea>
+        </div>
+        <div class="grid__item medium-up--one-half" style="padding-left:0px">
+        <div class="w-100">
+		  <label for="blocks">Do you have blocks in the gym?</label><br>
+            <input class="blocks" type="radio" id="yesblocks" name="blocks" value="yes">YES
+ 			<input class="blocks" type="radio" id="noblocks" name="blocks" value="no" style="margin-left: 4rem;">NO
+        </div>
+        <div class="w-100">
+		  <label for="racks">Do you have racks in the gym?</label><br>
+            <input class="racks" type="radio" id="yesracks" name="racks" value="yes">YES
+ 			<input class="racks" type="radio" id="noracks" name="racks" value="no" style="margin-left: 4rem;">NO
+        </div>
+          
+        <div class="w-100">
+		  <label for="metricUnits">Which metric units do you use?</label><br>
+            <input class="metric" type="radio" id="kgmetricUnits" name="metricUnits" value="kg">KG
+ 			<input class="metric" type="radio" id="lbsmetricUnits" name="metricUnits" value="lbs" style="margin-left: 4rem;">LBS
+        </div>       
+        </div>
+        <div class="grid__item  w-100" style="padding-left:0px">
+		  <label for="addInfo">Any ADDITIONAL info about you</label>
+          <textarea  class="inputs"  form="form" rows="5" id="addInfo" name="addInfo" required></textarea>
+        </div>
+        <div class="grid__item medium-up--one-half" style="padding-left:0px">
+                  <h5 class="" style="padding-left:0px">Current training level:</h5>
+
+        <div class="cf w-100">
+          <span class="fl w-40-l w-30 labelish tc pt3">Snatch</span>
+          <div class="fl w-40-ns w-50">
+            <label for="currentSnatch" style="display:none">Current training level - Snatch</label>
+          <input  class="inputs" id="currentSnatch" name="currentSnatch" required>
+          </div>
+        </div>
+        <div class="cf w-100">
+          <span class="fl  w-40-l w-30 labelish tc pt3">Clean & Jerk</span>
+          <div class="fl w-40-ns w-50">
+          <label for="currentCleanJerk" style="display:none">Current training level - Clean & Jerk</label>
+          <input  class="inputs" id="currentCleanJerk" name="currentCleanJerk" required>
+          </div>
+        </div>
+        <div class="cf w-100">
+          <span class="fl w-40-l w-30 labelish tc pt3">Back Squat</span>
+          <div class="fl w-40-ns w-50">
+          <label for="currentBackSquat" style="display:none">Current training level - Back Squat</label>
+          <input  class="inputs" id="currentBackSquat" name="currentBackSquat" required>
+          </div>
+        </div>
+        </div>
+        <div class="grid__item " style="padding-left:0px">
+                  <h5 class="" style="padding-left:0px">Best PR for the last 6 months:</h5>
+
+        <div class="cf w-100">
+          <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">Snatch</span>
+          <div class="fl w-80-ns w-100">
+            <div class="fl w-20-l w-50 pr3-ns pl0-ns ph1">
+            <label >Competition</label>
+            <label style="display:none" for="competitionSnatch">Best PR in Snatch (competition)</label>
+
+          	<input  class="inputs" id="competitionSnatch" name="competitionSnatch" required>
+            </div>
+            <div class="fl w-20-l w-50 pr3-ns ph1">
+            <label>Training</label>
+            <label style="display:none" for="trainingSnatch">Best PR in Snatch (training)</label>
+
+          	<input  class="inputs" id="trainingSnatch" name="trainingSnatch" required>
+            </div>
+          </div>
+        </div>
+          
+        <div class="cf w-100">
+          <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">Clean & Jerk</span>
+          <div class="fl w-80-ns w-100">
+            <div class="fl w-20-l w-50 pr3-ns pl0-ns ph1">
+            <label>Competition</label>
+            <label style="display:none" for="competitionCleanJerk">Best PR in Clean & Jerk (competition)</label>
+
+          	<input  class="inputs" id="competitionCleanJerk" name="competitionCleanJerk" required>
+            </div>
+            <div class="fl w-20-l w-50 pr3-ns ph1">
+            <label>Training</label>
+            <label style="display:none" for="trainingCleanJerk">Best PR in Clean & Jerk (training)</label>
+          	<input  class="inputs" id="trainingCleanJerk" name="trainingCleanJerk" required>
+            </div>
+          </div>
+        </div>
+          
+
+          
+        <div class="cf w-100">
+          <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">FS</span>
+          <div class="fl w-80-ns w-100">
+
+            <div class="fl w-20-l w-50 pr3-ns ph1">
+            <label style="display:none" for="trainingFS">Best PR in Front Squat (training)</label>
+
+            <label>Training</label>
+              
+          	<input  class="inputs" id="trainingFS" name="trainingFS" required>
+            </div>
+          </div>
+        </div>
+          
+        <div class="cf w-100">
+          <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">BS</span>
+          <div class="fl w-80-ns w-100">
+            <div class="fl w-20-l w-50 pr3-ns ph1">
+            <label style="display:none" for="trainingBS">Best PR in Back Squat (training)</label>
+
+            <label>Training</label>
+          	<input  class="inputs" id="trainingBS" name="trainingBS" required>
+            </div>
+          </div>
+        </div>
+          
+       <div class="cf w-100">
+         <label for="programGoal">What would you like to achieve with this program?</label>
+	      <input class="inputs"  id="programGoal" name="programGoal" required>
+       </div>
+       <div class="cf w-100">
+         <label for="startDate">When do you plan to start the program? </label>
+         <p class="labelish" style="margin-bottom:0px;"> Please note that I need up to 7 days for writing your personal plan.</p>
+         <div class="cf w-30-l w-50-m w-100">
+         <input  class="inputs" name="startDate"type="text" id="startDate" required >
+         </div>
+       </div>
+          <h5> Please upload videos of you doing Snatch, Clean&Jerk, Snatch Pull, Clean Pull, Back Squat, Front Squat</h5>
+          <p class="f4"> - videos should be recent, filmed 1 month ago max</p>
+          <p  class="f4"> - on videos we should see you doing no less than 70% of your 1 rep max for each movement</p>
+          <p  class="f4"> - size of each video should not exceed 250mb</p>
+
+
+
+
+          
+       <div class=" mb4 cf w-100">
+            <label for="snatch_video" style="display:none">Please upload your Snatch video</label>
+			<div class="cf w-100">
+              <div class="fl w-30-l w-100">
+			<!--<input data-fp-button-text="Pick SNATCH video" data-fp-mimetypes="video/*"
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz"  value="" data-fp-maxSize="262144000"
+                   data-fp-button-class="ratesItemBtn bg-white w-100" type="filepicker" 
+                   onchange="myfunction(event.fpfile.url,'snatch_video')"/>-->
+                <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100">Pick SNATCH video</a>
+         
+			<input  class="videos" id="snatch_video" name="snatch_video" style="display:none;">
+              </div>
+              <div class="fl w-20-l w-100  tc" style="padding: 0.7rem;"> or add a link to it </div>
+              <div class="fl w-50-l w-100"><input style="margin-top:0px" class="videosLinks" name="snatch_videoLink" id="snatch_videoLink" placeholder="SNATCH video link at youtube, vimeo, facebook, etc..."></div>
+ 
+         </div>
+
+         	<div id="snatch_video_link"  class="fl w-100 tl-ns tc ph3" 
+               style="display:none;"><i class="f3 fa fa-check green" aria-hidden="true"></i> SNATCH video uploaded
+            </div>
+
+       </div>
+       
+       <div class=" mb4 cf w-100">
+            <label for="cleanJerk_video" style="display:none">Please upload your Clean & Jerk video</label>
+			<div class="cf w-100">
+              <div class="fl w-30-l w-100">
+			<!--<input data-fp-button-text="Pick CLEAN&JERK video" data-fp-mimetypes="video/*"
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" value="" data-fp-maxSize="262144000"
+                   data-fp-button-class="ratesItemBtn bg-white w-100" type="filepicker" 
+                   onchange="myfunction(event.fpfile.url, 'cleanJerk_video')"/>-->
+                <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100">Pick CLEAN&JERK video</a>
+              </div>
+                
+              <div class="fl w-20-l w-100  tc" style="padding: 0.7rem;"> or add a link to it </div>
+              <div class="fl w-50-l w-100"><input style="margin-top:0px" class="videosLinks" name="cleanJerk_videoLink" id="cleanJerk_videoLink" placeholder="CLEAN & JERK video link at youtube, vimeo, facebook, etc..."></div>
+ 
+			<input  class="videos"  id="cleanJerk_video" name="cleanJerk_video" style="display:none;">
+         </div>
+
+         	<div id="cleanJerk_video_link"  class="fl w-100 tl-ns tc ph3" 
+               style="display:none;"><i class="f3 fa fa-check green" aria-hidden="true"></i> CLEAN & JERK video uploaded
+            </div>
+       </div>
+          
+       <div class=" mb4 cf w-100">
+            <label for="snatchPull_video" style="display:none">Please upload your Snatch Pull video</label>
+			<div class="cf w-100">
+              <div class="fl w-30-l w-100">
+			<!--<input data-fp-button-text="Pick SNATCH PULL video" data-fp-mimetypes="video/*"
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" data-fp-maxSize="262144000"
+                   data-fp-button-class="ratesItemBtn bg-white w-100" type="filepicker" 
+                   onchange="myfunction(event.fpfile.url, 'snatchPull_video')" value=""/>-->
+                <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100">Pick SNATCH PULL video</a>
+              </div>
+              <div class="fl w-20-l w-100  tc" style="padding: 0.7rem;"> or add a link to it </div>
+              <div class="fl w-50-l w-100"><input style="margin-top:0px" class="videosLinks" name="snatchPull_videoLink" id="snatchPull_videoLink" placeholder="SNATCH PULL video link at youtube, vimeo, facebook, etc..."></div>
+ 
+			<input class="videos"  id="snatchPull_video" name="snatchPull_video" style="display:none;">
+                  </div>
+
+
+         	<div id="snatchPull_video_link"  class="fl w-100 tl-ns tc ph3" 
+               style="display:none;"><i class="f3 fa fa-check green" aria-hidden="true"></i> SNATCH PULL video uploaded
+            </div>
+       </div>
+          
+       <div class=" mb4 cf w-100">
+            <label for="cleanPull_video" style="display:none">Please upload your Clean Pull video</label>
+			<div class="cf w-100">
+              <div class="fl w-30-l w-100">
+			<!--<input data-fp-button-text="Pick CLEAN PULL video"  data-fp-mimetypes="video/*"
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" value="" data-fp-maxSize="262144000"
+                   data-fp-button-class="ratesItemBtn bg-white w-100" type="filepicker" 
+                   onchange="myfunction(event.fpfile.url, 'cleanPull_video')"/>-->
+             <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100">Pick CLEAN PULL video</a>
+
+              </div>
+              <div class="fl w-20-l w-100  tc" style="padding: 0.7rem;"> or add a link to it </div>
+              <div class="fl w-50-l w-100"><input style="margin-top:0px" class="videosLinks" name="cleanPull_videoLink" id="cleanPull_videoLink" placeholder="CLEAN PULL video link at youtube, vimeo, facebook, etc..."></div>
+    			<input class="videos" id="cleanPull_video" name="cleanPull_video" style="display:none;">
+                  </div>
+
+
+			<div id="cleanPull_video_link"  class="fl w-100 tl-ns tc ph3" 
+               style="display:none;"><i class="f3 fa fa-check green" aria-hidden="true"></i> CLEAN PULL video uploaded
+            </div>
+ 
+       </div>
+          
+          
+       <div class=" mb4 cf w-100">
+            <label for="backSquat_video" style="display:none">Please upload your Back Squat video</label>
+
+			<div class="cf w-100">
+              <div class="fl w-30-l w-100">
+                <!--<input data-fp-button-text="Pick BACK SQUAT video" data-fp-mimetypes="video/*"
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz"  value="" data-fp-maxSize="262144000"
+                   data-fp-button-class="ratesItemBtn  bg-white w-100" type="filepicker" 
+                   onchange="myfunction(event.fpfile.url, 'backSquat_video')"/>-->
+                             <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100">Pick BACK SQUAT video</a>
+
+              </div>
+              <div class="fl w-20-l w-100  tc" style="padding: 0.7rem;"> or add a link to it </div>
+              <div class="fl w-50-l w-100"><input style="margin-top:0px" class="videosLinks" name="backSquat_videoLink" id="backSquat_videoLink" placeholder="BACK SQUAT video link at youtube, vimeo, facebook, etc..."></div>
+         
+			<input class="videos"  id="backSquat_video" name="backSquat_video" style="display:none;">
+         </div>
+         
+                	<div id="backSquat_video_link"  class="fl w-100 tl-ns tc ph3" 
+               style="display:none;"><i class="f3 fa fa-check green" aria-hidden="true"></i> BACK SQUAT video uploaded</div>
+ 
+       </div>
+          
+          
+       <div class=" mb4 cf w-100">
+            <label for="frontSquat_video" style="display:none;">Please upload your Front Squat video or add a link to it</label>
+			<div class="cf w-100">
+              <div class="fl w-30-l w-100">
+			<!--<input data-fp-button-text="Pick FRONT SQUAT video" data-fp-mimetypes="video/*"
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" value="" data-fp-maxSize="262144000"
+                   data-fp-button-class="ratesItemBtn bg-white w-100" type="filepicker" 
+                   onchange="myfunction(event.fpfile.url, 'frontSquat_video')"/>-->
+                             <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100">Pick FRONT SQUAT video</a>
+
+              </div>
+              <div class="fl w-20-l w-100 tc" style="padding: 0.7rem;"> or add a link to it </div>
+              <div class="fl w-50-l w-100"><input style="margin-top:0px" class="videosLinks" name="frontSquat_videoLink" id="frontSquat_videoLink" placeholder="FRONT SQUAT video link at youtube, vimeo, facebook, etc..."></div>
+              
+  
+         <input class="videos"  id="frontSquat_video" name="frontSquat_video" style="display:none;">
+         </div>
+                 	<div id="frontSquat_video_link"  class="fl w-100 tl-ns tc ph3"
+               style="display:none;"><i class="f3 fa fa-check green" aria-hidden="true"></i> FRONT SQUAT video uploaded</div>
+ 
+         	
+       </div>
+          
+          
+       </div>
+        <input id="submit" style="font-size:1.2rem" class="btn" type="button" name="submit" value="submit">
+      </form>
+      
+      
+
+    </div>
+  </div>
+ <div class="full-width full-width--return-link">
+    <a href="/account" class="h1 return-link">
+      {% include 'icon-arrow-thin-left' %}
+      {{ 'customer.account.return' | t }}
+    </a>
+  </div>
+</div>
+
+<script src="{{ 'md5.min.js' | asset_url }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  var confirmation=document.getElementById("confirmation");
+var span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      confirmation.style.display = "none";
+    }
+window.onclick = function(event) {
+      if (event.target == confirmation) {
+        confirmation.style.display = "none";
+   }
+}          
+ function myfunction(x, y) {
+  $('#'+y).val(x);
+  $('#'+y+'_link').prop('href', x);
+    $('#'+y+'_link').css("display", "inline-block")
+}
+
+  var id = md5("{{customer.id}}"+"{{customer.email}}")
+  function showMoreCompetitionQs() {
+   $(".moreCompetitionInfo").css("display", "block");  
+  }
+  function hideMoreCompetitionQs() {
+   $(".moreCompetitionInfo").css("display", "none");  
+  }
+  
+ $(document).ready(function(){ 
+  $.get("https://wbcm-5b3a6.firebaseio.com/athletes/"+id+".json", function(data, status){
+    var json = data.formdata;
+    if (data) {
+   
+	    for (var key in json) {   
+  			$('#'+key).val(json[key]);
+          if (key.indexOf("video") >= 0) {
+            if (json[key]) {
+              if (json[key].indexOf("https://cdn.filestackcontent.com")<0) {
+            $('#'+key+'Link').val(json[key]);
+                  }
+            $('#'+key+'_link').css("display", "inline-block")
+            
+              }
+          }
+		}
+      
+
+    	$('input:radio[name=goal]').val([json.goal]);
+    	$('input:radio[name=blocks]').val([json.blocks]);
+        $('input:radio[name=racks]').val([json.racks]);
+        $('input:radio[name=metricUnits]').val([json.metricUnits]);
+
+
+      
+      if (json.weekday) {
+    	var weekdays=[];
+        weekdays=json.weekday.split(',');
+        for (var i=0; i<weekdays.length; i++) {
+
+          $("input[type=checkbox][value="+weekdays[i]+"]").prop("checked",true);
+        }
+      }
+    	if (json.goal=="competition") {
+     		showMoreCompetitionQs() 
+    	}
+    }
+
+    });
+   
+ })
+  
+
+
+
+var labels = document.getElementsByTagName('LABEL');
+for (var i = 0; i < labels.length; i++) {
+    if (labels[i].htmlFor != '') {
+         var elem = document.getElementById(labels[i].htmlFor);
+         if (elem)
+            elem.label = labels[i];         
+    }
+}
+
+function validateForm() {
+	var inputs = document.getElementsByClassName("inputs");
+	var missing = [];
+	for(var i =0; i < inputs.length; i++) {
+      	if ($(inputs[i]).val()=="" || $(inputs[i]).val()==" ") {
+          $(inputs[i]).addClass('inputError');
+        	missing.push(document.getElementById(inputs[i].id).label.innerHTML);
+      	}  
+	}
+  	var goal=document.getElementsByClassName("goal")
+   	var blocks=document.getElementsByClassName("blocks")
+   	var racks=document.getElementsByClassName("racks")
+   	var metric=document.getElementsByClassName("metric")
+
+    if ($(goal).is(":checked")==false) {
+  		 missing.push("Your goal")
+         $(goal).addClass('inputError')
+    }
+      if ($(blocks).is(":checked")==false) {
+		missing.push("Blocks")
+         $(blocks).addClass('inputError')
+      }
+      if ($(racks).is(":checked")==false) {
+		missing.push("Racks")
+         $(racks).addClass('inputError')
+      }
+      if ($(metric).is(":checked")==false) {
+		missing.push("Metric units")
+         $(metric).addClass('inputError')
+      }
+  if (document.getElementById("competition").checked) {
+  	var ifcompetition=document.getElementsByClassName("ifcompetition")
+  	for(var i=0; i < ifcompetition.length; i++) 
+		{
+    	  	if ($(ifcompetition[i]).val()=="" || $(ifcompetition[i]).val()==" ") {
+                $(ifcompetition[i]).addClass('inputError')
+        		missing.push(document.getElementById(ifcompetition[i].id).label.innerHTML)
+      		}
+        }
+  }
+  
+
+    	var atLeastOneIsChecked = $('input:checkbox').is(':checked');
+    	if (atLeastOneIsChecked!= true) {
+          $('input:checkbox').addClass('inputError')
+        	missing.push(document.getElementById("weekdays").label.innerHTML)
+    	}
+  		var videos=document.getElementsByClassName("videos");
+  		for(var i=0; i < videos.length; i++) {
+    	  	if ($(videos[i]).val()=="" || $(videos[i]).val()==" ") {
+              	var id=videos[i].id
+    			var link=$('#'+id+'Link').val()
+    	  		if (link=="" || link==" ") {
+                	$(document.getElementById(videos[i].id).label).css("display", "block")
+        			missing.push(document.getElementById(videos[i].id).label.innerHTML.slice(18))
+      			}
+
+            }
+        }
+  
+  		var startdate=$('#startDate').val();
+	if (checkDate(startdate) == false) {
+		missing.push('Please choose the program start date');
+	}
+  		
+  			
+  
+   	return missing;
+}
+  
+  function checkDate(date) {
+	var dateArr=date.split(" ");
+    
+    var weekdays=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    for (var i=0; i<weekdays.length; i++) {
+      if (weekdays.indexOf(dateArr[0]) === -1) {
+        return false;
+      }
+    }
+    for (var i=0; i<months.length; i++) {
+      if (months.indexOf(dateArr[1]) === -1) {
+        return false;
+      }
+      if (['Apr','Jun','Sep','Nov'].indexOf(dateArr[1]) !== -1 && dateArr[2]>30) {
+        return false;
+      }
+      if (dateArr[1]=='Feb' && dateArr[2]>29) {
+        return false;
+      }
+    }
+    if (parseInt(dateArr[2])<1) {
+		return false;
+    }
+    if (parseInt(dateArr[3]) < 2017) {
+		return false;
+    }
+    return true;
+  }
+$( "input" ).click(function() {
+	$('input').removeClass('inputError');
+});
+/*function setLinks() {
+	var videos=document.getElementsByClassName("videos");
+  	for(var i=0; i < videos.length; i++) {
+    	var id=videos[i].id
+    	var link=$('#'+id+'Link').val()
+
+    	if ($(videos[i]).val()=="" || $(videos[i]).val()==" ") {
+ 			if (link != '' || link != ' ') {
+        	$('#'+id).val(link)
+            }
+      	}
+    }
+}*/
+  
+    $(document).ready(function(){
+
+        // click on button submit
+        $("#submit").on('click', function(){
+//setLinks();
+          var arr=validateForm()
+          if (arr.length>0) {
+            var errors=""
+            for(var i =0; i < arr.length; i++) {
+              errors+="<p class='black f4'>"+arr[i]+"</p>"
+             	 
+            }
+            document.getElementById("error").innerHTML="<p>You left empty the following fields:</p>"+errors+"<p>Please fill them out</p>"
+            $("#confirmation").css("display", "none");  
+
+            $("#error").css("display", "block");  
+
+            $(window).scrollTop(0);
+          } else {
+
+
+            $.ajax({
+                url: 'https://hooks.zapier.com/hooks/catch/2032528/mequak/', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'json', // data type
+                data : "customerId="+id+"&"+($("#form").serialize())+"&addexercises=false"+"&customerEmail="+"{{customer.email}}",  // post data || get data
+                success : function(result) {
+
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })  
+                       $("#error").css("display", "none");  
+
+                  $("#confirmation").css("display", "block");  
+                  $(window).scrollTop(0);
+          } 
+        });
+        
+    });
+
+</script>
+
+<script src="pikaday.js"></script>
+<script>
+  var picker = new Pikaday({ field: document.getElementById('startDate'), minDate: new Date(new Date().getTime()+(7*24*60*60*1000)) });
+      var picker = new Pikaday({ field: document.getElementById('nextcompetition') });
+</script>
+{% else %}
+<script>
+window.location.replace('https://torokhtiy.com/account');
+</script>
+    {% endif%}
+{% else %}
+<script>
+window.location.replace('https://torokhtiy.com/account');
+</script>
+
+{% endif %}
+
+
+

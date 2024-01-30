@@ -1,0 +1,514 @@
+<style>
+  table input {
+      width: 100%;
+      text-align: center;
+  }
+  
+  table td {
+      text-align: center;
+      padding: 5px;
+  }
+    
+  table thead {
+      background: #c33c27;
+      color: #fff;
+  }
+  table td:nth-child(1){
+      text-align: center;
+    width: 50%;
+  }
+  
+  .tableAuxiliary .rte__table-wrapper {
+    width: 50%;
+    float: left;
+    padding: 10px;
+}
+  
+ .tableAuxiliary input, textarea {
+    padding: 6px;
+} 
+  @media only screen and (max-width: 749px){
+      .tableAuxiliary .rte__table-wrapper {
+    width: 100%;
+}
+    table td {
+    font-size: 12px;
+}
+    td.tire {
+    padding: 0;
+}
+    table td:nth-child(1){
+      width: 40%;
+  }
+  }
+  
+</style>
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+    <div class="rte rte--indented-images">
+      {{ page.content }}
+
+      <div class="tableAuxiliary">
+        <center>
+        <label></label><br>
+        <input type="radio" name="switch" value="kg" checked>Kg.
+        <input type="radio" name="switch" value="funt">lb.
+        </center>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>EXERCISE</td>
+                            <td colspan="4">Result</td>
+                        </tr>
+                    </thead>
+                    <tbody id="auxiliary1">
+                        <tr>
+                          <td><b>SNATCH</b></td>
+                            <td colspan="3"><input type="number" class="default" id="default" value="" placeholder="put your 1 RM"></td>
+                            <td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Power SNATCH</td>
+                            <td><input type="number" class="Power1" id="Power1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" class="Power2" id="Power2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Hang SNATCH</td>
+                            <td><input type="number" class="Hang1" id="Hang1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" class="Hang2" id="Hang2" value=""></td>
+                            <td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Block SNATCH</td>
+                            <td><input type="number" class="Block1" id="Block1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" class="Block2" id="Block2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>OHS</td>
+                            <td><input type="number" class="OHS1" id="OHS1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" class="OHS2" id="OHS2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>EXERCISE</td>
+                            <td colspan="4">Result</td>
+                        </tr>
+                    </thead>
+                    <tbody id="auxiliary2">
+                        <tr>
+                          <td><b>CLEAN&JERK</b></td>
+                            <td colspan="3"><input type="number" id="defaultClean" value="" placeholder="put your 1 RM"></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Power CLEAN</td>
+                            <td><input type="number" id="PowerClean1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" id="PowerClean2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>CLEAN</td>
+                            <td><input type="number" id="Clean1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" id="Clean2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Hang CLEAN</td>
+                            <td><input type="number" id="HangClean1" value=""></td>
+                         	<td class="tire">-</td>
+                            <td><input type="number" id="HangClean2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>JERK from rack</td>
+                            <td><input type="number" id="jerkFromRack1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" id="jerkFromRack2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Power JERK</td>
+                            <td><input type="number" id="PowerJerk1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" id="PowerJerk2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Front SQUAT</td>
+                            <td><input type="number" id="FrontSquat1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" id="FrontSquat2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Back SQUAT</td>
+                            <td><input type="number" id="BackSquat1" value=""></td>
+                            <td class="tire">-</td>
+                            <td><input type="number" id="BackSquat2" value=""></td>
+							<td><span class="fk">Kg.</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+<br><div class="content_hint"></div><br>
+        
+      <div class="grid grid--no-gutters grid--uniform">
+        
+        <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/intenso-cycle" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/ea6822b5-d8e2-4035-8ba6-af7d1d045c68/-/format/auto/-/preview/3000x3000/-/quality/lighter/1%20_64_.png" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">INTENSO CYCLE</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+        <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/weightliftig-bodybuilding-summer-edition" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/d922dae0-39cf-4c9b-bb34-fcafbb17d6a3/-/format/auto/-/preview/3000x3000/-/quality/lighter/OT_WEIGHTLIFTING%20BODYB87687UILDING_Cover.png" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">
+Weightlifting Bodybuilding Summer Edition</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+        <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/deadlift-2-0" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/32fca16f-b665-4598-868c-c6478b20ce2c/-/format/auto/-/preview/3000x3000/-/quality/lighter/OT_DEADLIFT%20CYCLE%202_0%20PROGRAM_cover_1080x1080.jpg" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">DEADLIFT 2.0</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+        
+<div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/crossfit-weightlifting-program" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/78d9a266-eefc-47cb-add0-59f8f1568ec6/-/format/auto/-/preview/3000x3000/-/quality/lighter/2%20_61_.jpg" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">WEIGHTLIFTING 4
+CROSSFIT</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+        <div class="grid__item small--one-half medium-up--one-fifth">
+        <!-- /snippets/product-card.liquid -->
+
+
+
+<a href="https://torokhtiy.com/products/master-strength" class="product-card">
+  <div class="product-card__image-wrapper  ">
+    
+        
+    <img src="https://ucarecdn.com/b33eec5a-8a50-472d-a76f-a0760a30ede7/-/format/auto/-/preview/3000x3000/-/quality/lighter/MASTER%20STRENGTH%20PROGRAM.jpg" alt="Legs Strength (5 weeks)" class="product-card__image">
+  </div>
+  <div class="product-card__info">
+    
+    
+    
+
+    <div class="product-card__name">MASTER STRENGTH</div>
+
+    
+      <div class="product-card__price">
+        
+          
+          
+            <span class="visually-hidden">Regular price</span>
+            $39.00
+          
+
+        
+      </div>
+    
+  </div>
+
+  
+  <div class="product-card__overlay">
+    
+    <span class="btn product-card__overlay-btn ">View</span>
+  </div>
+</a>
+
+      </div>
+        
+
+    </div>
+  </div>
+
+  {% section 'featured-products-subsection' %}
+</div>
+<script>
+  $(document).ready(function(){
+var kg = true;
+var funt = 2.20462262;
+
+$('input[type="radio"]').on('change',function() {
+  	if($('input[name="switch"]:checked').val() === 'funt'){
+		kg = false;
+		$('.fk').html('Lb.');
+	}else{
+		$('.fk').html('Kg.');
+		kg = true;
+	}
+  if($('input[name="switch"]:checked').val() === 'funt'){kg = false;}else{kg = true;}
+  $('#auxiliary1 input, #auxiliary2 input').each(function(){
+    if($(this).val() && !kg){$(this).val(Math.round($(this).val()*funt));}
+    if($(this).val() && kg){$(this).val(Math.round($(this).val()/funt));}
+  });
+});
+
+
+$("#auxiliary1 input").on("keyup",function(){
+  var id = $(this).attr('id');
+  var oldVal_arr = {
+    default:100,
+    Power1:85,
+    Power2:88,
+    Hang1:91,
+    Hang2:98,
+    Block1:96,
+    Block2:98,
+    OHS1:106,
+    OHS2:110,
+  };
+  var oldVal = $(this).val()/oldVal_arr[id]*100;
+  for(var oldVal_el in oldVal_arr){
+    if(kg){$('#auxiliary1 #'+oldVal_el).val(Math.round((oldVal/100)*oldVal_arr[oldVal_el]));}
+    else{$('#auxiliary1 #'+oldVal_el).val(Math.round((oldVal/100/funt)*oldVal_arr[oldVal_el]*funt));}
+  }
+});
+$("#auxiliary2 input").on("keyup",function(){
+  var id = $(this).attr('id');
+  var oldVal_arr = {
+    defaultClean:100,
+    PowerClean1:84,
+    PowerClean2:88,
+    Clean1:101,
+    Clean2:104,
+    HangClean1:91,
+    HangClean2:95,
+    jerkFromRack1:100,
+    jerkFromRack2:102,
+    PowerJerk1:89,
+    PowerJerk2:93,
+    FrontSquat1:109,
+    FrontSquat2:118,
+    BackSquat1:128,
+    BackSquat2:140,
+  };
+  var oldVal = $(this).val()/oldVal_arr[id]*100;
+  for(var oldVal_el in oldVal_arr){
+    if(kg){$('#auxiliary2 #'+oldVal_el).val(Math.round((oldVal/100)*oldVal_arr[oldVal_el]));}
+    else{$('#auxiliary2 #'+oldVal_el).val(Math.round((oldVal/100/funt)*oldVal_arr[oldVal_el]*funt));}
+  }
+});
+  });
+</script> 
+<script>
+  /*
+  $(document).ready(function(){
+    
+var kg = true;
+var funt = 2.20462262;
+
+$('input[type="radio"]').on('change',function() {
+	if($('input[name="switch"]:checked').val() === 'funt'){
+		kg = false;
+		$('.fk').html('Lb.');
+	}else{
+		$('.fk').html('Kg.');
+		kg = true;
+	}
+  $('#auxiliary1 input, #auxiliary2 input').each(function(){
+    if($(this).val() && !kg){$(this).val(Math.round($(this).val()*funt));}
+    if($(this).val() && kg){$(this).val(Math.round($(this).val()/funt));}
+  });
+});
+
+
+$("#auxiliary1 input").on("keyup",function(){
+  var id = $(this).attr('id');
+  var oldVal_arr = {
+    default:100,
+    Power1:85,
+    Power2:88,
+    Hang1:91,
+    Hang2:98,
+    Block1:96,
+    Block2:98,
+    OHS1:106,
+    OHS2:110,
+  };
+  var oldVal = $(this).val()/oldVal_arr[id]*100;
+  for(var oldVal_el in oldVal_arr){
+    if(kg){$('#auxiliary1 #'+oldVal_el).val(Math.round((oldVal/100)*oldVal_arr[oldVal_el]));}
+    else{$('#auxiliary1 #'+oldVal_el).val(Math.round((oldVal/100/funt)*oldVal_arr[oldVal_el]*funt * 100) / 100);}
+  }
+});
+$("#auxiliary2 input").on("keyup",function(){
+  var id = $(this).attr('id');
+  var oldVal_arr = {
+    defaultClean:100,
+    PowerClean1:84,
+    PowerClean2:88,
+    Clean1:101,
+    Clean2:104,
+    HangClean1:91,
+    HangClean2:95,
+    jerkFromRack1:100,
+    jerkFromRack2:102,
+    PowerJerk1:89,
+    PowerJerk2:93,
+    FrontSquat1:109,
+    FrontSquat2:118,
+    BackSquat1:128,
+    BackSquat2:140,
+  };
+  var oldVal = $(this).val()/oldVal_arr[id]*100;
+  for(var oldVal_el in oldVal_arr){
+    if(kg){$('#auxiliary2 #'+oldVal_el).val(Math.round((oldVal/100)*oldVal_arr[oldVal_el]));}
+    else{$('#auxiliary2 #'+oldVal_el).val(Math.round((oldVal/100/funt)*oldVal_arr[oldVal_el]*funt * 100) / 100);}
+  }
+});
+
+  });*/
+</script> 

@@ -1,0 +1,66 @@
+{% comment %} First time code {% endcomment %}
+{% if swym-product-view-init %}
+{% else %}
+<script>
+
+</script>
+<style>
+  /* Hide when not loaded */
+  .swym-button.swym-add-to-wishlist-view-product:not(.swym-loaded){
+    display: none;
+  }
+</style>
+{% assign swym-product-view-init = true %}
+{% endif %}
+{% if product %}
+<script class="swym-product-view-snippet">
+if(!window.SwymViewProducts){
+  window.SwymViewProducts = {};
+}
+if(!window.SwymWatchProducts){
+  window.SwymWatchProducts = {};
+}
+if(!window.SwymProductVariants){
+  window.SwymProductVariants = {};
+}
+(function(et){
+    var collections = {{product.type | json}};
+    var variants = [], currentVariant, variantPrice = {{ product.price}}/100, variantOp = {% if product.compare_at_price %}{{product.compare_at_price}}/100 {% else %} null {% endif %}, stk, purl = "{{ shop.url }}{{ product.url }}", empi = {{ product.id | json}},
+    piu = {{ product.featured_image | json }};
+    {% for variant in product.variants %}
+    {% if variant.selected %}
+    currentVariant = {{variant.id | json}};variants.push({ {{ product.selected_variant.title | json }} :{{ variant.id | json}}});variantPrice = {{ product.selected_variant.price}}/100, variantOp = {% if product.selected_variant.compare_at_price %}{{product.selected_variant.compare_at_price}}/100 {% else %} '' {% endif %};
+    stk = {{variant.inventory_quantity}};
+    {% comment %}{% break %}{% endcomment %}
+    {% endif %}
+    SwymProductVariants[{{variant.id|json}}] = {
+      empi:empi,epi:{{variant.id|json}},
+      du: {{ variant.url | json }},
+      iu: {{ variant.image.src | json}} || piu,
+      stk: {{variant.inventory_quantity}},
+      pr: {{ variant.price}}/100,
+      {% if variant.compare_at_price %} op: {{variant.compare_at_price}}/100, {% endif %}
+      variants: [{ {{ variant.title | json }} : {{variant.id|json}}}]
+    };
+    {% endfor %}
+    if (variants.length == 0){
+      currentVariant = {{product.variants[0].id | json}};variants.push({ {{ product.variants[0].title | json }} :{{ product.variants[0].id | json}}});variantPrice = {{ product.variants[0].price}}/100; variantOp = {% if product.variants[0].compare_at_price %} {{product.variants[0].compare_at_price}}/100 {% else %} '' {% endif %};
+      stk = {{product.variants[0].inventory_quantity}};
+    }
+    var product_data = {
+      empi:empi,epi:currentVariant,
+      dt	:{{ product.title | json }},du:purl,
+      ct 	:collections,pr: variantPrice, stk:stk,
+      iu	:piu,variants:variants,
+      op: variantOp
+    };
+    SwymViewProducts[{{product.handle | json}}] = SwymViewProducts[{{product.id | json}}] = product_data;
+    var o = {};
+    {% for variant in product.variants %}
+      SwymWatchProducts[{{variant.id | json}}] = o[{{variant.id | json}}] = {"id": {{variant.id | json}},"inventory_management": {{variant.inventory_management | json}},"inventory_quantity": {{variant.inventory_quantity | json}},"title": {{variant.title | json}}, "inventory_policy": {{variant.inventory_policy | json}}};
+    {% endfor %}
+    SwymWatchProducts[{{product.handle | json}}] = SwymWatchProducts[{{product.id | json}}] = o;
+  })();
+
+</script>
+{% endif %}

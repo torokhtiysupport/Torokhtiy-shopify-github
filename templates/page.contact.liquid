@@ -1,0 +1,162 @@
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  {% if page.content != blank %}
+    <div class="content-block">
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  {% endif %}
+  <div class="content-block f4">
+                <div class=" content-block page-width">
+
+    <p class="f3" style="text-align: center;">We will be happy to assist you with any questions, just fill in the form below, and we’ll get back to you as soon as possible. Your questions may already be answered in Frequently Asked Questions section.</p>
+              <p>MAIN CONTACT  
+                <a href="mailto:{{ shop.email }}?subject=Inquiry about {{ product.title | escape }}">
+            		{{ shop.email }}
+				</a>
+              </p>
+              <p>TOROKHTIY’S CAMP INFO CENTER  <a href="mailto:camp@torokhtiy.com?subject=Question about camp">wbcm.camp@gmail.com</a></p>
+    <p></p>
+
+
+    <div  class="contact-form form-vertical">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+      <form id="expandedcontactform">
+        <div id="confirmation" class="f3 pa3 mb3 cf form-submitted w-100" style="display:none"><span class="w-90 fl">Thank you! We will get back to you soon.</span><span class="w-10 tr white close">&times;</span></div>
+        <div id="error" class="f3 pv3 red" style="display:none">Please fill in all fields</div>
+
+
+        <div class="grid grid--half-gutters">
+<!--           	<div class="grid__item">
+            <label for="topics">My question is about</label>
+        	<select name="topics" id='topics' >
+	  			<option value="training_programs">Personal & Basic training programs</option>
+	  			<option value="video_analysis">Video analysis</option>
+	  			<option value="nutrition">Nutrition</option>
+	  			<option value="seminars">Seminars</option>
+	  			<option value="camp">Camp</option>
+	  			<option value="other">Other</option>
+			</select>
+            <label>My contacts and message</label>
+
+          </div>
+           -->
+          <div class="grid__item medium-up--one-half">
+
+            <label for="name" class="label--hidden">{{ 'contact.form.name' | t }}</label>
+            <input type="text" class='inputs' id="name" name="name" placeholder="{{ 'contact.form.name' | t }}" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
+          </div>
+         <input type="text" id="phone" style="display:none;" name="phone" >
+          <div class="grid__item medium-up--one-half">
+            <label for="email" class="label--hidden">{{ 'contact.form.email' | t }}</label>
+            <input type="email" class='inputs' id="email" name="email" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+          </div>
+        </div>
+
+        <label for="message" class="label--hidden">{{ 'contact.form.message' | t }}</label>
+        <textarea rows="3" id="message" class='inputs'  name="message" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input  id="submit" class="btn" style="background-color:#df1f1f, font-family:'Droid Sans','HelveticaNeue','Helvetica Neue',sans-serif; font-size:1.25rem" value="{{ 'contact.form.send' | t }}" required>
+      </form>
+      <script>
+   		var confirmation=document.getElementById("confirmation");
+		var span = document.getElementsByClassName("close")[0];
+    		// When the user clicks on <span> (x), close the modal
+    	span.onclick = function() {
+      		confirmation.style.display = "none";
+    	}
+		window.onclick = function(event) {
+      		if (event.target == confirmation) {
+        		confirmation.style.display = "none";
+   			}
+		}
+        $(document).ready(function() {
+ 			var url='https://hooks.zapier.com/hooks/catch/2032528/ac55w4/'
+    		$('label').click(function() {
+        	$('label').removeClass('redBackground');
+        	$(this).addClass('redBackground');
+    		});
+           	$('#topics').on('change', function() {
+   				console.log( this.value );
+               if (this.value=='training_programs') {
+                 url='https://hooks.zapier.com/hooks/catch/2032528/98u5l0/';
+               } else if (this.value=='video_analysis') {
+                url='https://hooks.zapier.com/hooks/catch/2032528/98u83c/';
+             } else if (this.value=='nutrition') {
+               url='https://hooks.zapier.com/hooks/catch/2032528/98ukym/';
+              } else if (this.value=='seminars') {
+                url='https://hooks.zapier.com/hooks/catch/2032528/98ufp8/';
+              } else if (this.value=='camp') {
+				url='https://hooks.zapier.com/hooks/catch/2032528/98uw2a/';
+              } else if (this.value=='other') {
+                url='https://hooks.zapier.com/hooks/catch/2032528/98ugbl/';
+              }
+             })
+
+            function validate() {
+              	var inputs = document.getElementsByClassName("inputs");
+              	var validated=true;
+				for(var i =0; i < inputs.length; i++) {
+      				if ($(inputs[i]).val()=="" || $(inputs[i]).val()==" ") {
+          				$(inputs[i]).addClass('inputError');
+                      	validated=false;
+      				}  
+				}
+                if ($('#phone').val()!=='') {
+					validated=false;
+                }
+             	return validated;
+              
+            }
+            $( "input" ).click(function() {
+				$('input').removeClass('inputError');
+			});
+
+        // click on button submit
+        	$("#submit").on('click', function(){
+             
+          if (!validate()) {
+
+            $("#confirmation").css("display", "none");  
+
+            $("#error").css("display", "block");  
+
+            $(window).scrollTop(0);
+          } else {
+                $("#error").css("display", "none");  
+
+		
+            // send ajax
+            	$.ajax({
+                	url: url, // url where to submit the request
+                	type : "POST", // type of action POST || GET
+                	dataType : 'json', // data type
+                	data : $("#expandedcontactform").serialize(),  // post data || get data
+                	success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    $("#confirmation").css("display", "block");  
+                  	$(window).scrollTop(0);
+                	},
+                	error: function(xhr, resp, text) {
+                    	console.log(xhr, resp, text);
+                	}
+            	})
+          }
+        	});
+            
+    	});
+        
+        
+        </script>
+    </div>
+  </div>
+
+
+
+  </div>
+
+  {% section 'featured-products-subsection' %}
+</div>

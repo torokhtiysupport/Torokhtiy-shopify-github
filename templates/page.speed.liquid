@@ -1,0 +1,223 @@
+<style>
+  .speedometer {
+    position: relative;
+    min-width: 220px;
+    max-width:  720px;
+  }
+  #resultImg img {
+    width:  100%;
+  }
+  .speedometer-input {
+    position:  absolute;
+    bottom: 90px;
+    width:  100%;
+    color: #fff;
+  }
+  .speedometer-input label {
+      color: #fff;
+  }
+  .growth, .age {
+    width:  20%;
+  }
+  
+  
+  @media only screen and (max-width: 749px){
+    .growth, .age {
+        padding: 4px;   
+    }
+    .speedometer-input {
+      bottom: 60px;
+    }
+  }
+  
+</style>
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+    <div class="rte rte--indented-images">
+      {{ page.content }}
+      
+      <label><p>The models are calculated on the basis of scientific data (more than 1500 people) of Prof. Valentin Oleshko (Ukraine) of body height and weight of the World and European Championships participants` during 2002-2017.</p></label><br>
+      <label>Sex:</label>
+      <input type="radio" name="sex" value="male" checked> Male
+      <input type="radio" name="sex" value="female"> Female<br>
+      
+            <center><br>
+				<div class="speedometer"> 
+					<div id="resultImg">
+						<img src="{{ 'speed_00.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_01.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_011.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_02.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_03.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_04.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_05.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_06.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_07.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_08.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_09.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_10.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'speed_11.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_00.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_01.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_02.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_03.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_04.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_05.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_06.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_07.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_08.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_09.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_10.png' | asset_url }}"/>
+						<img style="display:none;" src="{{ 'f_speed_11.png' | asset_url }}"/>
+					</div>
+					<div class="speedometer-input"> 
+						<input type="number" class="growth" id="growth" value="" placeholder="cm">
+						<br/><label>HEIGHT</label>
+					</div>
+					<div class="age-input">  
+						<input type="number" class="age" id="age" value="" min="1" max="100">
+						<br/><label>Age</label>
+					</div>
+				</div>
+			</center>
+            <div id="resultAge"></div>
+      
+      
+    </div>
+  </div>
+
+  {% section 'featured-products-subsection' %}
+</div>
+<script>
+  $(document).ready(function(){
+
+    $('input[name=sex]:radio').change(function(){
+      sex = $(this).val();
+      //console.log(sex);
+      if(sex == 'female'){
+        img = '{{ 'f_speed_00.png' | asset_url }}';
+      }else if(sex == 'male'){
+        img = '{{ 'speed_00.png' | asset_url }}';
+      }
+      $('#resultImg').html('<img src="'+img+'"/>');
+    }); 
+    
+    $(document).on('keyup','#growth',function(){
+      // отримуємо зріст
+      growth = $(this).val();
+      sex = $('input[name=sex]:checked').val();
+      
+      if(sex == 'female'){
+        img = '{{ 'f_speed_00.png' | asset_url }}';
+        if(growth <= 151){
+          img = '{{ 'f_speed_01.png' | asset_url }}';
+          cat = 1;
+       // }else if(growth >= 152 && growth <= 153){
+       //  img = '{{ 'f_speed_01.png' | asset_url }}';
+       //  cat = 2;
+        }else if(growth >= 152 && growth <= 153){
+          img = '{{ 'f_speed_02.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 154 && growth <= 156){
+          img = '{{ 'f_speed_03.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 157 && growth <= 160){
+          img = '{{ 'f_speed_04.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 161 && growth <= 162){
+          img = '{{ 'f_speed_05.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 163 && growth <= 164){
+          img = '{{ 'f_speed_06.png' | asset_url }}';
+          cat = 3;
+        }else if(growth >= 165 && growth <= 166){
+          img = '{{ 'f_speed_07.png' | asset_url }}';
+          cat = 3;
+        }else if(growth >= 167 && growth <= 169){
+          img = '{{ 'f_speed_08.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 170 && growth <= 171){
+          img = '{{ 'f_speed_09.png' | asset_url }}';
+          cat = 1;
+        }else if(growth >= 172 && growth <= 174){
+          img = '{{ 'f_speed_10.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 175){
+          img = '{{ 'f_speed_11.png' | asset_url }}';
+          cat = 1;
+        }
+      }else{
+        img = '{{ 'speed_00.png' | asset_url }}';
+        if(growth < 140){
+          img = '{{ 'speed_01.png' | asset_url }}';
+          //cat = 'мінімальне значення зросту 140 см.';
+        }else if(growth >= 140 && growth <= 155){
+          img = '{{ 'speed_01.png' | asset_url }}';
+          cat = 1;
+        }else if(growth >= 156 && growth <= 158){
+          img = '{{ 'speed_011.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 159 && growth <= 163){
+          img = '{{ 'speed_02.png' | asset_url }}';
+          cat = 1;
+        }else if(growth == 164){
+          img = '{{ 'speed_03.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 165 && growth <= 168){
+          img = '{{ 'speed_04.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 169 && growth <= 170){
+          img = '{{ 'speed_05.png' | asset_url }}';
+          cat = 3;
+        }else if(growth == 171){
+          img = '{{ 'speed_07.png' | asset_url }}';
+          cat = 3;
+        }else if(growth >= 172 && growth <= 173){
+          img = '{{ 'speed_07.png' | asset_url }}';
+          cat = 4;
+        }else if(growth >= 174 && growth <= 175){
+          img = '{{ 'speed_08.png' | asset_url }}';
+          cat = 3;
+        }else if(growth >= 176 && growth <= 178){
+          img = '{{ 'speed_09.png' | asset_url }}';
+          cat = 2;
+        }else if(growth >= 179 && growth <= 181){
+          img = '{{ 'speed_10.png' | asset_url }}';
+          cat = 1;
+        }else if(growth >= 182){
+          img = '{{ 'speed_11.png' | asset_url }}';
+          cat = 1;
+        }
+      }
+      // {{ '/'+img+'' | asset_url }}
+      $('#resultImg').html('<img src="'+img+'"/>');
+      $('#resultText').html(cat);
+    });
+    $(document).on('keyup','#age',function(){
+      // отримуємо зріст
+      age = $(this).val();
+      
+      
+      if(cat == 1){
+      	textAge = 'Your ideal weight category';
+      }else if(cat >= 2 && age <= 20){
+        textAge = 'These weight categories correspond to your height. According to your junior age, if at the moment you are performing in a lighter weight category, you can ensure your results` progress due to the gain of muscle mass and transition to a heavier category.';
+      }else if(cat == 2 && age >= 21){
+        textAge = 'These weight categories correspond to your height. If at the moment you are performing in a lighter weight category, you can ensure your results` progress due to the gain of muscle mass and transition to a heavier category. ';
+      }else if(cat >= 3 && age >= 21){
+      	textAge = 'These weight categories correspond to your height. Competitive practice of TOP-athletes shows that you can successfully compete with such height in all these categories.  If at the moment you are performing in a lighter weight category, you can ensure your results` progress due to the gain of muscle mass and transition to a heavier category.';
+      }
+      
+      /*
+      if(age <= 20){
+        textAge = 'These weight categories correspond to your height. According to your junior age, if at the moment you are performing in a lighter weight category, you can ensure your results` progress due to the gain of muscle mass and transition to a heavier category.';
+      }else if(age >= 21){
+        textAge = 'These weight categories correspond to your height. If at the moment you are performing in a lighter weight category, you can ensure your results` progress due to the gain of muscle mass and transition to a heavier category. ';
+      }else{
+        textAge = 'Текст 0, значення по замовчуванню';
+      }*/
+      $('#resultAge').html(textAge);
+    });
+  });
+</script> 

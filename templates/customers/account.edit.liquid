@@ -1,0 +1,59 @@
+<div class="page-width">
+  <h1>{{ 'customer.account.title' | t }}</h1>
+
+  <div class="grid">
+    <div class="grid__item medium-up--two-thirds">
+      <div class="content-block">
+        <div class="customr-wrapper">
+   	{% for order in customer.orders %}
+  		{% if order.financial_status == 'paid' and order.fulfillment_status == 'unfulfilled' %}
+			{% for line_item in order.line_items %}
+  				{% if line_item.title contains 'training program' %}
+ 				
+          			 <h1>Please update following information</h1>
+            
+  					
+  				{% endif %}
+  			{% endfor %}
+
+  		{% endif %}
+    {% endfor %}
+  <a href="/account">Back to account</a>
+
+
+{% include 'customr' %}
+   {% if customer.orders.size >0 %}
+    {% for order in customer.orders %}
+  		{% if order.financial_status == 'paid' and order.fulfillment_status == 'unfulfilled' %}
+			{% for line_item in order.line_items %}
+  				{% if line_item.title contains 'training program' %}
+				{% else %}
+          			<script>
+                      $(".customr-hide-registration").css("display", "none")
+          			</script>
+  				{% endif %}
+  			{% endfor %}
+        {% else %}
+          	<script>
+               $(".customr-hide-registration").css("display", "none")
+            </script>
+  		{% endif %}
+    {% endfor %}
+   {% else %}
+      <script>
+        $(".customr-hide-registration").css("display", "none")
+      </script>
+   {% endif %}
+
+</div>
+          <div class="full-width full-width--return-link">
+    <a href="/account" class="h1 return-link">
+      {% include 'icon-arrow-thin-left' %}
+      {{ 'customer.account.return' | t }}
+    </a>
+  </div>
+
+    </div>
+  </div>
+</div>
+</div>

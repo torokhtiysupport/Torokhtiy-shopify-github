@@ -1,0 +1,433 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+{% assign canbuy = true %}
+{% for tag in product.tags %}
+        {% if tag == "coming soon" %}
+{% assign canbuy = false %}
+
+        
+{% endif %}
+{% endfor %}
+
+<style>
+.whichCountry {
+  position: fixed;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  width: 320px;
+  padding: 20px 12px;
+  background-color: #d3d3d3;
+  align-items: center;
+  z-index: 999;
+  opacity: .95;
+  border-radius: 4px;
+}
+
+.whichCountry__text {
+  color: #222;
+  text-align: justify;
+}
+
+.whichCountry__closeIcon {
+  position: absolute;
+  color: #000;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.whichCountry__FlexContainer {
+  display: flex;
+}
+
+.btn {
+    background-color: #f42727;
+    color: #fff;
+    border: none!important;
+    padding: 7px 22px;
+    outline: none!important;
+    transition: background .5s;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+  	border-radius: 4px;
+}
+
+.btn-details {
+    display: block;
+    width: 70%;
+    margin: 10px auto 0;
+}
+</style>
+
+
+
+<div class="page-width" id='whichCountryId' itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" data-ajax="{{ section.settings.enable_ajax }}" data-stock="{{ section.settings.stock_enable }}">
+  {% assign product_image_size = '480x480' %}
+
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '600x600', scale: 3 }}">
+  {%- if settings.product_vendor_enable -%}
+    <meta itemprop="brand" content="{{ product.vendor }}">
+  {%- endif -%}
+
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+
+  <div class="grid product-single">
+    <div class="grid__item mt4 {% if product.images.size > 1 %}medium-up--three-fifths{% else %}medium-up--one-half{% endif %}">
+      <div class="photos">
+        <div class="photos__item photos__item--main">
+          <div class="product-single__photo" id="ProductPhoto">
+            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+            <a href="{{ featured_image | img_url: '1024x1024', scale: 3 }}" class="js-modal-open-product-modal" id="ProductPhotoLink-{{ section.id }}">
+              <img src="{{ featured_image  | img_url: product_image_size, scale: 3}}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg-{{ section.id }}" style="max-width:350px;">
+            </a>
+          </div>
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="photos__item photos__item--thumbs">
+            <div class="product-single__thumbnails{% unless product.images.size > 2 %} product-single__thumbnails--static{% endunless %}" id="ProductThumbs-{{ section.id }}">
+              {% for image in product.images %}
+                <div class="product-single__thumbnail-item {% if image == featured_image %} is-active {% endif %}">
+                  <a href="{{ image.src | img_url: product_image_size }}" data-zoom="{{ image.src | img_url: '1024x1024', scale: 3 }}" class="product-single__thumbnail product-single__thumbnail-{{ section.id }}">
+                    <img src="{{ image.src | img_url: '160x160', scale: 3 }}" alt="{{ image.alt | escape }}">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {% if product.images.size > 2 %}
+          {% comment %}
+            Add SVG icon snippets to an object for custom slider arrows
+          {% endcomment %}
+          <script>
+            {% capture arrow_left %}{% include 'icon-arrow-left' %}{% endcapture %}
+            {% capture arrow_right %}{% include 'icon-arrow-right' %}{% endcapture %}
+            {% capture arrow_up %}{% include 'icon-arrow-up' %}{% endcapture %}
+            {% capture arrow_down %}{% include 'icon-arrow-down' %}{% endcapture %}
+            var sliderArrows = {
+              left: {{ arrow_left | json }},
+              right: {{ arrow_right | json }},
+              up: {{ arrow_up | json }},
+              down: {{ arrow_down | json }}
+            }
+          </script>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid__item {% if product.images.size > 1 %}medium-up--two-fifths{% else %}medium-up--one-half{% endif %}" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <div class="product-single__info-wrapper">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+        <div class="product-single__meta small--text-center">
+          {% if settings.product_vendor_enable %}
+            <p class="product-single__vendor">{{ product.vendor }}</p>
+          {% endif %}
+          
+
+          <h1 itemprop="name" class="product-single__title">{{ product.title }}{% if canbuy == false %} - Coming Soon!{% endif %}</h1>
+{% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+          <ul class="product-single__meta-list list--no-bullets list--inline">
+            <li id="ProductSaleTag-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}">
+              <div class="product-tag">
+                {{ 'products.product.on_sale' | t }}
+              </div>
+            </li>
+            <li>
+              {% unless product.compare_at_price_max > product.price %}
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              {% endunless %}
+              <span id="ProductPrice-{{ section.id }}" class="product-single__price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                {{ current_variant.price | money }}
+              </span>
+            </li>
+            {% if product.compare_at_price_max > product.price %}
+              <li>
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                <s id="ComparePrice-{{ section.id }}" class="product-single__price product-single__price--compare">
+                  {{ current_variant.compare_at_price | money }}
+                </s>
+              </li>
+            {% endif %}
+            {% if section.settings.stock_enable %}
+              <li>
+                <span id="ProductStock-{{ section.id }}" class="product-single__stock {% unless current_variant.inventory_management and current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 or  current_variant.inventory_management and current_variant.inventory_quantity <= 0 and current_variant.incoming %} hide{% endunless %}">
+                  {% if current_variant.inventory_management %}
+                    {% if current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 %}
+                      {% assign qty = current_variant.inventory_quantity %}
+                      {{ 'products.product.stock_available' | t: count: qty }}
+                    {% elsif current_variant.inventory_quantity == 0 or current_variant.inventory_quantity < 0 and current_variant.incoming %}
+                      {% if current_variant.available %}
+                        {% assign date = current_variant.next_incoming_date | date: "%B %-d, %Y" %}
+                        {{ 'products.product.will_not_ship_until' | t: date: date  }}
+                      {% else %}
+                        {% assign date = current_variant.next_incoming_date | date: "%B %-d, %Y" %}
+                        {{ 'products.product.will_be_in_stock_after' | t: date: date  }}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </span>
+              </li>
+            {% endif %}
+          </ul>
+
+        </div>
+
+        <hr>
+        
+        <p>
+          {{ product.description | split: '---split---' | first }}
+        </p>
+ {% comment %}
+    show buy button only if the product doesn't have a 'coming soon' tag
+ {% endcomment %}
+
+        
+        
+        <form action="/cart/add" data-productid="{{ product.id }}" method="post" enctype="multipart/form-data" class="product-form" id="AddToCartForm">
+          <div class="cf w-100 pv3">
+          
+          {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+            {% for option in product.options_with_values %}
+          		
+              <div class="fl {% if option.name == 'Color' %}w-40-ns {% endif %} w-30-ns w-100 selector-wrapper js product-form__item">
+                <label {% if option.name == 'default' %} class="label--hidden" {% endif %} for="SingleOptionSelector-{{ section.id }}-{{ forloop.index0 }}">
+                  {{ option.name }}
+                </label>
+                <select {% if option.name == 'Color' %} style="display:none" {% endif %} class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+                  id="SingleOptionSelector-{{ forloop.index0 }}"
+                  data-name="{{ option.name }}"
+                  data-index="option{{ forloop.index }}">
+                  {% for value in option.values %}
+                    <option  value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                  {% endfor %}
+                </select>
+              {% if option.name == 'Color' %}
+                <div style="height: auto; padding-top: 0px">
+                  {% for value in option.values %}
+                    <div onclick="selectColor('{{value}}')" style="background-color: {{ value }}; display: inline-block; width: 47px; height: 47px; border: 0px solid lightgrey"></div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              </div>     
+            {% endfor %}
+          {% endunless %}
+
+          <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+            {% for variant in product.variants %}
+              <option {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" {% unless variant.available %} disabled="disabled" {% endunless %}>
+                {% if variant.available %}
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                {% else %}
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                {% endif %}
+              </option>
+            {% endfor %}
+          </select>
+          
+          <div class="fl w-30-ns w-100 product-form__item product-form__item--quantity">
+            <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input product-form__quantity">
+          </div>
+          </div>
+
+          {% if canbuy == true %}
+          
+
+              <div class='dtc v-mid ph2 w-100'>
+                <label style="display:inline; float:none" for="agree">
+				  By clicking "Add to Cart" button you agree to our <a href="/pages/agreement-and-release-of-liability" target="_blank" rel="noopener noreferrer">terms and conditions</a>.
+			    </label>
+              </div>
+			
+          
+          <div class="product-form__item product-form__item--submit">
+            <!--<button type="submit"
+              name="add"
+              id="AddToCart-{{ section.id }}"
+              class="btn btn--full product-form__cart-submit{% unless current_variant.available %} btn--sold-out{% endunless %}"
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span id="AddToCartText-{{ section.id }}">
+                {% unless current_variant.available %}
+                  {{ 'products.product.sold_out' | t }}
+                {% else %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% endunless %}
+              </span>
+            </button>-->
+          </div>
+
+          {% endif %}
+
+        </form>
+
+        {% if form.posted_successfully? or current_variant.available != true %}
+                  <div id="sold-out" class="notify-when-variant-stocked" style="padding-top: 10px;"> 
+                {% else %}
+                  <div id="sold-out" class="notify-when-variant-stocked" style="display: none; padding-top: 10px;" >
+                {% endif %}  
+                {% form 'contact' %}
+                  {% if form.posted_successfully? %}
+                    <p class="accent-text clearfix">We will notify you when this product becomes available!</p>
+                  {% else %}
+                    <!--<p class="" style="font-weight: 500; font-size: 1.1em;">Get notified when ready to ship!</p>-->
+                  {% endif %}
+                  {% if form.errors %}
+                    <div class="error feedback accent-text">
+                      <p>Please provide a valid email address.</p>
+                    </div>
+                  {% endif %}
+                  {% unless form.posted_successfully? %}
+                    <div id="notify-me-wrapper" class="clearfix" style="padding-bottom: 10px;">
+                      <!--<input type="hidden" name"option1" value="" />
+                    {% if customer %}
+                      <input type="hidden" name="contact[email]" value="{{ customer.email }}" />
+                    {% else %}
+                      <input style="float:left; width:180px;" required="required" type="email" name="contact[email]" placeholder="your@email.com" class="styled-input{% if form.errors contains 'email' %} error{% endif %}" value="{{ contact.fields.email }}" />
+                    {% endif %}
+                      {% comment %} <input id="notify-variant-body" type="hidden" name="contact[subject]" value="Notify Me: {{ product.title }}" /> {% endcomment %}
+                      <input id="notify-variant-body" type="hidden" name="contact[body]" value="
+                      name: {{ current_variant.name }}\n
+                      sku: {{ current_variant.sku }} \n
+                      Option1: {{ current_variant.option1 }} \n
+                      Option2: {{ current_variant.option2 }} \n
+                      " />
+                      <input style="float:left; margin-left:5px;" class="btn" type="submit" value="Notify Me" /> -->        
+                    </div>
+                  {% endunless %}
+                {% endform %}
+              </div>
+
+      </div>
+    </div>
+            
+  </div>
+  <hr>
+    <div class="grid__item">
+    <div class="rte product-single__description" itemprop="description">
+      {{product.selected_variant.option2}}
+          {{ product.description | split: '---split---' | last }}
+    </div>
+    </div>
+    {% comment %} contact form start {% endcomment %}
+    
+  
+  <div class="contact-form form-vertical cf w-100 pa3" >
+      {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+          <p class="form-success">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        <div class="grid grid--half-gutters" >
+          <p class='small--text-center mh2-ns'>Ask us any question</p>
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormName" class="label--hidden">{{ 'contact.form.name' | t }}</label>
+            <input type="text" id="ContactFormName" name="contact[name]" placeholder="{{ 'contact.form.name' | t }}" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          </div>
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormEmail" class="label--hidden">{{ 'contact.form.email' | t }}</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+          </div>
+        </div>
+
+        <label for="ContactFormMessage" class="label--hidden">{{ 'contact.form.message' | t }}</label>
+        <textarea rows="3" id="ContactFormMessage" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input type="submit" class="btn" value="{{ 'contact.form.send' | t }}">
+      {% endform %}
+    </div>
+  </div>
+{% if collection %}
+  <div class="full-width full-width--return-link">
+    <a href="{{ collection.url }}" class="h1 return-link">
+      {% include 'icon-arrow-thin-left' %}
+      {{ 'products.product.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}    
+    {% comment %} contact form end {% endcomment %}
+    
+    {% if section.settings.social_sharing_products %}
+          <hr>
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+        {% endif %}
+{% comment %}
+ include 'related-products' 
+{% endcomment %}
+  <div class="grid__item ">
+  		{% include 'related-products-meta' %}
+  </div>
+</div>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+  {% if section.settings.stock_enable %}
+    <script type="application/json" id="VariantJson-{{ section.id }}">
+      [
+        {% for variant in product.variants %}
+          {
+             "incoming": {{ variant.incoming | default: false | json }},
+             "next_incoming_date": {{ variant.next_incoming_date | date: format: 'month_day_year' | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    </script>
+  {% endif %}
+{% endunless %}
+
+{% if collection %}
+  <div class="full-width full-width--return-link">
+    <a href="{{ collection.url }}" class="h1 return-link">
+      {% include 'icon-arrow-thin-left' %}
+      {{ 'products.product.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}
+<!--<div class="page-width">{% include "easydisqus" %}</div>-->
+<script>  
+  var selectColor = function(color) {
+    $('select.single-option-selector:contains(' + color + ')').val(color).trigger('change');
+  }  
+  
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  window.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+{% render 'product_infox' %}

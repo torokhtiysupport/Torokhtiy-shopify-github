@@ -1,0 +1,131 @@
+<style>
+/* Mediavine CSS */
+@media only screen and (min-width: 1200px) {
+  .grid__item.large-up--three-quarters {
+       max-width: calc(100% - 352px) !important;
+   }
+  .grid__item.large-up--one-quarter.small--hide {
+    min-width: 352px !important;
+   }
+  .fr-l.pa3.dn-m {
+        max-width: unset !important;
+   }
+    .template-article .gryffeditor > .gf_row > .gf_col-lg-12 > .gf_row >  .gf_col-lg-3 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+   }
+}
+
+@media only screen and (max-width: 399px) {
+   .shopify-section .ph4.pb4.f4-ns {
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+   }
+}
+
+@media only screen and (max-width: 359px) {
+   .pa4-ns.pa3 article.grid {
+        margin-left: unset !important;
+    }
+   .grid__item.large-up--three-quarters {
+    padding-left: 0px !important;
+    }
+    .pa4-ns.pa3 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .shopify-section .ph4.pb4.f4-ns {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+   .gryffeditor > .gf_row.gf_row-fluid:nth-of-type(1) .gf_col-md-9 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+   }
+}
+
+body.mediavine-video__has-sticky #tidio-chat-iframe{
+    bottom: 300px !important;
+}
+body.adhesion:not(.mediavine-video__has-sticky) #tidio-chat-iframe, .iCartBtnToggle{
+    bottom: 120px !important;
+}
+/* End of Mediavine CSS */
+  </style>
+
+<div class="pa4-ns pa3">
+  <article itemscope itemtype="http://schema.org/Article" class="grid">
+
+    <div class="grid__item  large-up--three-quarters">
+      {% comment %}
+        The article contents can be found in /sections/article-content.liquid
+      {% endcomment %}
+
+      {% section 'article-content' %}
+<!--{% include 'relatedblogs' %}-->
+      
+      <!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:center; margin-left: auto; margin-right: auto; font:14px Montserrat,sans-serif; width:77%;}
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://torokhtiy.us15.list-manage.com/subscribe/post?u=138b5c441b71b757fff75ba6c&amp;id=019330a511" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Do you want more tips? </br> Subscribe to my blog:</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_138b5c441b71b757fff75ba6c_019330a511" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+        
+</div>
+
+<!--End mc_embed_signup-->
+      	<div class="page-width  large-up--hide">
+    <h3>Our training programs</h3>
+    <div class="grid grid--no-gutters grid--uniform">
+      {% for product in collections.sidebar-collection.products limit: 4 %}
+        <div class="grid__item medium-up--one-quarter small--one-half">
+          {% include 'product-card', product: product %}
+        </div>
+      {% endfor %}
+      
+    </div>
+</div>
+
+      <div class="full-width full-width--return-link">
+        <a href="{{ blog.url }}" class="h1 return-link">
+          {% include 'icon-arrow-thin-left' %}
+          {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+         
+        </a>
+        
+        <!--<div class="">{% include "easydisqus" %}</div>-->
+      </div>
+    </div>
+
+      <div class="grid__item large-up--one-quarter small--hide">
+        <div class="fr-l bg-near-white pa3  dn-m" style="max-width: 20rem;">
+		
+		<div >
+		    <h3 class="tc">Our training programs</h3>
+		    <div class="grid grid--no-gutters grid--uniform">
+		      {% for product in collections.sidebar-collection.products limit: 4 %}
+ 		       <div class="grid__item">
+ 		         {% include 'product-card-blog-sidebar', product: product %}
+                 
+ 		       </div>
+ 		     {% endfor %}
+              
+		    </div>
+		</div>
+
+        </div>
+      </div>
+
+  </article>
+</div>

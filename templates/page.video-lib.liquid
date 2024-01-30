@@ -1,0 +1,1415 @@
+{{ 'exerciseSearch.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width mw7 center">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+    <div class="rte rte--indented-images">
+      {{ page.content }}
+      <div class='w-100 cf pv3'>
+        <p>Show video descriptions in 
+      	<a id='english' onclick="changeLang('english')" class='red'>English</a> or 
+      	<a id='russian' onclick="changeLang('russian')">Russian</a>
+        </p>
+        <p>Show video exercises:</p>
+        <p>
+      	<a id='all' onclick="showVideosFromProgram('all')" class='red'>all</a> or
+      	<a id='leg' onclick="showVideosFromProgram('leg')">from Leg Strength program</a> or
+      	<a id='basic' onclick="showVideosFromProgram('basic')">from Male/Female training program</a>
+        </p>
+      </div>
+<div class='w-100 cf' id='inputStyle'>
+  <div class='fl w-70 w-90-l'>
+<input type="text" id="exerciseSearch" onkeyup="selectExercises()" placeholder="Search for exercises" title="Enter exercise title">
+  </div>
+  <div class='fr tr w-30 pa2 bg-white w-10-l'>
+    <button class="bg-white ba b--white" onclick="clearInput()">&times</button>
+  </div>
+</div>
+<ul id="exerciseList">
+  <li>
+    <span class='exerciseList legList' id='snatchOHsquatLink' onClick='toggle("snatchOHsquat")' >
+      SNATCH + Overhead Squat
+    </span>
+    <div id='snatchOHsquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%" 
+                src="https://www.youtube.com/embed/Y_3YMPFL5Z4" frameborder="0" allowfullscreen></iframe>
+    </div>
+   <div id='descrsnatchOHsquat' class='dn'>
+     <div class='russian' style='display:none;'>
+       <label>Описание</label>
+       <p class="mt2 mb0">Одна из моих любимых комбинаций упражнений, которые я использую во всех периодах подготовки. Независимо от того какая нагрузка запланирована у меня на тренировке, до 60% я всегда добавляю к выполнению рывка приседания со штангой над головой, потому что это отличный способ качественно разогреться, а также откалибровать свой баланс и равновесие в положении со штангой над головой. В подготовительном периоде, когда необходимо выполнять большой объем работы и увеличивать количество повторений, я могу добавлять приседания со штангой над головой к своему рывку: с весом 70-80% это может быть 2-3 рывка и 2-3 приседания. С весом 85-90 % чаще всего я делаю 1 рывок + 1 приседания со штангой над головой.</p>
+       <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+     </div>
+     <div class='english'>
+       <label>Description</label>
+       <p class="mt2 mb0">One of my favorite combinations of exercises which I use in all periods of preparation. Regardless of which load is planned for the training session, I always add overhead squat to SNATCH  up to 60%, as it's a perfect way to have a proper warm up, and also calibrate balance and balance in position with the bar above your head. In the preparation period, when it is necessary to perform a large amount of work and increase the number of reps, I can add overhead squats to my SNATCH: with 70-80% weight it can be 2-3 SNATCHes and 2-3 OVERHEAD SQUATs. With 85-90% weight, I often do 1 SNATCH + 1 OVERHEAD SQUAT.</p>
+       <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+     </div>
+     <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+   </div>
+  </li>
+  <li>
+    <span class='exerciseList basicList legList' id='powersnatchOHsquatLink' onClick='toggle("powersnatchOHsquat")' href="#">
+      Power SNATCH + Overhead SQUAT
+    </span>
+    <div id='powersnatchOHsquat' class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/XTX39wakQkU" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrpowersnatchOHsquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Данный комплекс хорош тем, что позволяет одновременно решать несколько важных задач. Рывок в стойку помогает наработать мощность в подрыве, при его выполнении особенно важно создавать наибольшую амплитуду движения и стараться быстро и четко подставляться под штангу в максимально высокой точке фиксации. После чего выполнение приседаний со штангой над головой помогает проверить качество фиксации штанги и ротации плеча внутрь. Данная комбинация может применяться как в подготовительный период на фоне утомления с целью наработки «базы» с весом 70-75% по 2-3 повторения в каждом из упражнений, так и в соревновательном периоде, как контрольное упражнение, с весом 85-87% в комбинации 1+1.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">This complex is really good because it lets you to solve several important tasks simultaneously. POWER SNATCH helps generating power in the power position, it is especially important to create the greatest amplitude of motion and try to drop under the barbell fast and clearly at the highest point of fixation. Right after, OVERHEAD SQUAT helps to check the quality of fixation of the barbell and the internal shoulder rotation. This combination can be used both in the preparation period with a specific fatigue on the background in order to work on the "base" with 70-75% weight by 2-3 reps in each exercises, and in the competition period, as a “check” exercise, with 85-87% weight in “1 + 1” combination.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='snatchBalanceSquatLink' 
+          onClick='toggle("snatchBalanceSquat")' href="#">
+      SNATCH + Snatch BALANCE + Overhead SQUAT
+    </span>
+    <div id='snatchBalanceSquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/r6rpwAqBxP0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrsnatchBalanceSquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Это достаточно сложный, но очень полезный комплекс. Так как он состоит из 3-х упражнений, наиболее целесообразно выполнять его в переходный и подготовительный период. В переходный период его можно использовать как вариант разнообразия с весом 40-50% и большим количеством повторений (3-5 в каждом из упражнений)  в одном подходе. В подготовительном периоде данное упражнение может решать целый ряд задач: наработка «базы» и объема, развитие силовой выносливости и координации. Интенсивность может варьироваться от 60 до 85%, а  количество повторений от 1 до 3 в каждом из упражнений.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">
+This quite a complicated, but very useful complex. Since it consists of 3 exercises, it is most expedient to perform it during the transition and preparation period. During the transition period, it can be used as an option with 40-50% weight and a large number of reps (3-5 in each exercise) in one set. In the preparation period, this exercise can solve a number of tasks: development of the "base" and the volume, development of strength endurance and coordination. Intensity can vary from 60 to 85%, and the number of reps from 1 to 3 in each exercise respectively.
+        </p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='cleanJerkLink' 
+          onClick='toggle("cleanJerk")' href="#">
+      CLEAN & JERK
+    </span>
+    <div id='cleanJerk'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/xwxCclOxuSY" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrcleanJerk' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Толчок состоит из двух упражнений: подъем на грудь и толчок с груди. Эта специфика влияет на структуру, особенность тренировочного процесса, длительность восстановления. Одной из особенностей является то, что объем в толчке, как правило на 20-30% выше, чем в рывке, в связи с тем, что  мы тренируем два упражнения и нам физически необходимо выполнять больше подъемов. При этом в подготовительном периоде мы чаще всего разделяем подъем на грудь и толчок с груди, а уже в соревновательном периоде соединяем их для отработки упражнения в соревновательном режиме.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">CLEAN&JERK consists of two exercises: CLEAN and JERK from the chest. This particularity affects the structure, peculiarity of the training process, and duration of recovery. One of the features is: in the JERK from the chest, volume is usually 20-30% higher than in the snatch, due to the fact that we are working on two exercises and physically we need to perform more lifts. At the same time, within the preparation period, we often distribute CLEAN and JERK from the chest, and in the competition period we put them together to work out the movement in a competition mode.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='cleanFSJerkLink' 
+          onClick='toggle("cleanFSJerk")' href="#">
+      CLEAN + Front SQUAT + JERK
+    </span>
+    <div id='cleanFSJerk'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/GHAxRVDtOJQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrcleanFSJerk' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Наверное это то упражнение, которое никогда не бывает легким, потому что оно может быть только сложным или очень сложным. Чаще всего оно используется в подготовительном периоде, реже в переходном (с небольшим весом 40-60%). Независимо от того, какое количество повторений будет в подъеме на грудь и приседаниях, толчок с груди всегда будет выполняться на фоне утомления. В зависимости от того, на что мы хотим сделать акцент – наработка «базы», повышение общего объема работы, отработка однократных повторений в толчке с груди на фоне утомления или повышение стабильности толчка при многократных повторах -  определяется количество повторений в каждом из этих упражнений. Необходимо сказать, что это упражнение не для новичков, потому что оно требует достаточно хороших навыков и стабильности техники и умения «терпеть» нагрузку.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">It is probably the one which has never been easy, because it can only be complicated or very complex. It is often used in the preparation period, less often in the transition period (with a small 40-60% weight). Regardless of how many reps will be in the CLEAN and SQUATs, JERK from the chest will always be performed with specific fatigue on the background. The number of reps in each exercise is determined  regarding what we want to focus our attention at: development of the "base", increase the total amount of work, work on single reps in JERK from the chest against with fatigue or improve the stability of the JERK in multiple reps. It is important to mention that this exercise is not for beginners, because it requires developed skills and stability of technique and the ability to "endure" the load.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='powCleanFSPPLink' 
+          onClick='toggle("powCleanFSPP")' href="#">
+      Power CLEAN + Front SQUAT + PUSH PRESS
+    </span>
+    <div id='powCleanFSPP'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/mF9g5-U3ICg" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrpowCleanFSPP' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Данный комплекс рационально использовать в подготовительном периоде, так как в нем хорошо сочетается развитие мощности при подъеме на грудь в стойку, развитие силы при выполнении приседаний со штангой на груди и силовой выносливости в швунге жимовом. Этот комплекс рационально выполнять с интенсивностью 50-70% и количеством повторений 2-3 в каждом из упражнений. Необходимо помнить, что эти упражнения значительно отличаются друг от друга по своей координационной структуре, поэтому необходимо обращать внимание на технические элементы каждого из упражнений, особенно при выполнении  на швунга жимового, который выполняется самым последним.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">This complex is rational to use in the preparation period, because it represents a good combination for the development of power when you perform the POWER CLEAN, development of strength when you SQUAT with a barbell on the chest and strength endurance in PUSH PRESS. This complex is rationally to be performed with 50-70% intensity and 2-3 reps in each exercise. It should be taken into account that these exercises differ from each other significantly in their coordination structure, therefore, it is necessary to pay attention to the technical elements of each exercise, especially when performing PUSH PRESS, which is performed 3rd.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li> 
+  <li>
+    <span class='exerciseList legList' id='cleanPullcleanFSJLink' 
+          onClick='toggle("cleanPullcleanFSJ")' href="#">
+      Clean PULL + CLEAN + Front SQUAT + JERK
+    </span>
+    <div id='cleanPullcleanFSJ'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/NtZglmVciyg" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrcleanPullcleanFSJ' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Сочетание  4-х упражнений  в одном комплексе безусловно говорит о том, что  этот комплекс никогда не бывает легким, потому что он может быть только сложным или очень сложным.</p>
+<p class="mt2 mb0">Дане сочетание упражнений отлично нарабатывает «базу», углы и силовую выносливость, поэтому этот комплекс необходимо использовать в подготовительном периоде. Каждое из этих упражнений самостоятельно может отлично тренировать, но их комбинация представляет собой бомбу замедленного действия. Применение этого комплекса на протяжении 2-3 недель даже один раз в неделю дает отличные результаты.  В зависимости от задач тренировки можно использовать разное количество повторений в каждом из упражнений от 1 до 4, интенсивность может варьироваться от 50 до 85%. Данный комплекс рекомендуется для атлетов со стажем занятий от 2-х лет.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0"> The combination of 4 exercises in one complex shows that this complex is never easy, because it can only be complicated or very complex for certain.
+This cbination of exercises develops the "base" perfectly , angles and power endurance, so this complex should be used in the preparation period. Each exercises of this complex can be worked out separately, but this combination is considered to be a “time bomb”. The use of this complex even once a week  for 2-3 weeks gives excellent results. Depending on the training tasks, you can use a different number of reps in each exercise (from 1 to 4), the intensity can vary from 50 to 85%. This complex is recommended for athletes with at least 2 year experience.
+        </p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='defRomDeadliftLink' 
+          onClick='toggle("defRomDeadlift")' href="#">
+      Deficit Romanian DEADLIFT
+    </span>
+    <div id='defRomDeadlift'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/P-gopm3hNSk" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrdefRomDeadlift' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Одно имоих любимых вспомогательных упражнений для цепочки мышечных групп поясница-ягодица-задняя поверхность бедра. Всегда стараюсь акцентировать внимание на 2 важных момента:</p>
+        <ul>
+          <li>сгибать колени не более чем на 20º в нижней позиции;</li>
+          <li>удерживать поясницу прогнутой и не допускать ее округления на всем пути выполнения упражнения.</li>
+        </ul>
+        <p class="mt2 mb0">Особенно в подготовительном этапе я стараюсь выполнять это упражнения in deficit mode для увеличения амплитуды движения и более интенсивного растяжения мышц с целью их укрепления и проработки. Но если вы отмечаете, что на определенном участке движения спина округляется и держать ее ровно нет возможности – используйте стойки, плинты или просто сократите амплитуду движения. Маленький секрет для тех у кого есть такая проблема – контролируйте положение головы – всегда направляйте взгляд немного выше нейтрального положения головы относительно туловища - и это поможет.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">One of my favorite accessory exercises for the “lumbar spine-glutes-hamstrings” muscle group chain. I always try to focus on 2 important points:</p>
+        <ul>
+          <li>bend your knees not more than 20º in the bottom position;</li>
+          <li>arch your back and don't let it round during your performance.</li>
+        </ul>
+        <p class="mt2 mb0">Especially in the preparatory phase, I try to perform this exercise in the «deficit mode» in order to increase the amplitude of movement and have a  more intensive stretching of the muscles in order to strengthen and work them out. But if you note that in a certain momеnt of motion, your back rounds and there is no possibility of keeping it straight – use racks, blocks or simply reduce the amplitude of motion. A small secret for those who have such a problem – control the position of the head, always direct your sight slightly above the neutral position of the head relative to the trunk, and it’ll help.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='romDeadliftLink' 
+          onClick='toggle("romDeadlift")' href="#">
+      Romanian DEADLIFT
+    </span>
+    <div id='romDeadlift'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/s2UwQvuN4CY" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrromDeadlift' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Одно имоих любимых вспомогательных упражнений для цепочки мышечных групп поясница-ягодица-задняя поверхность бедра. Всегда стараюсь акцентировать внимание на 2 важных момента:</p>
+        <ul>
+          <li>сгибать колени не более чем на 20º в нижней позиции;</li>
+          <li>удерживать поясницу прогнутой и не допускать ее округления на всем пути выполнения упражнения.</li>
+        </ul>
+        <p class="mt2 mb0">Особенно в подготовительном этапе я стараюсь выполнять это упражнения in deficit mode для увеличения амплитуды движения и более интенсивного растяжения мышц с целью их укрепления и проработки. Но если вы отмечаете, что на определенном участке движения спина округляется и держать ее ровно нет возможности – используйте стойки, плинты или просто сократите амплитуду движения. Маленький секрет для тех у кого есть такая проблема – контролируйте положение головы – всегда направляйте взгляд немного выше нейтрального положения головы относительно туловища - и это поможет.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">One ofy favorite accessory exercises for the “lumbar spine-glutes-hamstrings” muscle group chain. I always try to focus on 2 important points:</p>
+        <ul>
+          <li>bend your knees not more than 20º in the bottom position;</li>
+          <li>arch your back and don't let it round during your performance.</li>
+        </ul>
+        <p class="mt2 mb0">Especially in the preparatory phase, I try to perform this exercise in the «deficit mode» in order to increase the amplitude of movement and have a  more intensive stretching of the muscles in order to strengthen and work them out. But if you note that in a certain momеnt of motion, your back rounds and there is no possibility of keeping it straight – use racks, blocks or simply reduce the amplitude of motion. A small secret for those who have such a problem – control the position of the head, always direct your sight slightly above the neutral position of the head relative to the trunk, and it’ll help.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='backSquatLink' 
+          onClick='toggle("backSquat")' href="#">
+      Back SQUAT
+    </span>
+    <div id='backSquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/SbJsqER3MHA" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrbackSquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Приседание со штангой на плечах является наверное самым популярным упражнением в тяжелой атлетике после рывка и толчка. Про него снято много обучающих видео и многие, особенно начинающие, штангисты верят, что большие килограммы на приседаниях смогут значительно увеличить рывок и толчок. Конечно, для штангиста важны сильные ноги, но во всем есть свои рамки и показатели. В научной литературе говорится, что оптимальной сила ног является тогда, когда достижения в приседаниях со штангой на плечах (1RM)  составляют около 130-140% от толчка. Конечно же, уровень результата в приседаниях может быть и больше, но тогда возникает вопрос, что не позволяет атлету поднимать больший вес в соревновательных упражнениях? Возможно, вопрос в технике? Также не стоит забывать, что частые (более 1 раза в 2 недели) приседания с весом штанги более 110% от толчка или приседания более 4 повторений значительно снижают взрывные способности мышц ног (они становятся забитыми), отчего снижается скорость и динамика рывка и толчка. Мой тренер любил мне повторять: “Чтобы много рвать и толкать, нужно много рвать и толкать, все остальные упражнения, несмотря на их важность, являются вспомогательными.”</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">BACK SQUAT is probably the most popular exercise in weightlifting after SNATCH and CLEAN&JERK. A lot of training videos have been already recorded about this exercise and many athletes, especially beginners in weightlifting believe that heavy kilos in BACK SQUATs can improve SNATCH and CLEAN&JERK significantly. Of course, strong legs are important for weightlifters, but everything has its “frames” and indicators. According to the scientific literature, leg strength is considered to be optimal when the achievements in BACK SQUATS (1RM) are about 130-140% of CLEAN&JERK. Of course, result in squats can be even greater, but then the question is: what prevents athlete from lifting heavier in competition exercises? Maybe some issues with technique? Also, don’t forget that frequent (more often than once in 2 weeks) BACK SQUATs with more than 110% weight of CLEAN&JERK or more than 4 reps reduce the explosive capacity of your leg muscles (they become “clogged”) significantly, it influences speed and dynamics of SNATCH and CLEAN&JERK. My coach loved to say: "To SNATCH and CLEAN&JERK heavy, you need to SNATCH and CLEAN&JERK a lot, all other exercises are auxiliary despite their importance."</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='frontSquatLink' 
+          onClick='toggle("frontSquat")' href="#">
+      Front SQUAT
+    </span>
+    <div id='frontSquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/YTey7qrGLsU" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrfrontSquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Несмотря на то, что приседания со штангой на плечах являются самым эффективным средством для развития силы мышц ног, для штангистов более полезным я бы назвал именно приседания со штангой на груди. Именно это упражнение заставляет работать не только наши ноги, но и все мышцы нашего тела именно в “тех углах”, которые наиболее важны для толчка. В научной литературе говорится, что оптимальной сила ног является тогда, когда результат в приседаниях со штангой на груди (1RM) составляет около 110-120% от толчка. Я настаиваю на том, что первичным в этом упражнении является техника, а не килограммы. Именно отработка правильного положения туловища, локтей, механики и темпоритма движения, дает возможность готовить наше тело к ударным нагрузкам в толчке и безопасно прогрессировать. Я считаю, что атлет всегда должен держать штангу полным хватом, если у него это не получается – это вопрос недостатка гибкости и, как следствие, безопасности.  Решение этого вопроса достаточно простое – приседание со штангой на груди с лямками, как бы это странно не звучало. На первых порах это может быть неприятно и даже болезненно, поэтому начинать приседать с лямками стоит с малых весов и в качестве разминки. Но уже через 3 недели такой работы результат не заставит себя ждать.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">Despite the fact that BACK SQUATs are considered to be the most effective exercise for developing the strength of leg muscles, I would say that for weightlifters FRONT SQUAT is more useful. This exercise forces your leg muscles, and all the muscles of our body to work as well, to work in exactly in those "angles" that are most important for the CLEAN&JERK.</p>
+        <p class="mt2 mb0">According to the numerous researches leg strength is considered to be optimal when the result in BACK SQUAT (1RM) is about 110-120% of your CLEAN&JERK. I consider that technique is the most important in this exercise, not kilograms. The development of the correct position trunk position, elbows, mechanics and movement tempo, which makes possible to prepare our body for shock loads in CLEAN&JERK and progress safely. I believe that an athlete should always keep the bar with a full of grip, if he can’t make it - it is a matter of flexibility and, as a result, safety. The solution is quite simple - FRONT SQUATs with straps, no matter how strange it sounds. At first, it can be unpleasant and even painful, so start SQUATting with the straps with light weight and as a warm-up. In 3 weeks you’ll see the result.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='benchBSquatLink' 
+          onClick='toggle("benchBSquat")' href="#">
+      Bench Back SQUAT (touch-n-go)
+    </span>
+    <div id='benchBSquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/09S2-wRuI90" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrbenchBSquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Данное упражнение позволяет работать с достаточно большими весами и отлично подходит для наработки силы ног в базовых периодах подготовки.</p>
+        <p class="mt2 mb0">Важно помнить о технических нюансах этого упражнения, чтобы выполнение его было безопасным и эффективным.</p>
+        <p class="mt2 mb0">Советую обратить внимание на следующие моменты:</p>
+        <ul>
+          <li>всегда работайте лицом к стойкам, большой вес на штанге это большой риск;</li>
+          <li>перед началом работы с большими весами убедитесь, то лавка и стойки располагаются удобно;</li>
+          <li>высота лавки должна быть на уровне коленных суставов, правильный угол приседаний в этом упражнении – параллель бедра полу;</li>
+          <li>положение штанги на плечах такое же как в обычных тяжелоатлетических BS - жесткая спина, лопатки сведены, штангу необходимо хорошо фиксировать на трапециях и не допускать ее сползания на шею или вниз;</li>
+          <li>всегда смотрите вперед – это поможет удерживать туловище в правильном положении;</li>
+          <li>движение вниз всегда медленное до касания лавки ягодицами и  сразу после этого активно вставать вверх, давить в пол через пятки;</li>
+        </ul>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">This exercise allows you to work with quite heavy weight and great for leg strength gain during the basic training period.</p>
+        <p class="mt2 mb0">It's important to remember the technical nuances of the current exercise in order to make the performance safe and effective.</p>
+        <p class="mt2 mb0">I'd recommend you paying attention to the following points:</p>
+        <ul>
+          <li>always work face to the racks – heavy weight on the barbell is a big risk;</li>
+          <li>before you start working with heavy weight, make sure the bench and racks are located conveniently;</li>
+          <li>the height of the bench should be at the level of the knee joints, the correct angle of squat in this exercise is the parallel of your thigh and the floor;</li>
+          <li>the position of the bar on the shoulders is the same as in the usual weightlifting BS – a strong back, the blades are brought together, the bar must be well fixed on the traps and prevent it from sliding down the neck or down;</li>
+          <li>always look forward – it'll help to keep your trunk in the right position;</li>
+          <li>movement downwards is always slow until your buttocks touch the bench and active extension upwards, pushing the floor through your heels.</li>
+        </ul>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='goodMornLink' 
+          onClick='toggle("goodMorn")' href="#">
+      Good Morning
+    </span>
+    <div id='goodMorn'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/w7ZqyuvvEBY" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrgoodMorn' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Я использую это упражнение в своей личной тренировочной программе в качестве разминки. Выполняю его всегда с легким весом (40-60 кг, 3-4 подхода по 6-12 раз) и главная задача, которую я преследую, - это разогрев мышц, связок, а также улучшение подвижности в тазобедренных суставах.</p>
+        <p class="mt2 mb0">Я всегда акцентирую внимание на том, чтобы выполнять упражнение в медленном темпе и с высокой амплитудой, стараюсь хорошо опустить живот между бедер и таким образом принимаю положение, которое очень похоже на стартовую позицию в рывке. В нескольких заключительных повторах делаю остановку с небольшими покачиваниями в нижней точке для того, чтобы хорошо растянуться и подготовить свое тело к последующей работе.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">I use this exercise in my personal training program for the warm-up. I always do it with light weight (40-60 kg, 3-4 sets of 6-12 times) and the main task is warming up the muscles, ligaments, and also improve hip joints mobility. I always focus on doing the exercise at a slow pace and high amplitude, I try to place my abdominals well between the hips, thus take a position that is very similar to the starting position in the snatch. In a few final reps I make a pause with a little swing at the bottom point in order to stretch well and prepare my body for the further work.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='goodMornSquatLink' 
+          onClick='toggle("goodMornSquat")' href="#">
+      Good Morning + SQUAT
+    </span>
+    <div id='goodMornSquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/VOTEkZD-znM" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrgoodMornSquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Эта комбинация отлично укрепляет и закачивает поясницу, ягодицы и заднюю поверхность бедер. Специальная техника выполнения способствует оптимальному натяжению мышц, что необходимо для укрепления связок и проработки мышечных волокон в тех позициях, которые являются особенно важными при выполнении рывка и толчка.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">This combination is perfect to strengthen and pump the lower back, glutes and hamstrings. A special technique of performance promotes optimal muscle tension, which is considered to be necessary to strengthen the ligaments and develop muscle fibers in those positions that are especially important in the SNATCH and CLEAN&JERK performance.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='backSplitSquatLink' 
+          onClick='toggle("backSplitSquat")' href="#">
+      Back Split SQUAT
+    </span>
+    <div id='backSplitSquat'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/1f1nfMoC8H8" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrbackSplitSquat' class='dn'>
+      <div class='russian' style='display:none;'>
+        <label>Описание</label>
+        <p class="mt2 mb0">Приседания со штангой в «ножницах» - отличное развивающее упражнение, которое одинаково полезно как атлетам, которые толкают в «ножницы», так и атлетам, которые швунгуют. Безусловно, вторым его можно выполнять не так часто. Упражнение отлично укрепляет связки коленного сустава, способствует проработке мышц ног и наработке углов в этом положении.</p>
+        <p class="mt2 mb0">На что стоит обратить внимание:</p>
+        <ul>
+          <li>положение туловища должно быть максимально приближенным к рабочему положению в толчке с груди, не рекомендуется чрезмерно прогибать поясницу и ложиться вперед;</li>
+          <li>при вставании необходимо давить в пол пяткой передней стоящей ноги, а туловище и макушку тянуть вверх, НО не вперед;</li>
+          <li>глубина приседания должна быть до уровня параллели с полом передне стоящей ноги;</li>
+          <li>движение вниз должно выполняться в темп ниже среднего, движение вверх может быть более активным, но не в ущерб технике движения.</li>
+        </ul>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class='english'>
+        <label>Description</label>
+        <p class="mt2 mb0">SPLIT SQUAT is an excellent exercise, which is equally useful, both for the athletes who SPLIT JERK, and for the athletes who PUSH JERK as well. No doubt, PUSH JERKers can perform it less often. This exercise helps to strengthen the ligaments of the knee joint, promotes the development of the leg muscles and the development of angles in this position.</p>
+        <p class="mt2 mb0">What we should pay attention to:</p>
+        <ul>
+          <li>the position of the trunk should be as close as possible to the working position in the CJERK from the chest, it is not recommended to flex excessively the lower back and lie forward;</li>
+          <li>when extending up, you need to press on the floor with the heel of the front leg, and the trunk and pull  the vertex upwards, BUT not forward;</li>
+          <li>the depth of the squat should be up to the level of the parallel with the floor of the front leg;</li>
+          <li>the downward movement should be carried out at “below the average”, the upward movement may be more active, but not at the expense of the technique.</li>          
+        </ul>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class='exerciseList legList' id='backSquatPauseLink' 
+          onClick='toggle("backSquatPause")' href="#">
+      Back SQUAT (with pause)
+    </span>
+    <div id='backSquatPause'class='dn'>
+      <iframe width="560" height="315" style="width:100%"
+               src="https://www.youtube.com/embed/hEYRj9ISpA0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id='descrbackSquatPause' class='dn'>
+        <div class='russian' style='display:none;'>
+          <label>Описание</label>
+          <p class="mt2 mb0">Отличное базовое упражнение для укрепления ног штангистов и отработки динамики движения. Главный акцент в этом упражнении – безусловно, разгон штанги в фазе вставания. Но для того, чтобы это получилось и имело нужный эффект, важно правильно выполнить все предыдущие элементы. Фазу движения вниз необходимо выполнять в темпе ниже среднего и концентрировать все внимание на центре тяжести, положении спины, разведении колен в стороны и отведении таза назад. Важно сесть в полный глубокий сед. В нижней точке полностью расслабить мышцы ног на 2-3 секунды, но при этом спина и туловище остается собранными и жесткими. Фаза вставания выполняется в динамическом взрывном режиме. Это не просто вставание из седа, тут важно контролировать следующие важные моменты:</p>
+          <ul>
+            <li>туловище жесткое, голова направлена вперед;</li>
+            <li>с полной стопы толкаться тазом назад;</li>
+            <li>колени продавливать в стороны</li>
+            <li>стараться выполнить разгибание ног максимально быстро, при чем скорость при движении вверх должна равномерно возрастать.</li>
+          </ul>
+          <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+        </div>
+        <div class='english'>
+          <label>Description</label>
+          <p class="mt2 mb0">An excellent basic exercise to strengthen weightlifter’s legs and improve the dynamics of movement. The main emphasis in this exercise is certainly put on the acceleration of the barbell in the phase of extension. But in order to perform it right and have the desired effect, it is highly important to perform all the previous elements correctly. The phase of downward movement should be performed at a below the average pace, all attention should be focused on the center of gravity, position of your back, knees pushed out to the sides, and pelvis pulled back. It is important to squat down to the bottom (hamstrings laid on your calfs). At the bottom point, relax leg muscles completely for 2 -3 seconds, but the back and trunk remains and “tensed”. The phase of extension is performed in a dynamic-explosive mode. It's not just recovery from the bottom position, it's important to monitor the following important points:
+          </p>
+          <ul>
+            <li>body tension, the head is directed forward;</li>
+            <li>pull your pelvis back from the full foot;</li>
+            <li>push your knees out to the sides;</li>
+            <li>try to do the leg extension as quickly as possible; speed should increase steadily together with the movement upwards.</li>            
+          </ul>
+          <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href='/products/leg-strength' target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+        </div>
+        <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>  
+  <li>
+    <span class="exerciseList basicList" id="FSPushPRESSLink" onClick='toggle("FSPushPRESS")' href="#">
+      Front SQUAT + Push PRESS 
+    </span>
+    <div id="FSPushPRESS" class="dn">
+      <iframe src="https://www.youtube.com/embed/LqhIlmgLxQo" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrFSPushPRESS" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Рабочая комбинация, которая отлично развивает силовую выносливость. При помощи данных упражнений можно выполнять достаточно высокий объем работы со средней интенсивностью в подготовительный период и качественно проработать мышцы пояса верхних конечностей. Данный комплекс подойдет атлетам, которые меняют весовую категорию на более тяжелую, и им необходимо растить и прорабатывать мышечную массу. Также это упражнение вполне уместно использовать в переходный период, как возможность поработать с легкими весами и отдохнуть от динамической работы. Еще одна задача, которая может решаться при выполнении данного комплекса – техническая наработка на фоне утомления подседа/выталкивания, а также концовки движения.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">A working combination, which develops strength endurance perfectly. With the help of these exercises, you can perform quite a high volume with an average intensity in the preparation period and work out the muscles of the upper body limbs. This complex is good for athletes who change the weight category to a heavier one, need to grow and work out muscle mass. Also, this exercise is appropriate to use during the transition period, as a chance to work with light weight and have rest from the dynamic work. Another task that can be solved with the help of this complex is technical work despite the fatigue after the dip/ push, as well as the ending of the movement.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="PPPowerJERKLink" onClick='toggle("PPPowerJERK")' href="#">PUSH PRESS + Power JERK</span>
+    <div id="PPPowerJERK" class="dn">
+      <iframe src="https://www.youtube.com/embed/OyCD7YDxulU" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrPPPowerJERK" class="dn">
+      <div class="russian" style="display: none;">
+      <label>Описание</label>
+      <p class="mt2 mb0">Это упражнение отлично подойдет как атлетам, которые  выполняют толчок от груди в швунг, так и в ножницы. Чередование силового и динамического режимов работы развивает координацию движения и согласованность работы ног и рук на фоне утомления, отрабатывает качество и стабильность вертикального перемещения при подседе и выталкивании. Данный комплекс является мощным средством для базовой работы в тренировке толчка с груди. Оптимальным является планирование этого упражнения в подготовительном периоде.</p>
+      </div>
+      <div class="english">
+      <label>Description</label>
+      <p class="mt2 mb0">This exercise is perfect for athletes who perform PUSH JERK and SPLIT JERK. Alternating power and dynamic modes performance develops coordination of movement and consistency of the legs work and hands despite fatigue, quality and stability of vertical movement during the squat and push. This complex is a powerful tool for basic work in JERK from the chest training. Planning this exercise in the preparatory period is considered to be optimal.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="FSPowerJERKLink" onClick='toggle("FSPowerJERK")' href="#">Front SQUAT + Power JERK</span>
+    <div id="FSPowerJERK" class="dn">
+      <iframe src="https://www.youtube.com/embed/g2NzdIzB48M" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrFSPowerJERK" class="dn">
+      <div class="russian" style="display: none;">
+      <label>Описание</label>
+      <p class="mt2 mb0">Этот комплекс будет иметь несколько разное целевое назначение для тех атлетов, которые выполняют толчок от груди в швунг и в ножницы. Но для всех атлетов безусловно этот комплекс будет отличным тренировочным средством развития специальной силовой подготовки. Его можно программировать как в подготовительном, так и соревновательном периодах. При этом в подготовительном периоде возможно выполнение упражнений с большим количеством повторений (по 2-3), а в соревновательном периоде это упражнение отлично подойдет и для работы с тяжелыми весами и наработки нового результата в толчке с груди. Для атлетов, которые толкают в ножницы, сочетание приседаний со штангой на груди и швунга будет еще более специфическим комплексом, так как помимо всех выше упомянутых аспектов, им придется еще и более усердно отрабатывать вертикальную точность подседа и выталкивания штанги.</p>
+      </div>
+      <div class="english">
+      <label>Description</label>
+      <p class="mt2 mb0">This complex will have several different integral purposes for those athletes who perform PUSH JERK and SPLIT JERK. But for all athletes, of course, this complex will be an excellent training tool for the development of special strength. It can be planned in the preparation and competition periods. However, in the preparation period, it is possible to perform exercises with a large number of reps (2-3), and in the competition period this exercise will be good for working with heavy weights and working out a new result in JERK from the chest. For athletes who perform SPLIT JERK, the combination of squats with a barbell on the chest PUSH JERK will be an even more specific set, since, in addition to all the above mentioned aspects, they will have to work harder and harder on the vertical accuracy of dip and push of the barbell.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="PPfromRocksLink" onClick='toggle("PPfromRocks")' href="#">PUSH PRESS from racks</span>
+    <div id="PPfromRocks" class="dn">
+      <iframe src="https://www.youtube.com/embed/rpdBAVBHgFY" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrPPfromRocks" class="dn">
+     <div class="russian" style="display: none;">
+       <label>Описание</label>
+       <p class="mt2 mb0">Упражнение важное и необходимое для атлетов всех уровней и отлично применяется как в подготовительном, так и соревновательном периодах. Существует несколько вариаций его выполнения: с отрывом пяток, с полной стопы и с подкладыванием под носки маленьких дисков. Данная специфика зависит от того, с какой целью выполняется упражнение: развитие силы или отработка техники подседа и выталкивания. При отрыве пяток атлет способен приложить большие усилия в фазе выталкивания и выполнить упражнение с большим весом; при работе с полной стопы больше нагружаются мышцы рук и при таком варианте проработка пояса верхних конечной более качественная; при подкладывании под носки маленьких дисков отрабатывается качество и стабильность вертикального перемещения при подседе и выталкивании, если у спортсмена существуют подобные технические погрешности. </p>
+     </div>
+     <div class="english">
+       <label>Description</label>
+       <p class="mt2 mb0">This exercise is important and necessary for athletes of all levels and is perfectly used both in the preparation and competition periods. There are several variations: with a heel lift, a full foot and a small disc under the toes. This specificity depends on the purpose for which this exercise is performed: the development of force or the development of technique of dip and push. With the detachment of heels, athlete is able to make great effort in the phase of push and perform the exercise with heavy weight; when working from a full foot, the muscles of the arms are more loaded and, with this option, therefore, work on the upper limbs is more qualitative; when placing small discs under the toes, the quality and stability of the vertical movement in the squat and push is worked out if the athlete has similar technical mistakes.</p>
+     </div>
+     <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="PJfromRocksLink" onClick='toggle("PJfromRocks")' href="#">Power JERK from racks</span>
+    <div id="PJfromRocks" class="dn">
+      <iframe src="https://www.youtube.com/embed/wo7DQr9zL4c" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrPJfromRocks" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данное упражнение рассматривается как специально-подготовительное для тех атлетов, которые выполняют толчок с груди способом «ножницы», в связи с тем, что структура подседа и выталкивания является в этих упражнения идентичной, но в швунге вместо приема штанги в «ножницы» выполняется полуприсед. Данное упражнения очень помогает атлетам у которых имеется проблемы с выталкиванием штанги и полным выпрямлением тела в связи с чем, они выталкивают штангу вперед. Упражнения помогает отработать координацию рук и ног, точность посыла штанги в вертикальном направлении. Фаза включения рук в локтевых и плечевых суставах должны совпадать с принятием полуприседа.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This exercise is considered to be a special preparation exercise for those athletes who perform SPLIT JERK because the structure of the dip and push is identical in these exercises, but in the PUSH JERK athletes catch the barbell in the half-dip position, instead of catching the barbell in split position. This exercise is very helpful for athletes who have problems with pushing the barbell and full body extension and in this regard they push the barbell forward. Exercises help to work out the coordination of hands and feet, the accuracy of directing the barbell in the vertically. The phase of the inclusion of hands in the elbow and shoulder joints should coincide with taking the half-squat position.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="CHCbelowKneeLink" onClick='toggle("CHCbelowKnee")' href="#">CLEAN + Hang CLEAN below knee</span>
+    <div id="CHCbelowKnee" class="dn">
+      <iframe src="https://www.youtube.com/embed/6i8bJmrxSH4" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrCHCbelowKnee" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Комплекс подъем на грудь + подъем на грудь с виса ниже колен является необходимым как для наработки силы, так и для отработки техники. Упражнение выполняется в лямках и требует оптимального уровня гибкости и подвижности всего пояса верхних конечностей. Лямки помогают более жестко взаимодействовать со штангой, и это очень помогает атлетам отрабатывать скорость вращения локтей, повышает скорость ухода под штангу и при правильных углах обеспечивает «попадание в вибрацию» штанги, что позволяет быстрее вставать из седа. Принятие исходного положения (движение вниз) при подъеме на грудь с виса должно выполняться медленно - это будет способствовать наработке нужных углов в тяге. Так как амплитуда движения при подъеме с виса на треть короче, атлету будет необходимо активнее разгонять штангу в тяге, с максимальной мощностью выполнять подрыв и быстро подставляться под штангу при приеме ее в сед.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">Complex CLEAN  + HANG CLEAN (from below the knee) is necessary for the generation of power and working out the technique. Exercise is performed in straps and requires an optimal level of flexibility and mobility of the entire upper body. Straps help to interact more rigidly with the barbell, and it helps the athletes to work out the speed of the elbows rotation, increases the speed of dropping under the barbell and at the right angles ensures the "getting into the vibration" of the barbell – it allows to get up quickly from the squat. Taking the starting position (downward movement) when performing HANG CLEAN should be done slowly – it will help to obtain the necessary angles in PULL. Since the amplitude of the movement is one third shorter when  extending from the hang position, athlete will need to accelerate the barbell more actively in pull, with maximum power to perform the power position and quickly put it under the barbell when catching into the squat.</p>
+      </div>
+    <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="ClPULLCLEANLink" onClick='toggle("ClPULLCLEAN")' href="#">Clean PULL + CLEAN</span>
+    <div id="ClPULLCLEAN" class="dn">
+      <iframe src="https://www.youtube.com/embed/x05LVmXsDKU" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrClPULLCLEAN" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Тяга толчковая + подъем на грудь - комбинация упражнений, которая чаще всего применяется в подготовительном периоде, когда спортсмены выполняют большие объемы тренировочной работы и нарабатвают силу и специальную работоспособность. Существуют несколько вариаций этого упражнения. Первая – спортсмен работает с одним весом, он может выполнять от 1 до 3 повторений в тяге и после этого от 1 до 3 повторений в подъеме на грудь. В зависимости от целей и периода подготовки количество повторений могут сочетаться не пропорционально, например 1+3 или 3+1. Вторая вариация (метод Владимира Сафонова) – когда в толчковой тяге спортсмен выполняет 1-2 повторения с весом штаги 90-110%, после чего ассистенты снимают диски со штанги, уменьшая вес штанги на 15-30%, и спортсмен выполняет подъем на грудь. Данный вариант является очень эффективным, но рекомендуется к применению опытным и продвинутым атлетам. Применение подобной вариации также допустимо и в рывке.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">CLEAN PULL + CLEAN combination of exercises, which is used mostly in the preparation period, when athletes perform large amounts of training work, build strength and special efficiency. There are several variations of this exercise. First, the athlete works with one weight and can perform from 1 to 3 reps in CLEAN PULL and then from 1 to 3 reps in CLEAN. Depending on the goals and the preparation period, the number of reps can not be combined proportionally, for example: 1 + 3 or 3 + 1. Another variation (Vladimir Safonov's method) is when in CLEAN PULL the athlete performs 1-2 reps with the weight of the staff 90-110%, after which the assistants remove plates from the barbell reducing the weight of the barbell by 15-30% and the athlete performs CLEAN. This option is very effective, but it is recommended to be applied for experienced athletes with advanced level of preparation. The use of such a variation is also permissible in a snatch.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="DeficitCLEANLink" onClick='toggle("DeficitCLEAN")' href="#">Deficit CLEAN</span>
+    <div id="DeficitCLEAN" class="dn">
+      <iframe src="https://www.youtube.com/embed/fU0k9X0BpS4" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrDeficitCLEAN" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Выполнение подъема на грудь с подставки (высота может варьироваться в среднем от 4 до 8 см, в зависимости от роста атлета и целей тренировки) увеличивает путь движения штанги и соответственно повышает нагрузку на мышцы спины и ног. Фактически это обычный подъем на грудь, который выполняется в усложненных условиях. Также повышенные требования предъявляются к гибкости в пояснице и коленных суставах.  Наиболее оптимально планировать данное упражнение в подготовительном периоде подготовки, когда закладывается база для последующего прогрессирования и идет наработка нового результата.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">Performing CLEAN from the stand (height can vary on average from 4 to 8 cm, depending on the height of the athlete and training purposes) increases the path of the barbell and consequently increases the load on the back and muscle. In fact, this is a regular CLEAN, which is performed under complicated conditions. Also, increased demands are made on flexibility in the lower back and knee joints. It is most optimal to plan this exercise in the preparation period, when the «base» is made for subsequent progress and a new result is being worked out.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="PCPCLbelowKneeLink" onClick='toggle("PCPCLbelowKnee")' href="#">Power CLEAN + Power CLEAN below knee</span>
+    <div id="PCPCLbelowKnee" class="dn">
+      <iframe src="https://www.youtube.com/embed/959p9KkqA0U" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrPCPCLbelowKnee" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данная комбинация чаще всего применяется в начале подготовительного периода, когда идет наработка углов из нестандартных исходных положений. Упражнение выполняется в лямках и требует оптимального уровня гибкости и подвижности пояса верхних конечностей. Лямки помогают более жёстко взаимодействовать со штангой, и это очень помогает атлетам отрабатывать скорость вращения локтей. Принятие исходного положения (движение вниз) при подъеме на грудь с виса должно выполняться медленно - это будет способствовать наработке нужных углов в тяге. Для создания мощности подрыва и придания штанге оптимальной высоты вылета, атлет должен стремиться выполнять фазу подрыва с полной ступни и в фазе финального разгона контролировать полное разгибание  спины и ног.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This combination is mostly used at the beginning of the preparation period, when the development of angles from non-standard initial positions take place. This exercise is performed in straps and requires an optimal level of flexibility and mobility of the upper limbs. Straps help to interact more rigidly with the barbell, and it helps the athletes to practice the speed of the elbows rotation. Taking the starting position (downward movement) when performing the CLEAN from the hang position should be done slowly – it will help to obtain the necessary angles in the PULL. To create power in the power position and give the optimum flight height, tan athlete should strive to perform the power phase from the full foot and in the phase of the final acceleration – control the full leg and back extension.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="PCPCLbelowKneePPLink" onClick='toggle("PCPCLbelowKneePP")' href="#">Power CLEAN + Power CLEAN below knee + PUSH PRESS</span>
+    <div id="PCPCLbelowKneePP" class="dn">
+      <iframe src="https://www.youtube.com/embed/r1wcpnbX_O8" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrPCPCLbelowKneePP" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Этот скоростно-силовой комплекс наиболее целесообразно планировать в начале или середине подготовительного периода для создания мощной силовой базы, а также в переходный период, когда есть возможность выполнять разнонаправленную работу с малыми весами. Упражнение выполняется в лямках и требует оптимального уровня гибкости и подвижности пояса верхних конечностей. Лямки помогают более жёстко взаимодействовать со штангой, и это очень помогает атлетам отрабатывать скорость вращения локтей. Также эффективно отрабатывается качество и стабильность вертикального перемещения при подседе и выталкивании в швунге жимовом на фоне утомления. В любом случае сочетание мощностной работы в подъемах на грудь и силовой в швунге жимовом будут результативны для увеличения как мышечной массы, так и повышения силы, мощности и работоспособности.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This speed-power complex is most expedient to be planned at the beginning or middle of the preparation period in order to create a powerful power base, as well as in the transition period when it is possible to do multidirectional work with light weight. This exercise is performed in straps and requires an optimal level of flexibility and mobility of the upper body. Straps help to interact more rigidly with the barbell, and it helps the athletes to practice the speed of the elbows rotation. Also, the quality and stability of the vertical movement during the squat and pull in the PUSH PRESS despite fatigue is effectively worked out. In any case, the combination of power work in CLEAN and power in PUSH PRESS will be effective for increasing both muscle mass, and increasing strength, power and efficiency.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="CLEANfrBlocksFSLink" onClick='toggle("CLEANfrBlocksFS")' href="#">CLEAN from blocks + Front SQUAT</span>
+    <div id="CLEANfrBlocksFS" class="dn">
+      <iframe src="https://www.youtube.com/embed/7tliS_SzUWc" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrCLEANfrBlocksFS" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Подъем на грудь с плинтов - одно из лучших упражнений для одновременной отработки технических элементов подрыв-подставка. Рекомендуемая высота плинтов – штанга ниже колен. При положении штанги выше уровня колен существует риск затягивания и проскакивания подрыва. В таком случает это упражнение может даже испортить технику. Так как атлету приходится работать на укороченной амплитуде движения, важно прилагать гораздо большее стартовое усилие и развивать мощность при разгоне и сразу после этого стремительно двигаться под штангу и вращать локти. Ошибка, которая встречается достаточно часто – атлеты не встают из седа, а сбрасывают штангу после приема сразу на плинты. Как известно, для результативного толчка необходимо формировать двигательный стереотип движения в подъеме на грудь, при котором в сознании атлета упражнение должно начинаться в стартовом положении, а заканчиваться уже в положении стоя. Для наработки углов и повышения работоспособности после короткого взрывного подъема на грудь приседания на груди отлично заставят проработать все мышцы в более силовом режиме на длинной амплитуде движения. Этот скоростно-силовой комплекс наиболее целесообразно планировать в начале или середине подготовительного периода.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">CLEAN from blocks is one of the best exercises for the simultaneous development of technical elements power position-drop under the barbell. The recommended height of the blocks is a barbell below the knees. When the barbell is positioned above the knee level, there is a risk of pulling and slipping through the power position. In this case, this exercise can even spoil the technique. Since the athlete has to work on the shortened amplitude of the movement, it is important to apply a much greater starting force and develop more power during acceleration, and after that immediately move swiftly under the barbell and rotate elbows. A mistake that occurs often enough – athletes do not get up from the squat, but drop the barbell immediately on the blocks after taking it. As we know, for an effective CLEAN&amp;JERK, it is necessary to form a stereotype of movement in CLEAN, i.e., in the athlete's mind the movement should begin in the starting position, and end already in the standing position. To work out the angles and improve the workability, after a brief explosive CLEAN, FRONT SQUATs will be perfect to work all the muscles in a more power mode on a long amplitude of motion. This speed-power complex is most effective to be planned at the beginning or middle of the preparation period.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="deficCleanPULLLink" onClick='toggle("deficCleanPULL")' href="#">Deficit Clean PULL</span>
+    <div id="deficCleanPULL" class="dn">
+      <iframe src="https://www.youtube.com/embed/i7f5eYToD8U" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrdeficCleanPULL" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данное упражнение – отличный пример средства для развития силы, специально подготовки и отработки углов при работе с тяжелыми весами. Исходное положение - стоя на подставке. Структура движения аналогична обычной толчковой тяге, но в данном случае изменяется стартовое положение, которое становится более низки и неудобным, потому что повышаются требования к гибкости в пояснице и коленных суставах. В связи с увеличение пути движения штанги нагрузка в упражнении увеличивается, что дает хороший прирост в силовых показателях.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This exercise is an excellent example of a tool for developing strength, especially preparation and working out angles when working with heavy weights. The starting position is standing on the stand. The structure of the movement is similar to the usual CLEAN PULL, but in this case the starting position changes, i.e., becomes lower and inconvenient, because the requirements for flexibility in the lower back and knee joints are increased. In connection with the increase in the path of the barbell, the load in this exercise increases, therefore, it gives a good improvement in strength.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="SPHSPbelowkneeLink" onClick='toggle("SPHSPbelowknee")' href="#">Snatch PULL + Hang SNATCH PULL below knee</span>
+    <div id="SPHSPbelowknee" class="dn">
+      <iframe src="https://www.youtube.com/embed/Z8G3FaiaiKE" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrSPHSPbelowknee" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данный тип тяги чаще всего применяется после выполнения аналогичного рывка, и главная цель подобной комбинации - наработка стабильности и динамичности движения с помоста, так как с учетом специфики хвата и общего центра тяжести, наибольшее количество ошибок в тяге во время выполнения рывка атлеты допускают от уровня ниже колен и до подрыва. При опускании большого веса вниз отлично нарабатываются углы, так как при неправильном медленном движении вниз атлет просто физически потеряет равновесие. Важно контролировать положение туловища, загружать ноги и помнить о том, что руки должны быть расслабленны.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This type of PULL is mostly used after performing a similar SNATCH and the main purpose of this combination is to gain stability and dynamics of the movement from the platform, since regarding the specifics of the grip and the common center of gravity, the great number of mistakes in HANG SNATCH PULL are done from the level below the knees and before power position. When lowering a large weight down, angles are worked out well, because with an incorrect slow movement downwards, the athlete simply physically loses balance. It is important to monitor the position of the trunk, load your feet and remember that your hands should be relaxed.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="CPslowlydownLink" onClick='toggle("CPslowlydown")' href="#">Clean PULL slowly down</span>
+    <div id="CPslowlydown" class="dn">
+      <iframe src="https://www.youtube.com/embed/1HN4X4xGPn8" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrCPslowlydown" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Тяга толчковая с медленным опусканием штанги вниз решает несколько задач одновременно. Безусловно, работа мышц спины и ног в эксцентрическом режиме с большим весом отлично развивает силу, особенно когда этому элементу упражнения предшествует скоростно-силовая фаза. Также при медленном опускании большого веса вниз отлично отрабатываются углы, так как при неправильном медленном движении вниз атлет просто физически потеряет равновесие. Важно контролировать положение туловища, загружать ноги и помнить о том, что руки должны быть расслабленны. Учитывая длительность восстановления организма после такого упражнения, его стоит планировать в программе только в подготовительный период и не чаще 1 раза в 2 недели.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">CLEAN PULL with slow lowering of the barbell downwards solves several tasks simultaneously. No doubt, the work of the back and leg muscles in eccentric mode with great weight develops strength perfectly, especially when this element of exercise is preceded by the speed-power phase. Also, with a slow lowering of a large weight downwards, angles are worked out perfectly, since with an incorrect slow movement downward athlete will simply lose his balance. It is important to monitor the position of the trunk, load your feet and remember that your hands should be relaxed. Regarding the duration of the body recovery after such an exercise, it should be planned in the program only during the preparation period and not more than once in 2 weeks.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="SNATCHfrBlocksLink" onClick='toggle("SNATCHfrBlocks")' href="#">SNATCH from blocks</span>
+    <div id="SNATCHfrBlocks" class="dn">
+      <iframe src="https://www.youtube.com/embed/V2mgxRNGmok" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrSNATCHfrBlocks" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Рывок с плинтов чаще всего выполняется от уровня выше или ниже колен в зависимости от целей и задач тренировки. При  выполнении данного упражнения необходимо прилагать гораздо большее стартовое усилие и развивать мощность при разгоне, так как путь штанги до подрыва укорочен. Это отличный способ отрабатывать мощность в тяге и скорость в уходе. Также рывок с плинтов с небольшими весами может стать отличной альтернативой, когда необходимо разгрузить ноги и спину, так как при работе на короткой амплитуде движения они нагружаются меньше.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">SNATCH FROM BLOCKS is often performed from the above or below the knee level, depending on the goals and tasks of the training. When performing this exercise, it is necessary to apply a much greater starting force and develop power during acceleration phase, since the barbell's path to the power position is shortened. This is a great way to work out power in PULL and speed in dropping under the barbell. Also, SNATCH FROM BLOCKS with light weight can be an excellent alternative when it is necessary to unload your legs and back, since these body parts are loaded less when working with short amplitude.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="DEFICITSNATCHLink" onClick='toggle("DEFICITSNATCH")' href="#">DEFICIT SNATCH</span>
+    <div id="DEFICITSNATCH" class="dn">
+      <iframe src="https://www.youtube.com/embed/rd890HUOdcw" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrDEFICITSNATCH" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данная вариация рывка представляет собой рывок стоя на возвышении (в среднем 4-8 см, во многом зависит от роста спортсмена, как вариант можно использовать диски). Стартовое положение ниже, чем в рывке, что требует повышенных требований к гибкости в коленных суставах и пояснице. Данное упражнение отлично тренирует силу ног в тяге (учит терпеть тягу) и отлично подходит для объемной работы в подготовительном периоде, хотя и может использоваться как контрольное в соревновательном периоде, но в основном у спортсменов высокой квалификации.  </p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This variation of SNATCH is SNATCH standing on the block (average height is 4-8 cm, largely depends on the height of the athlete, as an option you can use plates). The starting position is lower than in the classic snatch, and requires higher requirements for knee mobility and lower back flexibility. This exercise is perfect to strengthen legs in extension (teaches to hold the PULL) and is great for voluminous work in the preparation period, although it can be used as a “check” exercise in the competition period, but mostly for high-qualified athletes.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="deficPowSnatchOHSLink" onClick='toggle("deficPowSnatchOHS")' href="#">DEFICIT Power SNATCH + Overhead SQUAT</span>
+    <div id="deficPowSnatchOHS" class="dn">
+      <iframe src="https://www.youtube.com/embed/pYsCrxFybmE" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrdeficPowSnatchOHS" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данный комплекс чаще всего планируется в подготовительном периоде, когда идет наработка специальной физической подготовки. Рывок с подставки в стойку помогает наработать углы в тяге, так как при выполнении этого упражнения путь в тяге увеличивается, поэтому особенно важно создавать наибольшую амплитуду движения и стараться быстро и четко подставляться под штангу в максимально высокой точке фиксации. После чего выполнение приседаний со штангой над головой помогает проверить качество фиксации штанги и ротации плеча внутрь. Данная комбинация в основном применяется в подготовительный период с целью наработки «базы» с весом 60-75% по 2-3 повторения в каждом из упражнений.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This complex is most often planned in the preparation period, when an athlete works on special physical preparation. DEFICIT POWER SNATCH helps to generate angles in the PULL, since the path in PULL increases, so it is especially important to create the greatest amplitude of movement and try to drop under the barbell quickly and clearly at the highest point of catching. And OVERHEAD SQUAT after the DEFICIT POWER SNATCH helps to check the quality of catching and internal shoulder rotation. This combination is mainly used during the preparation period in order to gain a "base" with 60-75% weight for 2-3 reps in each exercise.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="powerSnatchHipSnLink" onClick='toggle("powerSnatchHipSn")' href="#">Power SNATCH + Hip SNATCH</span>
+    <div id="powerSnatchHipSn" class="dn">
+      <iframe src="https://www.youtube.com/embed/V-wChcxaqpU'" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrpowerSnatchHipSn" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данный комплекс развивает мощность и амплитуду движения в подрыве. Рывок в стойку с паха позволяет отработать непосредственно подрыв и подставление под штангу, а так как необходимо выполнять фиксацию все так же в стойку, это заставляет атлета отрабатывать полную амплитуду выпрямления туловища. Так данный комплекс отлично отрабатывает и развивает взрывные качества мышц ног. Это упражнение обязательно к выполнению исключительно в лямках, так как если их не использовать, существует высокая вероятность зажать руки, что сделает подрыв закрепощенным, а само движение зажатым.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This complex develops power and amplitude of motion in the power position. HIP POWER SNATCH makes it possible to work out dropping under the barbell fast, and since it is necessary to perform catching in the POWER position, it makes the athlete work out with the full amplitude of the torso straightening. So, complex fulfills and develops explosiveness of muscles of legs perfectly. It is obligatory to perform this exercise in straps, since in case if you don’t use them, there is a high probability of clasping your hands, which will make the power position constrained, and the movement will be squeezed.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="powerSnatchSnatchLink" onClick='toggle("powerSnatchSnatch")' href="#">Power SNATCH + SNATCH</span>
+    <div id="powerSnatchSnatch" class="dn">
+      <iframe src="https://www.youtube.com/embed/SLTL9YpPqgU" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrpowerSnatchSnatch" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Сочетание рывка в стойку и рывка отлично подходит для тренировочных программ как подготовительного, так и соревновательного периодов. Рывок в стойку помогает наработать мощность в подрыве, при его выполнении особенно важно создавать наибольшую амплитуду движения и стараться быстро и четко подставляться под штангу в максимально высокой точке фиксации. После этого при выполнении рывка можно сконцентрироваться на других технических элементах движения, потому что двигательный шаблон предыдущего повторения  поможет создать оптимальную амплитуду движения. Такая комбинация отлично применяется в зонах интенсивности до 85% и эффективно совершенствует технику и способствует приросту результата.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">POWER SNATCH and SNATCH is an excellent combination for training plans of both the preparation and the competition periods. POWER SNATCH helps to generate power in the power position, and when performing this movement, it is especially important to create the greatest amplitude of motion and to try to drop under the barbell fast and clearly at the highest point of catching. After this, during the SNATCH, you can concentrate on other technical elements of the movement, because the motor pattern of the previous rep will help create the optimal amplitude of motion. This combination is perfectly used in up to 85% intensity zones, improves the technique effectively and helps to improve the result.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="deficitSnatchPULLLink" onClick='toggle("deficitSnatchPULL")' href="#">Deficit Snatch PULL</span>
+    <div id="deficitSnatchPULL" class="dn">
+      <iframe src="https://www.youtube.com/embed/EH5eit8WWAA" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrdeficitSnatchPULL" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данная вариация рывковой тяги представляет собой тягу стоя на возвышении (в среднем 4-8 см, во многом зависит от роста спортсмена, как вариант можно использовать диски). Стартовое положение ниже, чем в тяге с помоста, что требует повышенных требований к гибкости в коленных суставах и пояснице. Данное упражнение отлично тренирует силу ног (учит терпеть тягу) и отлично подходит для объемной работы в подготовительном периоде Учитывая то, что при выполнении рывка очень важным является динамичность движения, не рекомендуется и в этом упражнении ставить настолько тяжелый вес, чтобы атлет выполнял упражнения в очень медленном темпе, так как это может отразиться и на выполнении рывка. </p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This variation of SNATCH PULL is a PULL standing on the plinth (average height 4-8 cm, largely depends on the growth of the athlete, as an option you can use discs). The starting position is lower than in PULL from the platform, which requires better of the knee and lower back. This exercise works out the strength of the legs (teaches to endure the PULL) perfectly and is great for voluminous work in the preparation period. Regarding the fact that when performing SNATCH dynamics of the movement is considered to be very important, it is not recommended to take so much weight in this exercise and let the athlete do exercises in a very slow pace, as it may affect the SNATCH performance.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="mediumGripPullLink" onClick='toggle("mediumGripPull")' href="#">Medium grip PULL</span>
+    <div id="mediumGripPull" class="dn">
+      <iframe src="https://www.youtube.com/embed/0TzIFnGVASo" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrmediumGripPull" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">В этой тяге хват атлета находится между положением в рывке и толчке. И несмотря на то, что подрыв выполняется чуть выше места, чем в подъеме на грудь, по ощущениям это упражнение ближе к рывковой тяге. Чаще всего это упражнение планируют в переходный период для того, чтобы мышцы отдохнули от привычных углов, а также в подготовительный период, когда идет наработка, и выполняется большой объем силовой работы из нестандартных исходных положений с целью разносторонней проработки мышц атлета.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">In this PULL, the athlete's grip is between the position in SNATCH and CLEAN&JERK. And in spite of the fact that the power position is done just above the place, than in CLEAN, this exercise feels closer to the SNATCH PULL. This exercise is often planned during the transition period to let the muscles rest from the usual angles, as well as in the preparation period, when the operating time is running and a large volume of power work is performed from non-standard starting positions in order to work out the athletes the muscles in various ways.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="BSnarrowFeetLink" onClick='toggle("BSnarrowFeet")' href="#">Back SQUAT (narrow feet)</span>
+    <div id="BSnarrowFeet" class="dn">
+      <iframe src="https://www.youtube.com/embed/rAGEWxuc1so" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrBSnarrowFeet" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Особенностью приседаний со штангой на плечах с узкой постановкой ног является то, что при данном исходном положении частично смещается нагрузка с приводящих мышц бедра на переднюю поверхность бедра. Также при данном положении стоп гораздо сложнее удерживать равновесие в переднезадней плоскости. Эти особенности и определяют целевое назначение данного упражнения. Оно отлично подходит для программирования в подготовительный период, когда необходимо укреплять и прорабатывать мышцы ног, особенно квадрицепс, а также нарабатывать оптимальные углы и траекторию движения в приседаниях в целом.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">A remarkable feature of BACK SQUATS with a narrow position of feet is that at this starting position the load from the adductor muscles of the hip to the front surface of the thigh is partially shifted. Also, at this position feet position, it is much more difficult to maintain balance in the anteroposterior plane. These features determine the purpose of this exercise. It is great for programming during the preparation period, when it is necessary to strengthen the leg muscles, especially the quadriceps, and also to work out optimal angles and trajectory of motion in squats in general.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="JERKSUPPORTLink" onClick='toggle("JERKSUPPORT")' href="#">JERK SUPPORT</span>
+    <div id="JERKSUPPORT" class="dn">
+      <iframe src="https://www.youtube.com/embed/piIFs5ha6BM" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrJERKSUPPORT" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Данное упражнение предполагает выполнение статической работы на время. Удержание штанги с тяжелым весом способствует отработке стартового положения перед толчком с груди, а также дает возможность отработать мышечное чувство и балансировку всех частей тела с тяжелым весом на груди. Выполнение этого упражнения хорошо помогает справиться с чувством страха перед тяжестью и давлением штанги при подготовке к толчку с груди, а также укрепляет мышцы стабилизаторы.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This exercise needs the static work performance for a while. Holding the bar with heavy weight contributes to the development of the starting position before the thrust from the chest, and also makes it possible to work out the muscular feeling and balance of all parts of the body with a heavy weight on the chest. Performing this exercise well helps to cope with a feeling of fear of the weight and pressure of the barbell in preparation for JERK from the chest, and also strengthens the stabilizers.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="snatchPressWrubBandLink" onClick='toggle("snatchPressWrubBand")' href="#">Snatch PRESS with rubber band</span>
+    <div id="snatchPressWrubBand" class="dn">
+      <iframe src="https://www.youtube.com/embed/iLZUW-xlIrU" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrsnatchPressWrubBand" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Основная цель этого упражнения - проработка мелких мышц пояса верхних конечностей и укрепление мышц-стабилизаторов. Главная идея не поднимать тяжелый вес, а работать на удержание веса над головой и стабилизацию штанги и тела в этом положении, несмотря на колебания, которые будут создавать диски, подвешенные на резине. При этом возможны два варианта выполнения упражнения: жим в очень медленном темпе – данный вариант отлично подойдет для укрепления слабых плеч или при восстановлении после травм; жим в более агрессивном стиле, когда в момент фиксации диски будут более выраженно колебаться, и атлету придется дольше стабилизировать свое положение. Данное упражнение наиболее целесообразно интенсивно применять в переходном и подготовительном периоде.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">The main purpose of this exercise is to work out the small muscles of the upper body and strengthen the muscle stabilizers. The main idea is not to lift heavy weight, but work on holding the weight over your head and stabilize the barbell and body in this position despite the vibrations created by plates hanging on the rubber. In this case, two options are possible: </p>
+        <p class="mt2 mb0"> 1) Press at a very slow pace – this option is perfect for strengthening weak shoulders or when recovering from injuries; </p>
+        <p class="mt2 mb0"> 2) Press in a more aggressive style when at the time of fixation of the plates will be more distinctive swing and the athlete will have to stabilize his position longer. This exercise is most expedient to be applied in the transition and preparation period.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="snatchSotsPressLink" onClick='toggle("snatchSotsPress")' href="#">Snatch Sots PRESS</span>
+    <div id="snatchSotsPress" class="dn">
+      <iframe src="https://www.youtube.com/embed/3oMpoWLhFko" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrsnatchSotsPress" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Авторы этого упражнения, Чемпион мира Виктор Соц и его тренер Петр Алаев, когда придумали это упражнение более 35 лет назад, даже не догадывались, что оно станет одним их самых востребованных и популярных и дойдет до сегодняшних дней. Фактически это жим штанги из-за головы рывковым хватом в низком седе. Существуют разные вариации его выполнения – силовой и технический, но в обоих случаях преследуются одни цели – улучшение позиции в седе, а также укрепление и повышение подвижности плечевых суставов. Упражнение отлично подходит для спортсменов всех уровней и включается в тренировочный процесс на всех этапах подготовки.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">Authors of this exercise are the World champion – Viktor Sots and his coach Pyotr Alayev. When they came up with this exercise more than 35 years ago, they did not even realize it would become one of the most popular exercises till nowadays. In fact, it is the press from behind the neck with snatch grip in the deep squat. There are different variations– power and technical. But in both cases, one goal is pursued – improve the squat position, as well as strengthen and increase the shoulder joint mobility. This exercise is great for athletes of all levels and  included in the training process at all phases of preparation.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList basicList" id="muscleSquatSnatchLink" onClick='toggle("muscleSquatSnatch")' href="#">Muscle squat SNATCH</span>
+    <div id="muscleSquatSnatch" class="dn">
+      <iframe src="https://www.youtube.com/embed/H-KrgpjxHMw" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrmuscleSquatSnatch" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Силовая вариация рывка. Выполняется без прыжка и без выраженного подрыва. При выполнении допускается незначительный отрыв пяток от помоста. Основная задача этого упражнения - наработка силового компонента движения, поэтому в основном его планирование осуществляется в подготовительном периоде. Правильное выполнение подразумевает длинную мощную тягу, в конце которой в силовую работу активно включаются руки, при этом важной технической деталью является силовое сопровождение штанги максимально близко к туловищу. После достижения максимальной точки выпрямления туловища атлету необходимо продолжать взаимодействовать со штангой, но при этом максимально быстро уйти в низкий сед. Упражнение также может носить технический характер для отработки взаимодействия атлет-штанга при финальном разгоне, работе над положением в седе и тренировке баланса.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">It is a power variation of SNATCH. Performed without a jump and without a distinctive power position. A slight detachment of the heels from the platform is allowed. The main task in this exercise is the development of the power component of the movement, so basically it is usually planned in the preparation period. Correct performance implies a long powerful pull at the end of which arms are involved in the power work actively, while an important technical detail is holding of the barbell as close to the body as possible with the help of power. After reaching the maximum point of the trunk extension, athlete should continue interaction with the barbell, but at the same time drop under the barbell as quickly as possible to go into the low squat. Exercises can also be of a technical nature for testing of the athlete-barbell interaction during the final acceleration, work on the position in the squat and balance training.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="GakkSquatLink" onClick='toggle("GakkSquat")' href="#">HAKK (GAKK) SQUAT</span>
+    <div id="GakkSquat" class="dn">
+      <iframe src="https://www.youtube.com/embed/HRh6vz2mhQg" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrGakkSquat" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Цель этого упражнения разогрев и укрепление связок коленных суставов. Упражнение выполняется с собственным весом. </p>
+        <p class="mt2 mb0"> Исходное положение пятки стоят на диске, центр тяжести на пятках. Глубокие приседания вниз, подъем вверх на 3/4 амплитуды. Темп медленный, без пауз в верхней и нижней точке движения.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0"> The aim in this exercise is to warm up and strengthen the ligaments of the knee joints. It is a body weight exercise.</p>
+        <p class="mt2 mb0"> The initial position: heels on the plate, the center of gravity is on the heels. Deep squat down, getting upwards by 3/4 amplitude. Slow pace, without pauses at the top and bottom of the movement.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="hyperextensionLink" onClick='toggle("hyperextension")' href="#">Hyperextension</span>
+    <div id="hyperextension" class="dn">
+      <iframe src="https://www.youtube.com/embed/0GmrgMP_AYw" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrhyperextension" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Упражнение, которое я использую всегда в качестве разминки – отлично разогревает спину, заднюю поверхность бедра и ягодицы. Чаще всего работаю только с собственным весом, иногда могу взять небольшое отягощение, например гриф. В этом упражнении очень важны положение спины, амплитуда и темпоритм движения. Поясница всегда должна быть напряжена, движение вниз должно быть до комфортного натяжения задней поверхности бедра, при этом нельзя допускать расслабления поясницы, выпрямление туловища до уровня параллели с полом. Движение вниз должно осуществляться медленно, вверх активно и в верхней точке статическая пауза 2-3 с.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">This is the exercise I always use for the warm-up - it warms up back, hamstrings and glutes. Mostly I work only with my own weight, sometimes I can take a little weight, for example a bar. In this exercise the position of the back, the amplitude and the tempo of movement are very important. Your lower back should always be tense, the downward movement should be should be till the comfortable tense in hamstrings, keeping the tension in your lower back, and straightening the trunk to the level of parallel with the floor. The downward movement should be slow, and movement upwards should be active with a static 2-3 sec pause at the top point.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="revHyperextensionLink" onClick='toggle("revHyperextension")' href="#">Reverse Hyperextension</span>
+    <div id="revHyperextension" class="dn">
+      <iframe src="https://www.youtube.com/embed/92V68M6IJSU" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrrevHyperextension" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Это упражнение в своей разминке чаще использую для разнообразия, а не как основное, хотя как для новичков, так и для продвинутых атлетов оно имеет массу преимуществ по сравнению с традиционной гиперэкстензией. В этом упражнении больше прорабатываются задняя поверхность бедра и ягодицы, нагрузка на мышцы спины несколько ниже, чем в традиционной гиперэкстензии. Из позитивных моментов этого упражнения хочу отметить то, что оно хорошо разгружает и расслабляет позвоночник и практически не забивает мышцы спины в поясничном отделе. Во время выполнения  упражнения даже в нижнем положении мышцы не должны полностью расслабляться. На выдохе ноги поднимаются вверх в среднем темпе до уровня параллели с полом, в верхней точке пауза 2-3 с, на вдохе медленно опускаются вниз. Важно не применять рывков и раскачивания во время выполнения упражнения, так как это может привести к травме.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">In my program this exercise is used not as a regular one, but for a variety, although for beginners and advanced athletes it has a lot of advantages in comparison to a traditional hyperextension. In this exercise, the hamstrings and glutes are worked out better, the load on the back muscles is a bit lower than in the traditional hyperextension. I’d like  to note that it relieves well and relaxes the spine, almost does not clog the back muscles in the lumbar region as well. Even in the lower position muscles should not relax completely. When exhale, lift your legs upwards at an average pace to the level of parallel with the floor with a 2-3 seconds pause at the top. When inhale - lower your legs down slowly. It is important to avoid sharp movements and swings during the exercise, as it may cause an injury.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="jumpToBoxLink" onClick='toggle("jumpToBox")' href="#">JUMP to BOX</span>
+    <div id="jumpToBox" class="dn">
+      <iframe src="https://www.youtube.com/embed/YextpRkB1QY" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrjumpToBox" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Прыжки на тумбу являются обязательным упражнением для всех тяжелоатлетов всех уровней. В тяжелой атлетике в тренировочном процессе вся прыжковая работа традиционно проводится после основной работы, т.е. в конце тренировки, за исключением тренировки новичков – они могут также выполнять прыжки после разминки с целью активации мышц ног. Важно помнить, что в прыжках, как и во всех упражнениях важно не количество повторений, а качество выполнения каждого повтора. Правильный прыжок – это полное  разгибание бедра и правильно амортизирующее приземление. Для развитие мощности прыжка высота тумбы не настолько принципиальна – важна сама механика, так как способность запрыгнуть на высоту выше уровня груди в большей степени обусловлена подвижностью бедер. Для штангистов наиболее эффективно начинать прыжок из полуприседа и из полного седа, а запрыгивать на тумбу на практически ровные ноги. При этом весь подход желательно выполнять без остановки для повышения интенсивности работы мышц в биометрическом режиме. Новичкам, чья техника еще не стабильна, а связки нуждаются в укреплении, можно после каждого прыжка сходить с тумбы.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">Jumping on the box is a "must" for all weightlifters of all levels. In weightlifting all jumping work during the training process is traditionally performed after the main load, i.e. at the end of the training session. Exception: “novice” weightlifters can also perform jumps after warm-up in order to activate the leg muscles. It is highly important to remember that like in all exercises, not the number of reps is important, but rather the quality of performing every single rep. The correct jump is a full extension of the thigh and a proper depreciation landing. To develop the power of the jump, the height of the box is not so important - the mechanics itself is the thing which is actually important, since the ability to jump to a height above the chest level is mostly determined by the hip mobility. For weightlifters, it is most effective to start the jump from the half-squat and from the full squat, and jump on the box on almost straight legs. In this case, the entire set should be performed without stops to increase the intensity of the muscles in the biometric mode. For beginners, whose technique is not so stable yet, and ligaments need strengthening: you can step down from the box after each jump.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="barbellSquatJumpLink" onClick='toggle("barbellSquatJump")' href="#">Barbell Squat JUMP</span>
+    <div id="barbellSquatJump" class="dn">
+      <iframe src="https://www.youtube.com/embed/FmZ0P9SUV7A" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrbarbellSquatJump" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Barbell Squat JUMP имеют неоднозначную репутацию, причем даже среди тренеров по тяжелой атлетике. Мое мнение, что это одно из самых лучших упражнений для развития прыгучести, мощности и силовых способностей в целом. Данное упражнение абсолютно целесообразно применять не только в тяжелой атлетике. Кроссфит, легкая атлетика и даже зимние виды спорта используют его, как элемент физической подготовки уже не один десяток лет, и каждый из этих видов спорта имеет свою специфику выполнения этого упражнения. </p>
+        <p class="mt2 mb0">Основные базовые правила выполнения этого упражнения: </p>
+        <ul>
+          <li>положение штанги на плечах такое же, как в обычных тяжелоатлетических BS - жесткая спина, лопатки сведены, штангу необходимо хорошо фиксировать на трапециях и не допускать ее сползания на шею или вниз; </li>
+          <li>приземление должно быть всегда на “мягкие колени”, с целью амортизации и уменьшения компрессионных нагрузок. </li>
+        </ul>
+        <p class="mt2 mb0">В тяжелой атлетике чаще всего применяется реактивный способ выполнения этого упражнения: атлет выполняет приседание в полный сед и с максимальным усилием выпрыгивает вверх, момент приземления - это уже начало следующего повтора. Данный способ выполнения наилучшим образом способствует развитию взрывной силы и межмышечной координации, а также очень сильно истощает нервную систему, что стоит учитывать при построении программы тренировки.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">Barbell Squat JUMP has an ambiguous reputation even among the weightlifting coaches. My opinion is that it is one of the best exercises for the development of jumping skill, explosive power and strength. This exercise is considered to be expedient for use not only in weightlifting – Crossfit, track and field, and even winter sports use it as an element for improvement of the level of general physical preparedness for more than a dozen years and each of these sports has its own specifics of performing this exercise.</p>
+        <p class="mt2 mb0">Basic rules for this exercise:</p>
+        <ul>
+          <li>position of the barbell on your shoulders is the same as in the usual weightlifting, Back Squat – strong back, scapulas together, barbell must be well fixed on the traps in order to prevent it from sliding down; </li>
+          <li>always be land on "soft knees" in order to have proper amortization and reduction of compressive loads.</li>
+        </ul>
+        <p class="mt2 mb0">In weightlifting, the reactive method of performing this exercise is most often used: athlete performs squats to the bottom and jumps up with maximum effort, the moment of landing is considered to be the beginning of the next rep. This way of performing the exercise influences the development of explosive power and intermuscular coordination, as well as depletes the nervous system – it should be taken into account when in the training program design.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="depthJumpLink" onClick='toggle("depthJump")' href="#">Depth JUMP</span>
+    <div id="depthJump" class="dn">
+      <iframe src="https://www.youtube.com/embed/LFFBW8ja5m0" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrdepthJump" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Прыжок в глубину является главным упражнением ударного метода тренировки мышц ног. Это прыжок вниз обычно с высоты 50-70 см с немедленным выпрыгиванием вверх. Крайне важно то, что приземление и выпрыгивание производится очень быстро, за 0,1-0,2 секунды. </p>
+        <p class="mt2 mb0"> Идея ударного метода заключается в том, чтобы стимулировать мышцы ударным растягиванием, предшествующим активному усилию. </p>
+        <p class="mt2 mb0"> Механика глубокого прыжка такова: при падении спортсмена с высоты он набирает кинетическую энергию, и при приземлении мышцы бедра и голени выполняют эксцентрическое сокращение для того, чтобы затормозить падение. Эксцентрическое сокращение на мгновение сменяется изометрическим (без движения), которое тут же сменяется концентрическим сокращением, когда спортсмен выпрыгивает вверх. </p>
+        <p class="mt2 mb0"> Ударный метод был разработан Юрием Верхошанским для тренировок сборной Советского Союза в начале 70-х годов.</p>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">Depth Jump is the main exercise in the «shock» method of training the leg muscles. This is a jump down, usually from a height of 50-70 cm with an instantaneous jumping up. It is extremely important to land and jump up fast, i.e. for 0.1-0.2 seconds. </p>
+        <p class="mt2 mb0"> The main purpose in the «shock» method is stimulation of the muscles with shock stretching, preceding the active effort. </p>
+        <p class="mt2 mb0"> The mechanics of the depth jump is the following: when an athlete falls from a height – he gains kinetic energy. When landing down, thigh muscles and tibialis anterior muscle perform an eccentric contraction in order to slow the fall, and eccentric contraction is replaced for an instant isometric (i.e. without movement), which is immediately replaced by a concentric contraction, when athlete jumps up. </p>
+        <p class="mt2 mb0"> The shock method was developed by Yuri Verkhoshanskii for the Soviet national team in the early 1970s.</p>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="backLungesLink" onClick='toggle("backLunges")' href="#">Back LUNGES</span>
+    <div id="backLunges" class="dn">
+      <iframe src="https://www.youtube.com/embed/kZdD0gmWamg" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrbackLunges" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Мне кажется, что для группы упражнения, связанных с выпадами написано больше всего описаний, техник выполнения и их вариаций, потому что действительно в зависимости от минимальных нюансов эти упражнения могут решать разные задачи, хотя все они развивают мышцы ног. </p>
+        <p class="mt2 mb0"> Выпад назад я рекомендую использовать всем атлетам, независимо от того, толкают они в ножницы или в швунг. </p>
+        <p class="mt2 mb0"> Фишкой этого упражнения является то, что как при движении назад, так и при возврате в исходное положение, спортсмен определенное количество времени выполняет упражнение стоя на одной ноге, что особенно ценно в первой фазе движения, когда он шагает назад, потому что стабилизация всего тела происходит в основном за счет мелких мышц туловища и ног, укрепление которых влияет на надежность и стабильность техники движения и в целом, способствует профилактике травм. </p>
+        <p class="mt2 mb0"> На что стоит обратить внимание: </p>
+        <ul>
+          <li>положение туловища должно быть максимально приближенным к рабочему положению в толчке с груди, не рекомендуется чрезмерно прогибать поясницу и ложиться вперед; </li>
+          <li>при движении назад центр тяжести впереди стоящей ноги необходимо сменить больше к пятке;</li>
+          <li> вставании необходимо давить в пол пяткой передней стоящей ноги, а туловище и макушку тянуть вверх, НО не вперед; </li>
+          <li>глубина приседания должна быть до уровня параллели с полом передне стоящей ноги; </li>
+          <li>движение вниз должно выполняться в темп ниже среднего, движение вверх может быть более активным, но не в ущерб технике движения.</li>
+        </ul>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">It seems to me a bunch of descriptions has been written for the group of exercises connected with lunges, technique and variations, because, in fact, depending on the minimum nuances, these variations can solve different tasks,  depending on the minimum nuances. Although they all develop leg muscles. </p>
+        <p class="mt2 mb0"> I recommend LUNGES for all athletes, regardless of whether they are SPLIT JERKers or PUSH JERKers. </p>
+        <p class="mt2 mb0"> The shtick of this exercise is that an athlete performs a certain amount of time standing on one leg as while performing the movement backwards and when recovering to the initial position, which is especially valuable in the first phase of the movement when he steps backwards, because the stabilization the body occurs mainly due to the small muscles of the trunk and legs. And strengthening of these body parts affects the reliability and stability of the movement technique and, in general, helps to prevent injuries. </p>
+        <p class="mt2 mb0"> What to pay attention to: </p>
+        <ul>
+          <li>the position of the trunk should be as close as possible to the working position in the JERK from the chest, it is not recommended to flex the lower back excessively and lean forward; </li>
+          <li>the center of gravity of the front foot needs to be directed more to the heel when moving backwards; </li>
+          <li>when extending up: press on the floor with the heel of the front foot, and the trunk and the vertex to pull upwards, BUT not forward; </li>
+          <li>the depth of the squat should be up to the level of the parallel with the floor of the front leg; </li>
+          <li>the downward movement should be done at a “below average” level, the upward movement may be more active, but not at the expense of the movement technique.</li>
+        </ul>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+  <li>
+    <span class="exerciseList legList" id="FeetExtensionLink" onClick='toggle("FeetExtension")' href="#">Feet Extension</span>
+    <div id="FeetExtension" class="dn">
+      <iframe src="https://www.youtube.com/embed/EOVdiHW_aAA" style="width: 100%;" width="560" height="315"></iframe>
+    </div>
+    <div id="descrbackLunges" class="dn">
+      <div class="russian" style="display: none;">
+        <label>Описание</label>
+        <p class="mt2 mb0">Мне кажется, что для группы упражнения, связанных с выпадами написано больше всего описаний, техник выполнения и их вариаций, потому что действительно в зависимости от минимальных нюансов эти упражнения могут решать разные задачи, хотя все они развивают мышцы ног. </p>
+        <p class="mt2 mb0"> Выпад назад я рекомендую использовать всем атлетам, независимо от того, толкают они в ножницы или в швунг. </p>
+        <p class="mt2 mb0"> Фишкой этого упражнения является то, что как при движении назад, так и при возврате в исходное положение, спортсмен определенное количество времени выполняет упражнение стоя на одной ноге, что особенно ценно в первой фазе движения, когда он шагает назад, потому что стабилизация всего тела происходит в основном за счет мелких мышц туловища и ног, укрепление которых влияет на надежность и стабильность техники движения и в целом, способствует профилактике травм. </p>
+        <p class="mt2 mb0"> На что стоит обратить внимание: </p>
+        <ul>
+          <li>положение туловища должно быть максимально приближенным к рабочему положению в толчке с груди, не рекомендуется чрезмерно прогибать поясницу и ложиться вперед; </li>
+          <li>при движении назад центр тяжести впереди стоящей ноги необходимо сменить больше к пятке;</li>
+          <li> вставании необходимо давить в пол пяткой передней стоящей ноги, а туловище и макушку тянуть вверх, НО не вперед; </li>
+          <li>глубина приседания должна быть до уровня параллели с полом передне стоящей ноги; </li>
+          <li>движение вниз должно выполняться в темп ниже среднего, движение вверх может быть более активным, но не в ущерб технике движения.</li>
+        </ul>
+        <p class="mt2 mb0">Больше информации о количестве сетов, повторений, рабочих весов и в какой части тренировки лучше выполнять это упражнение вы найдете в <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">тренировочной программе LEGS STRENGTH</a>.</p>
+      </div>
+      <div class="english">
+        <label>Description</label>
+        <p class="mt2 mb0">It seems to me a bunch of descriptions has been written for the group of exercises connected with lunges, technique and variations, because, in fact, depending on the minimum nuances, these variations can solve different tasks,  depending on the minimum nuances. Although they all develop leg muscles. </p>
+        <p class="mt2 mb0"> I recommend LUNGES for all athletes, regardless of whether they are SPLIT JERKers or PUSH JERKers. </p>
+        <p class="mt2 mb0"> The shtick of this exercise is that an athlete performs a certain amount of time standing on one leg as while performing the movement backwards and when recovering to the initial position, which is especially valuable in the first phase of the movement when he steps backwards, because the stabilization the body occurs mainly due to the small muscles of the trunk and legs. And strengthening of these body parts affects the reliability and stability of the movement technique and, in general, helps to prevent injuries. </p>
+        <p class="mt2 mb0"> What to pay attention to: </p>
+        <ul>
+          <li>the position of the trunk should be as close as possible to the working position in the JERK from the chest, it is not recommended to flex the lower back excessively and lean forward; </li>
+          <li>the center of gravity of the front foot needs to be directed more to the heel when moving backwards; </li>
+          <li>when extending up: press on the floor with the heel of the front foot, and the trunk and the vertex to pull upwards, BUT not forward; </li>
+          <li>the depth of the squat should be up to the level of the parallel with the floor of the front leg; </li>
+          <li>the downward movement should be done at a “below average” level, the upward movement may be more active, but not at the expense of the movement technique.</li>
+        </ul>
+        <p class="mt2 mb0">Find more information about the number of sets, reps, working weight and which part of the workout would be the best to perform this exercise in <a href="/products/leg-strength" target="_blank" rel="noopener noreferrer">LEG STRENGTH training program</a>.</p>
+      </div>
+      <p class="mt2 mb0">TRAIN TOGETHER – TRAIN RIGHT</p>
+    </div>
+  </li>
+</ul>
+
+<script>
+   var videos = {
+    'FSPushPRESS':{
+       video:'https://www.youtube.com/embed/LqhIlmgLxQo'
+    },
+    'PPPowerJERK':{
+       video:'https://www.youtube.com/embed/OyCD7YDxulU'
+    },
+    'FSPowerJERK':{
+       video:'https://www.youtube.com/embed/g2NzdIzB48M'
+    },
+    'PPfromRocks':{
+       video:'https://www.youtube.com/embed/rpdBAVBHgFY'
+    },
+    'PJfromRocks':{
+       video:'https://www.youtube.com/embed/wo7DQr9zL4c'
+    },
+    'CHCbelowKnee':{
+       video:'https://www.youtube.com/embed/6i8bJmrxSH4'
+    },
+    'ClPULLCLEAN':{
+       video:'https://www.youtube.com/embed/x05LVmXsDKU'
+    },
+    'DeficitCLEAN':{
+       video:'https://www.youtube.com/embed/fU0k9X0BpS4'
+    },
+    'PCPCLbelowKnee':{
+       video:'https://www.youtube.com/embed/959p9KkqA0U'
+    },
+    'PCPCLbelowKneePP':{
+       video:'https://www.youtube.com/embed/r1wcpnbX_O8'
+    },
+    'CLEANfrBlocksFS':{
+       video:'https://www.youtube.com/embed/7tliS_SzUWc'
+    },
+    'deficCleanPULL':{
+       video:'https://www.youtube.com/embed/i7f5eYToD8U'
+    },
+    'SPHSPbelowknee':{
+       video:'https://www.youtube.com/embed/Z8G3FaiaiKE'
+    },
+    'CPslowlydown':{
+       video:'https://www.youtube.com/embed/1HN4X4xGPn8'
+    },
+    'SNATCHfrBlocks':{
+       video:'https://www.youtube.com/embed/rd890HUOdcw'
+    },
+    'DEFICITSNATCH':{
+       video:'https://www.youtube.com/embed/rd890HUOdcw'
+    },
+    'deficPowSnatchOHS':{
+       video:'https://www.youtube.com/embed/pYsCrxFybmE'
+    },
+    'powerSnatchHipSn':{
+       video:'https://www.youtube.com/embed/V-wChcxaqpU'
+    },
+    'powerSnatchSnatch':{
+       video:'https://www.youtube.com/embed/SLTL9YpPqgU'
+    },
+    'deficitSnatchPULL':{
+       video:'https://www.youtube.com/embed/EH5eit8WWAA'
+    },
+    'mediumGripPull':{
+       video:'https://www.youtube.com/embed/0TzIFnGVASo'
+    },
+    'BSnarrowFeet':{
+       video:'https://www.youtube.com/embed/rAGEWxuc1s'
+    },
+    'JERKSUPPORT':{
+       video:'https://www.youtube.com/embed/piIFs5ha6BM'
+    },
+    'snatchPressWrubBand':{
+      'video':'https://www.youtube.com/embed/iLZUW-xlIrU'
+    },
+    'snatchSotsPress' : {
+      'video':'https://www.youtube.com/embed/3oMpoWLhFko'
+    },
+    'muscleSquatSnatch' : {
+      'video':'https://www.youtube.com/embed/H-KrgpjxHMw'
+    },
+    'snatchOHsquat': {
+      'video': 'https://www.youtube.com/embed/Y_3YMPFL5Z4'
+    },
+    'powersnatchOHsquat': {
+      'video': 'https://www.youtube.com/embed/XTX39wakQkU'
+    },
+    'snatchBalanceSquat': {
+      'video':'https://www.youtube.com/embed/r6rpwAqBxP0'
+    },
+    'cleanJerk': {
+      'video':'https://www.youtube.com/embed/xwxCclOxuSY'
+    },
+    'cleanFSJerk': {
+      'video':'https://www.youtube.com/embed/GHAxRVDtOJQ'
+    },
+    'powCleanFSPP': {
+      'video':'https://www.youtube.com/embed/mF9g5-U3ICg'
+    },
+    'cleanPullcleanFSJ': {
+      'video':'https://www.youtube.com/embed/NtZglmVciyg'
+    },
+    'defRomDeadlift': {
+      'video':'https://www.youtube.com/embed/P-gopm3hNSk'
+    },
+    'romDeadlift': {
+      'video':'https://www.youtube.com/embed/s2UwQvuN4CY'
+    },
+    'backSquatPause': {
+      'video':'https://www.youtube.com/embed/hEYRj9ISpA0'
+    },
+    'backSquat': {
+      'video':'https://www.youtube.com/embed/SbJsqER3MHA'
+    },
+    'frontSquat': {
+      'video':'https://www.youtube.com/embed/YTey7qrGLsU'
+    },
+    'benchBSquat': {
+      'video':'https://www.youtube.com/embed/09S2-wRuI90'
+    },
+    'goodMorn': {
+      'video':'https://www.youtube.com/embed/w7ZqyuvvEBY'
+    },
+    'goodMornSquat': {
+      'video':'https://www.youtube.com/embed/VOTEkZD-znM'
+    },
+    'backSplitSquat': {
+      'video':'https://www.youtube.com/embed/1f1nfMoC8H8'
+    },
+    'GakkSquat':{
+      'video':'https://www.youtube.com/embed/HRh6vz2mhQg'
+    },
+    'hyperextension': {
+      'video':'https://www.youtube.com/embed/0GmrgMP_AYw'
+    },
+    'revHyperextension': {
+      'video':'https://www.youtube.com/embed/92V68M6IJSU'
+    },
+    'jumpToBox': {
+      'video':'https://www.youtube.com/embed/YextpRkB1QY'
+    },
+    'barbellSquatJump': {
+      'video':'https://www.youtube.com/embed/FmZ0P9SUV7A'
+    },
+    'depthJump': {
+      'video':'https://www.youtube.com/embed/LFFBW8ja5m0'
+    },
+    'backLunges': {
+      'video':'https://www.youtube.com/embed/kZdD0gmWamg'
+    },
+    'FeetExtension': {
+      'video':'https://www.youtube.com/embed/EOVdiHW_aAA'
+    }
+      
+  }
+var setVideo = function (x) {
+      $("#"+x).html('<iframe width="560" height="315" style="width:100%" src="' + videos[x].video + '" frameborder="0" allowfullscreen></iframe>');
+}
+  function toggle(x) {
+
+    if ($('#'+x).hasClass('dn')) {
+
+        $('#'+x).removeClass('dn');
+        $('#descr'+x).removeClass('dn');
+      	$('#'+x+'Link').addClass('bg-red');
+      	$('#'+x+'Link').addClass('white');
+       	$('#'+x+'Link').removeClass('exerciseList');
+
+    } else {
+        $('#'+x).addClass('dn');
+        $('#descr'+x).addClass('dn');
+      	$('#'+x+'Link').removeClass('bg-red');
+      	$('#'+x+'Link').removeClass('white');
+      	$('#'+x+'Link').addClass('exerciseList');
+                  	setVideo(x)
+    }
+}
+  function clearInput(){
+    $('#exerciseSearch').val('');
+    selectExercises();
+  }
+var stateOfProgramFilter='all';
+function selectExercises() {
+    var input, filter, ul, li, span, i, shownList;
+    input = document.getElementById("exerciseSearch");
+    filter = input.value.toUpperCase();
+  	filter=filter.trim();
+  	if (stateOfProgramFilter === 'all') {
+      shownList='exerciseList'
+    } else if (stateOfProgramFilter === 'leg') {
+      shownList='legList'
+    } else if (stateOfProgramFilter === 'basic') {
+      shownList='basicList'
+    }
+  	ul = document.getElementById('exerciseList');
+  	li = $('ul#exerciseList > li')
+    var visibleN=0;
+    for (i = 0; i < li.length; i++) {
+        span = li[i].getElementsByTagName("span")[0];
+      if (span.classList.contains(shownList) === true) {
+        visibleN++;
+        var y=span.id.slice(0,-4);
+        
+
+        if (span.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          
+          if (filter=='') {
+            $('#'+y).addClass('dn');
+            $('#descr'+y).addClass('dn');
+      		$('#'+span.id).removeClass('bg-red');
+      		$('#'+span.id).removeClass('white');
+      		$('#'+span.id).addClass('exerciseList');
+      		setVideo(y)
+          }
+
+            
+        } else {
+            li[i].style.display = "none";
+            $('#'+y).addClass('dn');
+            $('#descr'+y).addClass('dn');
+      		$('#'+span.id).removeClass('bg-red');
+      		$('#'+span.id).removeClass('white');
+      		$('#'+span.id).addClass('exerciseList');
+      		setVideo(y)
+
+        }
+      } else {
+            li[i].style.display = "none";
+            $('#'+y).addClass('dn');
+            $('#descr'+y).addClass('dn');
+      		$('#'+span.id).removeClass('bg-red');
+      		$('#'+span.id).removeClass('white');
+      		$('#'+span.id).addClass('exerciseList');
+      }
+    }
+}
+  function changeLang(lang) {
+    var otherlang;
+    if (lang === "russian") {
+      otherlang = "english"
+    } else if (lang === "english") {
+	  otherlang = "russian"
+    }
+    $('#'+lang).addClass('red')
+    $('#'+otherlang).removeClass('red');
+      
+    if ($("div."+lang+":visible").length === 0) {
+		$("."+otherlang).hide();
+		$("."+lang).show();
+    } else {
+		$("."+lang).hide();
+		$("."+otherlang).show();
+    }
+  }
+  function showVideosFromProgram(program) {
+    if (program === "all") {
+      stateOfProgramFilter='all';
+      $('#all').addClass('red');
+      $('#leg').removeClass('red');
+      $('#basic').removeClass('red');
+
+
+    } else if (program === "leg") {
+      stateOfProgramFilter='leg';
+      $('#leg').addClass('red');
+      $('#all').removeClass('red');
+      $('#basic').removeClass('red');
+
+    } else if (program === "basic") {
+      stateOfProgramFilter='basic';
+      $('#basic').addClass('red');
+      $('#leg').removeClass('red');
+      $('#all').removeClass('red');
+
+    }
+    selectExercises()
+  }
+</script>
+      
+      
+    	
+      
+    </div>
+  </div>
+
+  {% section 'featured-products-subsection' %}
+</div>

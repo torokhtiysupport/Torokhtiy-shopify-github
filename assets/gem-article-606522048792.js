@@ -1,0 +1,191 @@
+
+
+    
+    
+    
+  
+    
+  
+    
+  
+    
+    
+    
+    
+    
+    
+  
+    
+  
+    
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1689326919153').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1697828911705').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1697829011024').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1697829083179').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1697829165707').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1698782235039').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1698782289621').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1698782336037').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1698782362799').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+  
+    
+  
+    
+    
+  
+    
+    
+  
+    
+  
+    
+    
+  
+    
+    
+    
+    
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+    
+    
+  
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+(function( jQuery ){
+  // var $module = jQuery('#m-1689326919095').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1689326919139').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+  
+    
+  
+    
+  
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  var $module = jQuery('#m-1697738802888').children('.module');
+  $module.gfV1Popup();
+
+  var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+  if(mode == 'dev') {
+    var moduleId = "1697738802888";
+    var moduleIdSlug = moduleId.toString().replace(/-/g, '');
+    if (moduleIdSlug == "1697738802888") {
+      window.getPopup1697738802888 = function() {
+        return $module.data('gfv1popup');
+      }
+    }
+  }
+})( window.GemQuery || jQuery );
+  
+    
+  

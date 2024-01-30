@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+#inputStyle {
+
+  width: 100%;
+    border: 1px solid #ddd;
+  margin-bottom: 12px;
+
+
+}
+#exerciseSearch {
+      background-image: url('searchicon.png');
+    background-position: 10px 12px;
+  background-repeat: no-repeat;
+  background-color:white;
+  width: 100%;
+
+  font-size: 16px;
+  padding: 13px 20px 12px 40px;
+}
+
+#exerciseList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#exerciseList li span {
+  margin-top: -1px; /* Prevent double borders */
+  
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: block
+}
+.exerciseList {
+  background-color: #f6f6f6;
+  color: black;
+}
+
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}

@@ -1,0 +1,50 @@
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+    <div class="f3 rte rte--indented-images">
+      {{ page.content }}
+      
+    </div>
+        <div class="cf w-100 contact-form form-vertical">
+
+          {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+          <p id="getbacksoon" class="form-success">
+            My team and I will get back to you soon, stay tuned!
+          </p>
+      	<script>
+    $('html, body').animate({
+        scrollTop: $("#getbacksoon").offset().top
+    }, 2000);
+      </script>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+      <div class="fl  w-100 ">
+
+      <div class="fl  w-100 ">
+
+        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormName" class="label--hidden">{{ 'contact.form.name' | t }}</label>
+            <input type="text" id="ContactFormName" name="contact[name]" placeholder="{{ 'contact.form.name' | t }}" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          </div>
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormEmail" class="label--hidden">{{ 'contact.form.email' | t }}</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+          </div>
+        </div>
+
+        <label for="ContactFormMessage" class="label--hidden">{{ 'contact.form.message' | t }}</label>
+                <textarea rows="3" id="ContactFormMessage" name="contact[message]" placeholder="Get your voice heard">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+
+      </div>
+        <input type="submit" class="btn" style="background-color:#df1f1f, font-family:'Droid Sans','HelveticaNeue','Helvetica Neue',sans-serif; font-size:1.25rem" value="{{ 'contact.form.send' | t }}">
+      {% endform %}
+          </div>
+  </div>
+  </div>
+  {% section 'featured-products-subsection' %}
+</div>

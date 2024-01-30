@@ -1,0 +1,126 @@
+
+
+    
+    
+    
+  
+    
+  
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+  
+    
+  
+    
+    
+    
+    
+    
+    
+  
+    
+  
+    
+  (function( jQuery ){
+  // var $module = jQuery('#m-1679839188354').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+    (function( jQuery ){
+  // var $module = jQuery('#m-1684797014801').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  var $module = jQuery('#m-1679819874539').children('.module');
+  if(jQuery().gfYoutube) {
+    $module.gfYoutube();
+  }
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+  
+    
+  
+    
+    
+  
+    
+  
+    
+    
+    
+  
+    
+  
+    
+    
+  
+    
+  
+    
+  
+    
+    
+  
+    
+  
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+  
+    
+  
+    (function( jQuery ){
+  var $module = jQuery('#m-1699194793183').children('.module');
+  $module.gfV1Popup();
+
+  var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+  if(mode == 'dev') {
+    var moduleId = "1699194793183";
+    var moduleIdSlug = moduleId.toString().replace(/-/g, '');
+    if (moduleIdSlug == "1699194793183") {
+      window.getPopup1699194793183 = function() {
+        return $module.data('gfv1popup');
+      }
+    }
+  }
+})( window.GemQuery || jQuery );
+  
+    
+  

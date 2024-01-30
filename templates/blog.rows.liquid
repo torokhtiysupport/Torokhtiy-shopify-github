@@ -1,0 +1,171 @@
+{% paginate blog.articles by 10 %}
+
+
+<div class="pa4-ns pa3">
+  
+
+  <h1 class="ml4-l tc">
+    {% if current_tags %}
+      {{ current_tags.first }}
+    {% endif %}
+    
+
+  </h1>
+
+  <div class="grid">
+    <div class="grid__item{% if blog.all_tags.size > 0 %} large-up--three-quarters{% endif %}">
+
+      <section class="">
+  <h2 class=" fw1 ph3 ph0-l">Blog</h2>
+        <!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://torokhtiy.us15.list-manage.com/subscribe/post?u=138b5c441b71b757fff75ba6c&amp;id=019330a511" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Do you want more tips?  Subscribe to my blog:</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_138b5c441b71b757fff75ba6c_019330a511" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+              {% for article in blog.articles %}
+        
+        
+
+   
+       
+
+  <article class="bt dim bb b--black-10">
+      <div  class="pv4 ph3 ph0-l flex flex-column flex-row-ns">
+
+        <div class="small--one-whole pr3-ns mb4 mb0-ns w-100 w-40-ns">
+          {% if article.image %}
+          <a href="{{ article.url }}">
+                {{ article | img_url: '1024x1024' | img_tag: article.title }}
+          </a>
+          {% endif %}
+
+        </div>
+        
+        <div class="small--one-whole w-100 w-60-ns pb3 pl3-ns">
+          
+          <h2 class="f3 fw1  mt0 lh-title">
+          <a href="{{ article.url }}">
+            {{article.title}}
+            </a>
+          </h2>
+          <p class="f6 f5-l lh-copy" >
+            <a class="db black no-underline" href="{{ article.url }}" style="color: black !important; text-align: justify;">
+
+            {% if article.excerpt.size > 0 %}
+              {{ article.excerpt }}
+            {% else %}
+             {{ article.content | strip_html | truncatewords: 50 }}
+            {% endif %}
+            </a>
+          </p>
+          <p class="f6 lh-copy mv0">
+			{% if article.tags.size > 0 %}
+            Tags: 
+              {% for tag in article.tags %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-body-color"><strong>{{ tag }}</strong></a>{% if forloop.last %} - {% else %}, {% endif %}
+              {% endfor %}
+            {% endif %}
+            {{ article.published_at | time_tag: format: 'month_day_year' }}
+          </p>
+        </div>
+
+      </div>
+  </article>
+        
+  
+</section>
+        <!--     
+      {% if forloop.index == 3 %}
+      <article class="bt dim bb b--black-10">
+        <div  class="pv4 ph3 ph0-l flex flex-column flex-row-ns">
+          <a href="#">
+            {{ '4534534_-2.jpg' | asset_url | img_tag }}
+          </a>
+        </div>
+      </article>
+      {% endif %}
+      {% if forloop.index == 6 %}
+      <article class="bt dim bb b--black-10">
+        <div  class="pv4 ph3 ph0-l flex flex-column flex-row-ns">
+          <a href="#">
+            {{ '4534534_-2.jpg' | asset_url | img_tag }}
+          </a>
+        </div>
+      </article>
+      {% endif %}
+      -->  
+
+      {% endfor %}
+    </div>
+    
+      <div class="grid__item large-up--one-quarter small--hide" >
+
+        <div class="fr-l bg-near-white pa3  dn-m" style="max-width: 20rem;">
+		
+		<div >
+		    <h3 class="tc">Our training programs</h3>
+		    <div class="grid grid--no-gutters grid--uniform">
+		      {% for product in collections.sidebar-collection.products limit: 4 %}
+ 		       <div class="grid__item">
+ 		         {% include 'product-card-blog-sidebar', product: product %}
+ 		       </div>
+ 		     {% endfor %}
+		    </div>
+		</div>
+
+        </div>
+      </div>
+  </div>
+
+      	<div class="page-width  large-up--hide">
+    <h3>Our training programs</h3>
+    <div class="grid grid--no-gutters grid--uniform">
+      {% for product in collections.sidebar-collection.products limit: 4 %}
+        <div class="grid__item medium-up--one-quarter small--one-half">
+          {% include 'product-card', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+</div>
+  {% if paginate.pages > 1 %}
+    <div class="pagination">
+      {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+    </div>
+  {% endif %}
+  <!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://torokhtiy.us15.list-manage.com/subscribe/post?u=138b5c441b71b757fff75ba6c&amp;id=019330a511" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Do you want more tips? </br> Subscribe to my blog:</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_138b5c441b71b757fff75ba6c_019330a511" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup-->
+
+</div>
+
+{% endpaginate %}

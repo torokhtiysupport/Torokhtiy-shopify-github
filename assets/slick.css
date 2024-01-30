@@ -1,0 +1,251 @@
+/* Slider */
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: block;
+  max-height:370px;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+.slick-dots li button:before {
+    //display:none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "\2022";
+    width: 40px;
+    height: 40px;
+    font-family: "slick-icons, sans-serif";
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    opacity: 0.25;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 0.75;
+ // display:none;
+}
+.slick-prev:before, .slick-next:before {
+  display:none;
+    font-family: "slick-icons, sans-serif";
+    font-size: 50px;
+    line-height: 1;
+    color: white;
+    opacity: 0.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-prev {
+  opacity:0;
+    min-width: 75px;
+    width: 10%;
+    height: 100%;
+    background-image: url(https://cdn.shopify.com/s/files/1/1806/0489/files/chevron-left5.png?4748173863619088498);
+    background-repeat: no-repeat;
+    background-position: center center;
+    left: 0;
+    cursor: pointer;
+  	z-index:1;
+    max-height:370px;
+
+}
+.basicProgramsSlider:hover  .slick-prev {
+    display:none;
+
+  opacity:1;
+    min-width: 75px;
+    width: 10%;
+    height: 100%;
+    background-image: url(https://cdn.shopify.com/s/files/1/1806/0489/files/chevron-left5.png?4748173863619088498);
+	  	background-color:#fff;
+  opacity:0.85;
+//zoom:1;
+  background-repeat: no-repeat;
+    background-position: center center;
+    left: 0;
+    cursor: pointer;
+  	z-index:1;
+    max-height:370px;
+
+}
+.slick-next {
+  opacity:0;
+ // min-width: 75px;
+    width: 10%;
+    height: 100%;
+    background-image: url(https://cdn.shopify.com/s/files/1/1806/0489/files/chevron-right5.png?4748173863619088498);
+  max-height:370px;
+
+  background-repeat: no-repeat;
+    background-position: center center;
+    right: 0;
+    cursor: pointer;
+}
+.basicProgramsSlider:hover  .slick-next {
+  display:none;
+  opacity:1;
+  //min-width: 75px;
+    width: 10%;
+    height: 100%;
+  max-height:370px;
+    background-image: url(https://cdn.shopify.com/s/files/1/1806/0489/files/chevron-right5.png?4748173863619088498);
+	  	background-color:#fff;
+  opacity:0.85;
+//zoom:1;
+  background-repeat: no-repeat;
+    background-position: center center;
+    right: 0;
+    cursor: pointer;
+}
+.slick-dots li button {
+    border: 0;
+    background: transparent;
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 40px;
+    color: transparent;
+    padding: 5px;
+    cursor: pointer;
+}
+.slick-track {
+ max-height:370px; 
+}
+@media screen and (min-width:700px) {
+  .basicProgram {
+	height:370px !important;
+
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .basicProgramList {
+    flex-grow:1;
+  }
+}
+@media screen and (max-width:700px) {
+  .basicProgram {
+	height:auto !important;
+
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .basicProgramList {
+  }
+}

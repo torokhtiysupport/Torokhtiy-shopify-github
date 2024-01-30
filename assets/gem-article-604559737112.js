@@ -1,0 +1,726 @@
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1671742437996').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1671815631654').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1671815204213').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+$(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+$(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+$(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+$(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+$(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+$(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    
+    $(document).on("inview", ".rate_bar_wrap", function(event, visible) {
+      if (visible) {
+        $(".rate-bar").each(function() {
+          $(this)
+            .find(".rate-bar-bar")
+            .animate({
+              width: $(this).attr("data-percent")
+            }, 1500);
+        });
+         
+      }
+    });
+    $(".show-more").click(function () {
+
+        if($(".text").hasClass("show-more-height")) {
+
+            $(this).text("Show Less");
+
+        } else {
+
+            $(this).text("Show More");
+
+        }
+
+
+
+        $(".text").toggleClass("show-more-height");
+
+    });
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1686579194714').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1671739422043').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  // var $module = jQuery('#m-1671815958072').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

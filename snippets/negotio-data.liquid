@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    window.negotioData = {
+        version: 1,
+        product: {
+            id: {{ product.id | json }},
+            name: {{ product.title | json }},
+            currency: {
+                code: {{ cart.currency.iso_code | json }},
+                symbol: {{ cart.currency.symbol | json }},
+            },
+            collections: [
+                {%- for collection in product.collections %}
+                {
+                    id: {{ collection.id | json }},
+                    name: {{ collection.title | json }},
+                },
+                {%- endfor %}
+            ],
+            tags: [
+                {%- for tag in product.tags %}
+                {{ tag | json }},
+                {%- endfor %}
+            ],
+            variants: [
+                {%- for variant in product.variants %}
+                {
+                    id: {{ variant.id | json }},
+                    name: {{ variant.title | json }},
+                    price: {{ variant.price | json }},
+                },
+                {%- endfor %}
+            ],
+        },
+        variant: {
+            id: {{ product.selected_or_first_available_variant.id | json }},
+            name: {{ product.selected_or_first_available_variant.title | json }},
+            price: {{ product.selected_or_first_available_variant.price | json }},
+        },
+    };
+</script>

@@ -1,0 +1,575 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+<div class="page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" data-ajax="{{ section.settings.enable_ajax }}" data-stock="{{ section.settings.stock_enable }}">
+  {% assign product_image_size = '480x480' %}
+
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '600x600', scale: 2 }}">
+  {%- if settings.product_vendor_enable -%}
+    <meta itemprop="brand" content="{{ product.vendor }}">
+  {%- endif -%}
+
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+
+  <div class="grid product-single" style="margin-bottom: 0px;">
+    <div class="mt4 grid__item {% if product.images.size > 1 %}medium-up--three-fifths{% else %}medium-up--one-half{% endif %}">
+      <div class="photos">
+        <div class="photos__item photos__item--main">
+          <div style="max-height:420px;" class="product-single__photo" id="ProductPhoto">
+            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+            <a href="{{ featured_image | img_url: '1024x1024' }}" class="js-modal-open-product-modal" id="ProductPhotoLink-{{ section.id }}">
+              <img style="max-height:420px;" src="{{ featured_image | img_url: product_image_size, scale: 3 }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg-{{ section.id }}">
+            </a>
+          </div>
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="photos__item photos__item--thumbs mr2">
+            <div class="product-single__thumbnails{% unless product.images.size > 3 %} product-single__thumbnails--static{% endunless %}" id="ProductThumbs-{{ section.id }}">
+              {% for image in product.images %}
+                <div class="product-single__thumbnail-item {% if image == featured_image %} is-active {% endif %}">
+                  <a href="{{ image.src | img_url: product_image_size, scale: 3 }}" data-zoom="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail product-single__thumbnail-{{ section.id }}">
+                    <img src="{{ image.src | img_url: '160x160', scale: 3 }}" alt="{{ image.alt | escape }}">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {% if product.images.size > 2 %}
+          {% comment %}
+            Add SVG icon snippets to an object for custom slider arrows
+          {% endcomment %}
+          <script>
+            {% capture arrow_left %}{% include 'icon-arrow-left' %}{% endcapture %}
+            {% capture arrow_right %}{% include 'icon-arrow-right' %}{% endcapture %}
+            {% capture arrow_up %}{% include 'icon-arrow-up' %}{% endcapture %}
+            {% capture arrow_down %}{% include 'icon-arrow-down' %}{% endcapture %}
+            var sliderArrows = {
+              left: {{ arrow_left | json }},
+              right: {{ arrow_right | json }},
+              up: {{ arrow_up | json }},
+              down: {{ arrow_down | json }}
+            }
+          </script>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="mt4 grid__item {% if product.images.size > 1 %}medium-up--two-fifths{% else %}medium-up--one-half{% endif %}" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <div class="product-single__info-wrapper">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+        <div class="product-single__meta small--text-center">
+          {% if settings.product_vendor_enable %}
+            <p class="product-single__vendor">{{ product.vendor }}</p>
+          {% endif %}
+          
+
+          <h1 itemprop="name" class="product-single__title">{{ product.title }}</h1>
+{% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+          <ul class="product-single__meta-list list--no-bullets list--inline">
+            <li id="ProductSaleTag-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}">
+              <div class="product-tag">
+                {{ 'products.product.on_sale' | t }}
+              </div>
+            </li>
+            <li>
+              {% unless product.compare_at_price_max > product.price %}
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              {% endunless %}
+              <span id="ProductPrice-{{ section.id }}" class="product-single__price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                {{ current_variant.price | money }}
+              </span>
+            </li>
+            {% if product.compare_at_price_max > product.price %}
+              <li>
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                <s id="ComparePrice-{{ section.id }}" class="product-single__price product-single__price--compare">
+                  {{ current_variant.compare_at_price | money }}
+                </s>
+              </li>
+            {% endif %}
+            {% if section.settings.stock_enable %}
+              <li>
+                <span id="ProductStock-{{ section.id }}" class="product-single__stock {% unless current_variant.inventory_management and current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 or  current_variant.inventory_management and current_variant.inventory_quantity <= 0 and current_variant.incoming %} hide{% endunless %}">
+                  {% if current_variant.inventory_management %}
+                    {% if current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 %}
+                      {% assign qty = current_variant.inventory_quantity %}
+                      {{ 'products.product.stock_available' | t: count: qty }}
+                    {% elsif current_variant.inventory_quantity == 0 or current_variant.inventory_quantity < 0 and current_variant.incoming %}
+                      {% if current_variant.available %}
+                        {% assign date = current_variant.next_incoming_date | date: "%B %-d, %Y" %}
+                        {{ 'products.product.will_not_ship_until' | t: date: date  }}
+                      {% else %}
+                        {% assign date = current_variant.next_incoming_date | date: "%B %-d, %Y" %}
+                        {{ 'products.product.will_be_in_stock_after' | t: date: date  }}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </span>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <hr>
+
+        <div class="f3-ns">
+          {{ product.description | split: '---split---' | first }}
+        </div>
+        <br>
+        
+        <form action="/cart/add" data-productid="{{ product.id }}" method="post" enctype="multipart/form-data" class="product-form" id="AddToCartForm">
+      
+          {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+            {% for option in product.options_with_values %}
+              <div class="selector-wrapper js product-form__item">
+                <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+                <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+                  id="SingleOptionSelector-{{ forloop.index0 }}"
+                  data-name="{{ option.name }}"
+                  data-index="option{{ forloop.index }}"
+                        style="background-color={{selected}}">
+                  {% for value in option.values %}
+                    <option  value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endfor %}
+          {% endunless %}
+
+          <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+            {% for variant in product.variants %}
+              <option {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" {% unless variant.available %} disabled="disabled" {% endunless %}>
+                {% if variant.available %}
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                {% else %}
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                {% endif %}
+              </option>
+            {% endfor %}
+          </select>
+
+
+              <div class='dtc v-mid ph2 w-100'>
+                <label style="display:inline; float:none" for="agree">
+				  By clicking "Add to Cart" button you agree to our <a href="/pages/agreement-and-release-of-liability" target="_blank" rel="noopener noreferrer">terms and conditions</a>.
+			    </label>
+              </div>
+			
+          <div class="product-form__item product-form__item--submit">
+            <button style="width: 100%;" type="submit"
+              name="add"
+              id="AddToCart-{{ section.id }}"
+              class="btn btn--full product-form__cart-submit{% unless current_variant.available %} btn--sold-out{% endunless %}"
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span id="AddToCartText-{{ section.id }}">
+                {% unless current_variant.available %}
+                  {{ 'products.product.sold_out' | t }}
+                {% else %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% endunless %}
+              </span>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+            
+  </div>
+
+    <div  class="fl mt3 pv3 rte product-single__description f4-ns" style="text-align: justify" itemprop="description">
+      {{ product.description | split: '---split---' | last }}
+      
+
+      
+      
+      
+      
+    </div>
+    {% if section.settings.social_sharing_products %}
+      <hr>
+      {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+    {% endif %}
+      
+      {% comment %}
+      Here is programs table
+      {% endcomment %}
+      
+<h1 class="tl-l tc">PROGRAM SUMMARY</h1>
+<table class="mw6-m center medium-up--hide small--show w-100 f4 dt table collapse" style=" border: collapse" >
+<tbody class="pv2">
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Duration (weeks)</td>
+  </tr>
+<tr>
+<td class="pa2 tl pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">4</td>
+</tr>
+<tr>
+<td class="pa2 pl4 tl logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">4</td>
+</tr>
+<tr>
+<td  class="pa2 pl4 tl   w-50 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ">4</td>
+</tr>
+  <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Personal data analysis</td>
+</tr>
+<tr>
+<td class="pa2 pl4 tl logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td class="pa2 pl4 tl logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3  fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td  class="pa2 tl pl4 tl   w-50 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+  <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Advanced personal data analysis</td>
+</tr>
+<tr>
+<td class="pa2 tl pl4 logoredtext  w-50 " style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> - </td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td  class="pa2 tl  pl4 w-50 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+  <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Recommendations for your training program</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50 " style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td  class="pa2 tl  pl4 w-50 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Weekly correction of the training program</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> - </td>
+</tr>
+<tr>
+<td class="pa2 tl pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50  pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50  champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Analysis of the "control" videos</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">1 exercise per week</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">3 exercises per week</td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50  pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50  champ">5 exercises per week</td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Recommendations on recovery</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50  pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50  champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Recommendations on sports nutrition</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50  pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Planning based on the personal BIORYHTMS</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50   pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Certificate of completion of the 4-week "YOU ARE THE CHAMPION" training cycle</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50 " style="background-color:#F7F7F7"> </td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50 pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Questions & Answers</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">Yes, within 3 days after receiving the program</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">Yes, at the end of each week </td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50  pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50 champ">7 days a week</td>
+</tr>
+    <tr><td colspan="2"></td></tr>
+<tr >
+<td class="pa2 tc pv3 w-100" style="text-transform: uppercase; background-color:#eae8e8" colspan="2">Price</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Amateur</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">$99</td>
+</tr>
+<tr>
+<td class="pa2 tl  pl4 logoredtext  w-50" style="background-color:#F7F7F7">Pro</td>
+<td class="pa2 tc w-50" style="background-color:#F7F7F7">$249</td>
+</tr>
+<tr>
+<td  class="pa2 tl w-50   pl4 champ">You are the Champion</td>
+<td  class="pa2 tc w-50  champ">$499</td>
+</tr>
+</tbody>
+</table>
+<table class="dt f4 medium-up--show small--hide personalprogramstable collapse mw9 center" style=" border: collapse" >
+<thead>
+<tr class="logoredtext" style="height:3rem"  >
+  <th class="tc bg-white w-40 v-mid"></th>
+  <th class="tc  bg-white  w-20 v-mid amateur">Amateur</th>
+  <th class="tc   bg-white w-20 v-mid pro">Pro</th>
+  <th class="tc  w-20 v-mid champ">You are the Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height:3rem; background: #F0F0F0;"  >
+   <td class="tl pa2 pl4 v-mid">Duration (weeks)</td>
+   <td class="tc pa2 v-mid amateur">4</td>
+   <td class="tc pa2 v-mid pro">4</td>
+  <td  class="tc pa2 v-mid champ">4</td>
+</tr>
+<tr style="height:3rem" >
+  <td class="tl pa2 pl4 v-mid">Personal data analysis</td>
+  <td class="tc pa2 v-mid amateur"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc pa2 v-mid pro"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc pa2 v-mid champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem; background: #F0F0F0;">
+  <td class="tl pa2 pl4 v-mid">Advanced personal data analysis</td>
+  <td class="tc  pa2 v-mid amateur"> </td>
+  <td class="tc  pa2 v-mid pro"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc  pa2 v-mid champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem">
+  <td class="tl pa2 pl4 v-mid">Recommendations for your training program</td>
+  <td class="tc v-mid pa2  amateur"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc v-mid pa2  pro"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc v-mid pa2  champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem; background: #F0F0F0;">
+  <td class="tl pa2 pl4 v-mid">Weekly correction of the training program</td>
+  <td class="tc v-mid  pa2 amateur"> </td>
+  <td class="tc v-mid  pa2 pro"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc v-mid  pa2 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem">
+  <td class="tl pa2 pl4 v-mid">Analysis of the "control" videos</td>
+  <td class="tc v-mid  pa2 amateur">1 exercise per week</td>
+  <td class="tc v-mid  pa2 pro">3 exercises per week</td>
+  <td class="tc v-mid  pa2 champ">5 exercises per week</td>
+</tr>
+<tr style="height:3rem; background: #F0F0F0;">
+  <td class="tl pa2 pl4 v-mid">Recommendations on recovery</td>
+  <td class="tc v-mid  pa2 amateur"> </td>
+  <td class="tc v-mid  pa2 pro"><i class="f3 fa fa-check green" aria-hidden="true"></i></td>
+  <td class="tc v-mid  pa2 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem">
+  <td class="tl pa2 pl4 v-mid">Recommendations on sports nutrition</td>
+  <td class="tc v-mid  pa2 amateur">  </td>
+  <td class="tc v-mid  pa2 pro"> </td>
+  <td class="tc v-mid  pa2 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem; background: #F0F0F0;">
+  <td class="tl pa2 pl4 v-mid">Program break </td>
+  <td class="tc v-mid  pa2 amateur"> </td>
+  <td class="tc v-mid  pa2 pro">7 days </td>
+  <td class="tc v-mid  pa2 champ">14 days</td>
+</tr>
+<tr style="height:3rem">
+  <td  class="tl pa2 pl4 v-mid">Certificate of completion of the 4-week "YOU ARE THE CHAMPION" training cycle</td>
+  <td  class="tc v-mid  pa2 amateur"> </td>
+  <td  class="tc v-mid  pa2 pro"> </td>
+  <td  class="tc v-mid  pa2 champ"><i class="f3 fa fa-check white" aria-hidden="true"></i></td>
+</tr>
+<tr style="height:3rem; background: #F0F0F0;">
+  <td class="tl pa2 pl4 v-mid">Questions & Answers</td>
+  <td class="tc v-mid  pa2 amateur">Yes, within 3 days after receiving the program</td>
+  <td class="tc v-mid  pa2 pro">Yes, at the end of each week </td>
+  <td class="tc v-mid  pa2 champ">7 days a week</td>
+</tr>
+<tr style="height:3rem">
+  <td class="tl fw6 pa2 pl4 v-mid" style="text-transform: uppercase;">Price</td>
+  <td class="tc  fw6 v-mid  pa2 amateur">$99</td>
+  <td class="tc  fw6 v-mid  pa2 pro">$249</td>
+  <td class="tc  fw6 v-mid  pa2 champ">$499</td>
+</tr>
+</tbody>
+</table>     
+ <div class="pt5 pa3">     
+  <h1>Not sure what to choose?</h1>
+  <p class="f3">We have more to offer, check out <a href="https://torokhtiy.com/blogs/warm-body-cold-mind/how-to-choose-your-training-program-1">a summary of all training programs</a> prepared by Aleksey Torokhtiy</p>
+  </div>  
+      {% comment %}
+      Here the programs table ends 
+      {% endcomment %}
+
+    <div class="contact-form form-vertical fl w-100 pt5 pa3" >
+      {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+          <p class="form-success">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        <div class="grid grid--half-gutters" >
+          <h1 class='small--text-center mh2-ns'>Ask us any question</h3>
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormName" class="label--hidden">{{ 'contact.form.name' | t }}</label>
+            <input type="text" id="ContactFormName" name="contact[name]" placeholder="{{ 'contact.form.name' | t }}" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          </div>
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormEmail" class="label--hidden">{{ 'contact.form.email' | t }}</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+          </div>
+        </div>
+
+        <label for="ContactFormMessage" class="label--hidden">{{ 'contact.form.message' | t }}</label>
+        <textarea rows="3" id="ContactFormMessage" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input type="submit" class="btn" value="{{ 'contact.form.send' | t }}">
+      {% endform %}
+    </div>
+  
+  <hr>
+	<div class='related-products-meta fl w-100' style="margin:10px;">
+		{% include 'related-products-meta' %}
+	</div>
+
+
+</div>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+  {% if section.settings.stock_enable %}
+    <script type="application/json" id="VariantJson-{{ section.id }}">
+      [
+        {% for variant in product.variants %}
+          {
+             "incoming": {{ variant.incoming | default: false | json }},
+             "next_incoming_date": {{ variant.next_incoming_date | date: format: 'month_day_year' | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    </script>
+  {% endif %}
+{% endunless %}
+  
+
+
+{% if collection %}
+  <div class="full-width full-width--return-link">
+    <a href="{{ collection.url }}" class="h1 return-link">
+      {% include 'icon-arrow-thin-left' %}
+      {{ 'products.product.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}
+
+
+
+
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  window.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>{% render 'product_infox' %}

@@ -1,0 +1,51 @@
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  // var $module = jQuery('#m-1657870855863').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+<script type='application/ld+json'>
+{
+  "@context": "http://www.schema.org",
+  "@type": "person",
+  "name": "Oleksiy Torokhtiy",
+  "height": "1.81 m",
+  "weight": "104 kg",
+  "gender": "male",
+  "url": "https://torokhtiy.com/pages/oleksiy-torokhtiy",
+  "brand": "Torokhtiy Weightlifting",
+  "jobTitle": "Founder",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Torokhtiy Weightlifting"
+  },
+  "hasOccupation": "Olympic Weightlifting Training Programs, Online Coaching",
+  "sameAs": [ 
+ "https://www.facebook.com/Torokhtiyo",
+ "https://twitter.com/torohtiyo?lang=en",
+ "https://www.instagram.com/torokhtiy/",
+ "https://en.wikipedia.org/wiki/Oleksiy_Torokhtiy",
+ "https://www.reddit.com/user/TOROKHTIY_Aleksey/",
+ "https://www.google.com/search?kgmid=/m/0hhvxny",
+ "https://www.reddit.com/user/TOROKHTIY_Aleksey/"
+ ],
+  "image": "https://ucarecdn.com/dc96c1db-e1be-4a0d-9bfe-20c10d7f8ad1/-/format/auto/-/preview/3000x3000/-/quality/lighter/%D0%9A%D0%BE%D0%BF%D0%B8%D1%8F%20imgonline-com-ua-Mirror-AkkNCjCLki38YOQ.jpg",
+  "birthDate": "1986-05-22",
+  "alumniOf": "National Aerospace University – Kharkiv Aviation Institute",
+  "birthPlace": "Zugres, Donetsk region, Ukraine",
+  "nationality": "Ukrainian"
+}

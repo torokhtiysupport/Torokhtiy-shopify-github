@@ -1,0 +1,25 @@
+<!--<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block">
+    <div class="rte rte--indented-images">
+      {{ page.content }}
+    </div>
+  </div>
+
+  {% section 'featured-products-subsection' %}
+</div>-->
+
+<!-- Bold: Memberships (page) -->
+{% include 'bold_mem_helper' with 'page' %}
+<!-- end Bold code -->
+<div class="page-width">
+<h1 class="small--text-center">{{ page.title }}</h1>
+<div class="form-vertical">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script><script src="//checkout.stripe.com/checkout.js"></script>
+<div class="content-block">
+<div id="test_membership_container" class="bold-mem-container memberships_widget mw6" data-plantag="test" data-url="https://mem.boldapps.net" data-hashwidget="e04eb4927dfc96fc5377edabf4b2a3cf" data-token="65280ae6ce2ce9d522c3dc112ff5325f" data-idwidget="5550" data-domain="korshunad.myshopify.com"></div>
+</div>
+<script data-cfasync="false" type="text/javascript" src="https://mem.boldapps.net/app_assets/js/plan_multiwidget.js"></script>
+</div>
+</div>

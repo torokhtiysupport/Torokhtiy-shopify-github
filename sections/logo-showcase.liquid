@@ -1,0 +1,62 @@
+
+        <div class="logo-showcase-content {{ section.settings.banner }}"></div>
+        <link rel="stylesheet" href="https://app.logoshowcase.co/extension/app.css" />
+        <script src="https://app.logoshowcase.co/extension/app.js" defer></script>
+        {% schema %}
+          {
+            "name": {
+              "en": "Logo showcase"
+            },
+            "class": "logo-showcase-section",
+            "presets": [
+              {
+                "name": "Logo showcase",
+                "category": "Logo"
+              }
+            ],
+            "settings": [
+              {
+                "type": "paragraph",
+                "content": "Please pick the banner you’ve created while setting up the app, otherwise it wont show anything. If you don't see any logo after you've picked a banner, make sure you've picked the right banner or go on Bee Logo showcase and upload a few logos."
+              }, {
+                "type": "select",
+                "id": "banner",
+                "label": "Logo banner",
+                "options": [
+                  {
+                    "value": "banner-1",
+                    "label": "Logo banner #1"
+                  },
+                  {
+                    "value": "banner-2",
+                    "label": "Logo banner #2"
+                  },
+                  {
+                    "value": "banner-3",
+                    "label": "Logo banner #3"
+                  },
+                  {
+                    "value": "banner-4",
+                    "label": "Logo banner #4"
+                  }, {
+                    "value": "banner-5",
+                    "label": "Logo banner #5"
+                  }, {
+                    "value": "banner-6",
+                    "label": "Logo banner #6"
+                  }, {
+                    "value": "banner-7",
+                    "label": "Logo banner #7"
+                  }, {
+                    "value": "banner-8",
+                    "label": "Logo banner #8"
+                  }, {
+                    "value": "banner-9",
+                    "label": "Logo banner #9"
+                  }
+                ],
+                "default": "banner-1"
+              }
+            ]
+          }
+        {% endschema %}

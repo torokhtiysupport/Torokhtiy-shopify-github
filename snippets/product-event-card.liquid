@@ -1,0 +1,49 @@
+<!-- /snippets/product-card.liquid -->
+
+{% comment %}
+  The product card snippet is passed a liquid object, used in this file
+  as "product". The object is either "product" or "item", the latter if
+  it is from search results.
+{% endcomment %}
+            {% assign description=product.description | split: '---split---' %}
+
+<div class='fl w-third-l pa1-ns pb3 w-50-m w-100 '>
+<div class='shadow-4 '>
+        <div class="cf w-100 pa3-ns pa2 eventCard">
+  <div class="cf">
+                <a class="w-50 fl" href="{{ product.url | within: collection }}">
+        	<img class="w-100" style="overflow: hidden; max-width:100%; height:auto" src="{{ product.featured_image.src | img_url: '480x480' }}" alt="{{ product.featured_image.alt | escape }}"/>
+          </a>
+                  <div class="fl w-50 f5 f4-ns pl2 fw6">
+            {{ product.title }} 
+        	</div>
+            <div class="fl f5 f4-ns pl2 w-50">
+ 				{{ description[0] }}
+          	</div>
+  </div>
+
+          	<div class="w-100 f5 f4-ns pb2">
+              {{ description[1] }}
+          	</div>
+            <div class=" w-100 mb2">
+             Address: {% assign map_link = 'https://www.google.com/maps/place/' | append: description[2]%}
+            <a class="tc" href="{{ map_link }}">{{ description[2] }}</a>
+        	</div>
+
+          	<div class="w-100 mb2">
+              Contact: <a href="{{ description[4] }}" target="_blank" rel="noopener noreferrer">{{ description[3] }}</a>
+          	</div>
+          <div class='w-100 tc ph3' style="position:absolute; bottom:20px; left:0; right:0;">
+          <a class='w-100 ratesItemBtn' href="{{ product.url | within: collection }}">More info</a>
+          </div>
+
+        </div>
+
+</div>
+
+</div>
+  <div class="product-card__overlay">
+    {% assign view_string_length = 'products.product.view' | t | size %}
+    <span class="btn product-card__overlay-btn {% if view_string_length > 8 %} btn--narrow{% endif %}">{{ 'products.product.view' | t }}</span>
+  </div>
+

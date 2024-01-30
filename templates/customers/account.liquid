@@ -1,0 +1,1173 @@
+<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+
+<div class="page-width">
+
+  <div class="grid ">
+{% assign programNumber=0%}
+{% assign videoanalysesNumber=0%}
+
+{% assign showPrograms=false %}
+{% assign videoAnalysis=false %}
+
+{% capture programs %}
+  {% for order in customer.orders %}{% if order.financial_status == 'paid'%}{% for line_item in order.line_items %}{% if line_item.title contains 'training program' %}{% assign showPrograms=true %}<p id='{{line_item.id}}name'>{{line_item.title}}</p>{%capture number%}{%increment programNumber%}{%endcapture%}{% elsif line_item.title contains 'CHAMP' %}{% assign showPrograms=true %}<p id='{{line_item.id}}name'>{{line_item.title}}</p>{%capture number%}{%increment programNumber%}{%endcapture%}{% endif %}{% endfor %}{% endif %}{% endfor %}
+{% endcapture %}
+ {% comment %}
+ 
+  the one above later will be replaced by status and date fields from firebase for this individual customer
+  or something else
+{% endcomment %}
+{% capture videoanalyses %}
+
+   {% for order in customer.orders %}{% if order.financial_status == 'paid'%}{% for line_item in order.line_items %}{% if line_item.title contains 'Video Analysis' %}{% assign videoAnalysis=true %}<p id='{{line_item.id}}name'>{{line_item.title}}</p>{%capture Vnumber%}{%increment videoanalysesNumber%}{%endcapture%}{% endif %}{% endfor %}{% endif %}{% endfor %}
+ {%endcapture %}
+
+  {% if showPrograms == true or videoAnalysis == true %}
+
+<div class="pa3 mt5  mt3-l">
+  <ul class="pa3 tabs bb-l b--light-gray">
+    {% if showPrograms == true %}
+    <li><a href="#tab-1">Personal Programs</a></li>
+    {% endif %}
+    {% if videoAnalysis == true %}
+    <li><a href="#tab-2">Video Analysis</a></li>
+    {% endif %}
+    <li><a href="#tab-3">Order History</a></li>
+  </ul>
+ 
+  <div id="tab-1">
+  
+    <div id="confirmation" class="f3 pa3 mb3 cf form-submitted w-100" style="display:none"><span class="w-90 fl">Exercises sent for analysis!</span><span class="w-10 tr white close">&times;</span>
+    </div>
+
+
+
+    {% assign exercises=true%}
+  	{% if showPrograms %}
+      <div class="grid__item pt4">
+        <div class="bg--near-white">
+          <div class="pa3">
+
+  		  <h1>Welcome to your account!</h1>
+            <div class="cf w-100">
+
+              <div class="fl-ns w-50-ns pa3 w-100">
+
+                <p class="f4 mw6">Please, answer questions so that we can serve you</p><p class="f4 mw6"> your personal training {{ number | pluralize: 'program', 'programs' }}</p>
+		        <a class="btn" style="font-size:1.1rem" href="/pages/sample-questionnaire">Answer questions</a>
+                <div id="emergencyAddition" style="padding-top:1.5rem;display:none;">
+                  <p class="f4 mw6">You have requested to add more exercises,</p><p class="f4 mw6"> please do it with the button below</p>
+
+                  <input  data-fp-container="modal" data-fp-multiple="true" data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '1', 'additionalExercises')" 
+                            type="filepicker" style='display:none;'
+        	                data-fp-button-text="Add exercises" style="display:none;line-height:1.3rem" 
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn mw5 w-80-l w-100 bg-white emergencyButton" type="filepicker" 
+                  		/>
+                  <input value="additionalExercises" id="additionalExercises" name="program" style="display:none" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+	  	
+ 	{% endif %}
+    {% assign programCount = number | plus: 2 %}
+    {% for order in customer.orders %}
+      {% if order.financial_status == 'paid' %}
+  	    {% for line_item in order.line_items %}
+          {% if line_item.title contains 'Amateur' %}
+            <div class="grid__item pt4"  id="{{line_item.id}}title">
+            {% assign programCount=programCount | minus: 1 %}
+      
+
+            <div class="pa3">
+              <p class="f3">Training cycle #{{programCount}}<span class="counter"></span></p>
+  			  <h1>{{line_item.title}}</h1>
+              <div id="{{line_item.id}}">
+             <p class="f4">Please, add  1 exercise, 3 sets, 3 videos maximum in total</p>
+                <p>How to send videos of CONTROL EXERCISES<br />1. Click to the button DOWNLOAD.<br />2. You will be redirected to transfer page<br />3. Upload your videos.<br />4. Send them to <span style="color: #2b00ff;"><a href="GANG@TOROKHTIY.COM" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">GANG@TOROKHTIY.COM</a></span>.<br />5. Just wait a little for the coach feedback.</p>
+                <div class="cf w-100">
+                  <div class="fl w-100 w-50-l pv3">
+  		
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=3 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '1', '{{line_item.id}}')" 
+                            type="filepicker" 
+        	                data-fp-button-text="Upload Week 1 exercises" 
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn w-80-l w-100 bg-white addExw1{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                     <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 1 exercises</a>
+                              
+                    <div id="w1{{line_item.id}}" class="cf  pt3 w-80-l w-100"></div>
+            
+                  </div>
+                 <div class="fl w-100 w-50-l pv3">
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=3 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '2', '{{line_item.id}}')" 
+                            type="filepicker" 
+        	                data-fp-button-text="Upload Week 2 exercises"  
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn  w-80-l w-100   bg-white addExw2{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                    <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 2 exercises</a>
+                    <div id="w2{{line_item.id}}" class="cf pt3 w-80-l w-100">  </div>
+
+                  </div>                        
+                </div>
+                <div class="cf w-100">
+                  <div class="fl w-100 w-50-l pv3">
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=3 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '3', '{{line_item.id}}')" 
+                            type="filepicker"
+        	                data-fp-button-text="Upload Week 3 exercises" 
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn pv3-l w-80-l w-100   bg-white addExw3{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                     <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 3 exercises</a>
+                    <div id="w3{{line_item.id}}" class="cf  pt3 w-80-l w-100"> </div>
+
+                   </div>
+                   <div class="fl w-100 w-50-l pv3">
+
+                     <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=3 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '4', '{{line_item.id}}')" 
+                            type="filepicker"
+        	                data-fp-button-text="Upload Week 4 exercises"  
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn pv3-l w-80-l w-100   bg-white addExw4{{line_item.id}}" type="filepicker" 
+                  	 />-->
+                      <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 4 exercises</a>
+                     <div id="w4{{line_item.id}}" class="cf pt3 w-80-l w-100"> </div>
+
+                   </div>
+                 </div>
+                 <input value="AMATEUR" id="program{{line_item.id}}" name="program" style="display:none" />
+                </div>
+                
+             </div>
+    	   </div>
+    {% endif %}
+    {% if line_item.title contains 'PRO' %}
+    
+		<div class="grid__item pt4" id="{{line_item.id}}title">
+        {% assign programCount=programCount | minus: 1 %}
+          <div class="pa3" >
+            <p class="f3">Training cycle #{{programCount}}<span class="counter"></span></p>
+  			<h1> {{line_item.title}}</h1>
+
+            <div id="{{line_item.id}}">
+
+    			<p class="f4">Please, add  five exercises, 3 sets of each one, 9 videos maximum in total</p>
+                <p>How to send videos of CONTROL EXERCISES<br />1. Click to the button DOWNLOAD.<br />2. You will be redirected to transfer page<br />3. Upload your videos.<br />4. Send them to <span style="color: #2b00ff;"><a href="GANG@TOROKHTIY.COM" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">GANG@TOROKHTIY.COM</a></span>.<br />5. Just wait a little for the coach feedback.</p>
+
+                <div class="cf w-100">
+                  <div class="fl w-100 w-50-l pv3">
+  		
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=9 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '1', '{{line_item.id}}')" 
+                            type="filepicker" 
+        	                data-fp-button-text="Upload Week 1 exercises"
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn w-80-l w-100 bg-white addExw1{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                            <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 1 exercises</a>  
+                    <div id="w1{{line_item.id}}" class="cf  pt3 w-80-l w-100"></div>
+				  </div>
+                  <div class="fl w-100 w-50-l pv3">
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=9 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '2', '{{line_item.id}}')" 
+                            type="filepicker" 
+        	                data-fp-button-text="Upload Week 2 exercises" 
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn  w-80-l w-100   bg-white addExw2{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                     <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 2 exercises</a>
+                    <div id="w2{{line_item.id}}" class="cf  pt3 w-80-l w-100">   </div>        
+                  </div>
+                        
+                </div>
+                <div class="cf w-100">
+                  <div class="fl w-100 w-50-l pv3">
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=9 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '3', '{{line_item.id}}')" 
+                            type="filepicker"
+        	                data-fp-button-text="Upload Week 3 exercises" 
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn pv3-l w-80-l w-100   bg-white addExw3{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                     <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 3 exercises</a>
+                    <div id="w3{{line_item.id}}" class="cf  pt3 w-80-l w-100"></div>
+
+                  </div>
+                  <div class="fl w-100 w-50-l pv3">
+
+                    <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=9 data-fp-mimetypes="video/*"
+					        onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '4', '{{line_item.id}}')" 
+                            type="filepicker"
+        	                data-fp-button-text="Upload Week 4 exercises"  
+                		    data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                    		data-fp-button-class="ratesItemBtn pv3-l w-80-l w-100   bg-white addExw4{{line_item.id}}" type="filepicker" 
+                  	/>-->
+                     <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 4 exercises</a>
+                    <div id="w4{{line_item.id}}" class="cf  pt3 w-80-l w-100">
+                    </div>
+
+                  </div>
+                </div>
+                <input value="PRO" id="program{{line_item.id}}" name="program" style="display:none" />
+
+              </div>
+            </div>
+    	  </div>
+    {% endif %}
+    {% if line_item.title contains 'CHAMP' %}
+
+      <div class="grid__item pt4" id="{{line_item.id}}title">
+      {% assign programCount=programCount | minus: 1 %}
+      <div class="pa3">
+        <p class="f3">Training cycle #{{programCount}}<span class="counter"></span></p>
+  		<h1>{{line_item.title}}</h1>
+
+        <div id="{{line_item.id}}">
+          
+    		<p class="f4">Please, add  five exercises, 3 sets of each one, 15 videos maximum in total</p>
+        <p>How to send videos of CONTROL EXERCISES<br />1. Click to the button DOWNLOAD.<br />2. You will be redirected to transfer page<br />3. Upload your videos.<br />4. Send them to <span style="color: #2b00ff;"><a href="GANG@TOROKHTIY.COM" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">GANG@TOROKHTIY.COM</a></span>.<br />5. Just wait a little for the coach feedback.</p>
+ 
+          <div class="cf w-100">
+              <div class="fl w-100 w-50-l pv3">
+  		
+               <!-- <input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=15 data-fp-mimetypes="video/*"
+			      onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '1', '{{line_item.id}}')" 
+                  type="filepicker" 
+        	      data-fp-button-text="Upload Week 1 exercises"  
+                  data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                  data-fp-button-class="ratesItemBtn w-80-l w-100 bg-white addExw1{{line_item.id}}" type="filepicker" 
+                 />-->
+                    <a href="https://wetransfer.com/" style="text-align: center;"target="_blank" rel="noopener noreferrer"  class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 1 exercises</a>           
+                 <div id="w1{{line_item.id}}" class="cf  pt3 w-80-l w-100"></div>
+                                                     
+               </div>
+               <div class="fl w-100 w-50-l pv3">
+                 <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=15 
+				   onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '2', '{{line_item.id}}')" 
+                   type="filepicker" 
+        	       data-fp-button-text="Upload Week 2 exercises"  
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                   data-fp-button-class="ratesItemBtn  w-80-l w-100   bg-white addExw2{{line_item.id}}" type="filepicker" 
+                 />-->
+                  <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 2 exercises</a>
+                 <div id="w2{{line_item.id}}" class="cf  pt3 w-80-l w-100"></div>
+                              
+               </div>
+             </div>
+             <div class="cf w-100">
+               <div class="fl w-100 w-50-l pv3">
+                 <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=15 
+				   onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '3', '{{line_item.id}}')" 
+                   type="filepicker"
+        	       data-fp-button-text="Upload Week 3 exercises"  
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" data-fp-mimetypes="video/*"
+                   data-fp-button-class="ratesItemBtn pv3-l w-80-l w-100   bg-white addExw3{{line_item.id}}" type="filepicker" 
+                 />-->
+                  <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 3 exercises</a>
+                 <div id="w3{{line_item.id}}" class="cf pt3 w-80-l w-100"></div>
+                       
+               </div>
+               <div class="fl w-100 w-50-l pv3">
+
+                 <!--<input  data-fp-container="modal" data-fp-multiple="true"  data-fp-maxFiles=15 data-fp-mimetypes="video/*"
+				   onchange="out='';for(i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url+' '};sendExercise(out, event.fpfiles.length, '4', '{{line_item.id}}')" 
+                   type="filepicker"
+        	       data-fp-button-text="Upload Week 4 exercises" 
+                   data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" 
+                   data-fp-button-class="ratesItemBtn pv3-l w-80-l w-100   bg-white addExw4{{line_item.id}}" type="filepicker" 
+                 />-->
+                  <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn w-80-l w-100 bg-white addExw1">Upload Week 1 exercises</a>
+                 <div id="w4{{line_item.id}}" class="cf pt3 w-80-l w-100"></div>
+                        
+               </div>
+             </div>
+             <input value="CHAMPION" id="program{{line_item.id}}" name="program" style="display:none" />
+           </div>
+                
+         </div>
+       </div>
+	        
+ 
+    		{% endif %}
+    	{% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+   <script src="{{ 'md5.min.js' | asset_url }}"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script>
+    if (typeof Object.assign != 'function') {
+      Object.assign = function(target, varArgs) { // .length of function is 2
+        'use strict';
+        if (target == null) { // TypeError if undefined or null
+          throw new TypeError('Cannot convert undefined or null to object');
+        }
+
+        var to = Object(target);
+
+        for (var index = 1; index < arguments.length; index++) {
+          var nextSource = arguments[index];
+
+          if (nextSource != null) { // Skip over if undefined or null
+            for (var nextKey in nextSource) {
+              // Avoid bugs when hasOwnProperty is shadowed
+              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                to[nextKey] = nextSource[nextKey];
+              }
+            }
+          }
+        }
+        return to;
+      };
+    }
+      
+    if (!Object.keys) Object.keys = function(o) {
+      if (o !== Object(o))
+        throw new TypeError('Object.keys called on a non-object');
+        var k=[],p;
+        for (p in o) if (Object.prototype.hasOwnProperty.call(o,p)) k.push(p);
+          return k;
+    }
+
+    </script>
+	<script>
+      var name="";
+      var receivedInfo;
+      var numDaysBetween = function(d1, d2) {
+        var diff = (d1.getTime() - d2.getTime());
+        return diff / (1000 * 60 * 60 * 24);
+      };             
+      $(document).ready(function(){ 
+	    $.get("https://wbcm-5b3a6.firebaseio.com/athletes/"+id+".json", function(data, status){
+          receivedInfo=data;
+          if (data['formdata']['addexercises']=='true') {
+            document.getElementById('emergencyAddition').style.display="block"
+          }
+     
+		  var json = data.exercises;
+          name=data.formdata.firstName+" "+data.formdata.lastName;
+
+		  if (json) {
+            var j=0;
+          
+            for (var line in json) {
+              if (json[line]['w1']) {
+                j++;
+              
+                var dates=Object.keys(json[line]['w1']);
+                var sorted = dates.sort();
+                var minDate = sorted[0];
+                var dateparts=minDate.split(" ");
+                var first=new Date(dateparts[0]+" "+dateparts[1]+" "+dateparts[2]+" "+dateparts[3]);
+                var today=new Date();
+                var difference=(today-first)/(1000 * 60 * 60 * 24);
+                if (difference>56) {
+                  $('#'+line).css('display', 'none');
+                  $('#'+line+'title').css('display', 'none');
+                } else {
+                
+
+                  for (var w in json[line]) {
+                    var weekTotal=0;
+                    var program='';
+                    var i=0;
+
+                    if (json[line][w] !== null) {
+
+		              for (var date in json[line][w]) {
+
+				        weekTotal+=(json[line][w][date]["thisAmount"]-0)
+                
+				        program=json[line][w][date]['program'];
+
+		              }
+                      if (weekTotal>0){
+                        var update=document.getElementById(""+w+line);
+                        if (update != null) {
+                          update.innerHTML="Up to current moment you have uploaded "+weekTotal+" videos."
+                        }
+                      }
+                      if (program=="CHAMPION" && weekTotal>15) {
+                        var button=document.getElementsByClassName("addEx"+w+line)[0];
+              	          if (button != null) {
+                            button.disabled = true;
+                            button.style.color = "gray";
+                            button.style.borderColor = "gray";
+              	          }
+                      }
+                      if (program=="PRO" && weekTotal>9) {
+                        var button=document.getElementsByClassName("addEx"+w+line)[0];
+              	        if (button != null) {
+                          button.disabled = true;
+                          button.style.color = "gray";
+                          button.style.borderColor = "gray";
+              	        }
+                      }
+                      if (program=="AMATEUR" && weekTotal>3) {
+                        var button=document.getElementsByClassName("addEx"+w+line)[0];
+              	        if (button != null) {
+                          button.disabled = true;
+                          button.style.color = "gray";
+                          button.style.borderColor = "gray";
+              	        }
+                      }
+          	        }
+                  }           
+                }
+              }
+            }	
+          }        
+   	    });
+
+      }); 
+      var id = md5("{{customer.id}}"+"{{customer.email}}");
+      var currentTotal=0;
+      var uploadedNowAmounts={};
+      var confirmation=document.getElementById("confirmation");
+      var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+        confirmation.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == confirmation) {
+          confirmation.style.display = "none";
+        }
+      }          
+      function sendExercise(x, y, z, line) {
+	    currentTotal=0;
+	    var key='w'+z+line;
+	    var exercises=x.trim().split(" ");
+    
+        var w='w'+z;
+
+ 
+	    if (uploadedNowAmounts.hasOwnProperty(key)) {
+		  currentTotal= uploadedNowAmounts[key]
+	    } else if (receivedInfo['exercises']) {
+    	if (receivedInfo['exercises'][line]) {
+  		  if (receivedInfo['exercises'][line][w]) {
+  		    for (date in receivedInfo['exercises'][line][w]) {
+    		  currentTotal+=parseInt(receivedInfo['exercises'][line][w][date]['thisAmount'])
+  			}
+          } else {currentTotal=0;}
+        } else {currentTotal=0;}
+	
+        } else {currentTotal=0;}
+
+        if (currentTotal>0) {
+		  currentTotal=parseInt(currentTotal)+parseInt(y);
+        } else {currentTotal=y;    }
+
+        var program=$("#program"+line).val();
+        var date=new Date();
+	    var videos="";
+
+        for (var i=0; i<exercises.length; i++) {
+		  videos+="&video"+(i+1)+"="+exercises[i];
+        }
+        document.getElementById('w'+z+line).innerHTML="You have uploaded "+y+" videos, "+currentTotal+" in total.";
+	    var obj={}, wObj={}; 
+	    obj[key]=parseInt(currentTotal);
+	    uploadedNowAmounts = Object.assign({}, uploadedNowAmounts, obj);
+  
+        // send ajax
+	    $.ajax({
+		  url: 'https://hooks.zapier.com/hooks/catch/2032528/mn9r7v/', // url where to submit the request
+    	  type : "POST", // type of action POST || GET
+    	  dataType : 'json', // data type
+    	  data : "customerId="+id+"&lineId="+line+"&date="+date+"&week="+"w"+z+videos+"&exercises="+x+"&currentTotal="+currentTotal+"&thisAmount="+y+"&name="+name+"&email="+"{{customer.email}}"+"&program="+program,  // post data || get data
+    	  success : function(result) {
+        	$(window).scrollTop(0);
+            $("#confirmation").css("display", "block");
+              if (program=="CHAMPION" && currentTotal>15) {
+                document.getElementsByClassName("addEx"+w+line)[0].disabled = true;
+                document.getElementsByClassName("addEx"+w+line)[0].style.color = "gray";
+                document.getElementsByClassName("addEx"+w+line)[0].style.borderColor = "gray";
+              }
+              if (program=="PRO" && currentTotal>9) {
+                document.getElementsByClassName("addEx"+w+line)[0].disabled = true;
+                document.getElementsByClassName("addEx"+w+line)[0].style.color = "gray";
+                document.getElementsByClassName("addEx"+w+line)[0].style.borderColor = "gray";
+              }
+              if (program=="AMATEUR" && currentTotal>3) {
+                document.getElementsByClassName("addEx"+w+line)[0].disabled = true;
+                document.getElementsByClassName("addEx"+w+line)[0].style.color = "gray";
+                document.getElementsByClassName("addEx"+w+line)[0].style.borderColor = "gray";
+              }
+          },
+          error: function(xhr, resp, text) {
+        	console.log(xhr, resp, text);
+          }
+        }) ;       
+      }
+
+    </script>
+    {% comment %}
+		what customer has bought and prolongation
+    {% endcomment %}
+    <div class="cf w-100">
+      <div class="fl-ns w-50-ns pa3 w-100">
+		<p class="f4">You have bought the following personal training {{ number | pluralize: 'program', 'programs' }}:</p>
+		<h6>{{ programs  }} </h6>
+      </div>
+    </div>
+  	<p class="f4 tl">If you would like to extend your training program, upgrade or downgrade, choose one of the links below</p>
+      <div class="w-100 cf">
+        <div class="w-30-ns w-100 fl tl mb3 mr3-ns"><a class="red f4 dim pa3-l" href="/cart/add?id=35900081028&quantity=1">Amateur training program</a></div>
+        <div class="w-30-ns w-100 fl tl mb3 mr3-ns"><a class="red f4 dim pa3-l" href="/cart/add?id=35900127172&quantity=1">PRO training PROGRAM</a></div>
+        <div class="w-30-ns w-100 fl tl mb3 mr3-ns"><a class="red f4 dim pa3-l" href="/cart/add?id=35900178116&quantity=1">You are the CHAMPION</a></div>
+      </div>
+  </div>
+
+  {% if videoAnalysis == true %}
+
+  <div id="tab-2">
+    <div class="grid__item pt4">
+    <div class="pa3">
+    <h1 style="margin-bottom:2rem">Video Analysis questions and exercises upload</h1>
+      <div class="page-width">
+      <div class="contact-form form-vertical">
+        <form id="videoanalysisform" name="athleteform" class="athleteform cf w-100" style="color:4a3030">
+          <div id="confirmation_videoanalysis" class="f3 pa3 mb3 cf form-submitted w-100" style="display:none"><span class="w-90 fl">Thank you! We will send you video analysis in about 5 days.</span><span id="close_videoanalysis" class="w-10 tr close">&times;</span></div>
+          <div id="error_videoanalysis" class="f3 pv3 red" style="display:none"></div>
+        
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+ 		       <label for="firstName">First name</label>
+       		   <input class="inputs" id="firstName" name="firstName" value="{{customer.first_name}}" required>
+            </div>
+            <div class="grid__item medium-up--one-half">
+		       <label for="lastName">Last name</label>
+	           <input class="inputs" id="lastName" name="lastName" value="{{customer.last_name}}" required>
+            </div>
+          </div>
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+ 		       <label for="email">Contact e-mail</label>
+       		   <input type="email" class="inputs" id="email" name="email" value="{{customer.email}}" required>
+            </div>
+          </div>
+        
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+ 		       <label for="country">Country</label>
+       		   <input class="inputs" id="country" name="country" value="{{customer_address.country}}" required>
+            </div>
+            <div class="grid__item medium-up--one-half">
+		       <label for="city">City</label>
+	           <input class="inputs" id="city" name="city" value="{{customer_address.city}}" required>
+            </div>
+          </div>
+          <div class="grid grid--third-gutters">
+            <div class="grid__item medium-up--one-third">
+ 		       <label for="age" >Age</label>
+       		   <input class="inputs" id="age" name="age" required>
+            </div>
+            <div class="grid__item medium-up--one-third">
+		       <label for="weight" >Current body weight</label>
+	           <input class="inputs" id="weight" name="weight" required>
+            </div>
+            <div class="grid__item medium-up--one-third">
+		       <label for="height" >Height</label>
+	           <input class="inputs" id="height" name="height" required>
+            </div>
+          </div>
+          <div class="grid__item medium-up--one-half" style="padding-left:0px">
+            <div class="w-100">
+		      <label for="olympicExperience">Olympic weightlifting experience (years)</label>
+	          <input class="inputs" id="olympicExperience" name="olympicExperience" required >
+            </div>
+            <div class=" w-100">
+		      <label for="injuries">Do you have any injuries?</label>
+	          <input class="inputs"  id="injuries" name="injuries" required>
+            </div>
+          </div>
+          <div class="grid__item medium-up--one-half" >
+            <div class=" w-100">
+		      <label for="medical">Do you have any medical conditions I should know about?</label>
+	          <input  id="medical" name="medical" required>
+            </div>  
+          </div>
+
+
+          <div class="grid__item cf" style="padding-left:0px">
+            <div class="fl w-30-l w-100">
+		      <label for="blocks">Do you have blocks in the gym?</label><br>
+              <input class="blocks" type="radio" id="yesblocks" name="blocks" value="yes">YES
+ 			  <input class="blocks" type="radio" id="noblocks" name="blocks" value="no" style="margin-left: 4rem;">NO
+            </div>
+            <div class="fl w-30-l w-100">
+		      <label for="racks">Do you have racks in the gym?</label><br>
+              <input class="racks" type="radio" id="yesracks" name="racks" value="yes">YES
+ 			  <input class="racks" type="radio" id="noracks" name="racks" value="no" style="margin-left: 4rem;">NO
+            </div>
+          
+            <div class="fl w-30-l w-100">
+		      <label for="metricUnits">Which metric units do you use?</label><br>
+              <input class="metric" type="radio" id="kgmetricUnits" name="metricUnits" value="kg">KG
+ 			  <input class="metric" type="radio" id="lbsmetricUnits" name="metricUnits" value="lbs" style="margin-left: 4rem;">LBS
+            </div>       
+          </div>
+
+          <div class="cf grid__item medium-up--one-half pb3" style="padding-left:0px">
+            <h5 class="" style="padding-left:0px">Best PR for the last 6 months:</h5>
+
+            <div class="cf w-100">
+              <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">Snatch</span>
+              <div class="fl w-80-ns w-100">
+                <div class="fl w-40-l w-100 pr3-ns pl0-ns ph1">
+                  <label >Competition</label>
+                  <label style="display:none" for="competitionSnatch">Best PR in Snatch (competition)</label>
+          	      <input id="competitionSnatch" name="competitionSnatch">
+                </div>
+                <div class="fl w-40-l w-100 pr3-ns ph1">
+                  <label>Training</label>
+                  <label style="display:none" for="trainingSnatch">Best PR in Snatch (training)</label>
+          	      <input id="trainingSnatch" name="trainingSnatch">
+                </div>
+              </div>
+            </div>
+          
+            <div class="cf w-100">
+              <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">Clean & Jerk</span>
+              <div class="fl w-80-ns w-100">
+                <div class="fl pt3 w-40-l w-100 pr3-ns pl0-ns ph1">
+                  <label>Competition</label>
+                  <label style="display:none" for="competitionCleanJerk">Best PR in Clean & Jerk (competition)</label>
+          	      <input id="competitionCleanJerk" name="competitionCleanJerk">
+                </div>
+                <div class="fl pt3 w-40-l w-100 pr3-ns ph1">
+                  <label>Training</label>
+                  <label style="display:none" for="trainingCleanJerk">Best PR in Clean & Jerk (training)</label>
+          	      <input id="trainingCleanJerk" name="trainingCleanJerk">
+                </div>
+              </div>
+            </div>
+          
+            <div class="cf w-100">
+              <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">FS</span>
+              <div class="fl w-80-ns w-100">
+                <div class="fl w-40-l w-100 pr3-ns ph1">
+                  <label style="display:none" for="trainingFS">Best PR in Front Squat (training)</label>
+                  <label>Training</label>
+                  <input id="trainingFS" name="trainingFS">
+                </div>
+              </div>
+            </div>
+          
+            <div class="cf w-100">
+              <span class="fl w-20-ns w-100 labelish tc" style="margin-top:3rem">BS</span>
+              <div class="fl w-80-ns w-100">
+                <div class="fl w-40-l w-100 pr3-ns ph1">
+                  <label style="display:none" for="trainingBS">Best PR in Back Squat (training)</label>
+                  <label>Training</label>
+          	      <input id="trainingBS" name="trainingBS">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid__item w-100 cf pv3 ">
+            <label >What is your goal?</label><br>
+            <label for="fun">
+              <input class="goal" type="radio" id="fun" name="goal" value="fun" style="margin-top: 1rem;" >
+              Have some fun
+            </label>
+            <br>
+ 			<label for="competition">
+              <input class="goal" type="radio" id="competition" name="goal" value="competition" style="margin-top: 1rem;" >
+              Prepare for competition
+            </label>
+	      </div>
+          <div class="cf grid__item  w-100" style="padding-left:0px">
+		    <label for="addInfo">Any ADDITIONAL info about you</label>
+            <textarea form="videoanalysisform" rows="5" id="addInfo" name="addInfo"></textarea>
+          </div>
+          {% for order in customer.orders %}
+      	    {% if order.financial_status == 'paid'%}
+      		  {% for line_item in order.line_items %}
+      			{% if line_item.title contains 'Video Analysis' %}
+                  {% if line_item.title contains 'Basic' %} 
+                    <div id="{{line_item.id}}" class="grid__item w-100" style="padding-left:0px">
+                      <div class='cf pt5-l pt3'>
+                        <h5> Please upload 3 videos of you doing Snatch or Clean&Jerk</h5>
+
+                        <div class='fl w-50-l w-100'>
+                          <p class="f4"> - videos should be recent, filmed 1 month ago max</p>
+                          <p  class="f4"> - on videos we should see you doing no less than 70% of your 1 rep max for each movement</p>
+                          <p  class="f4"> - size of each video should not exceed 250mb</p>
+                          <p class="f4"> - picture resolution should be at least 720HD</p>
+                          <p class="f4 mb2"> - All body parts should be visible on the video during the lift</p>
+                        </div>
+            
+                        <div class='fl w-50-l w-100 pl4-l pb4-l'>
+                          <img src='https://cdn.shopify.com/s/files/1/1806/0489/files/howToVideo.jpg?11377777859956288887' alt='how to film your video'>
+                        </div>
+                      </div>
+                      <div class='cf w-100 mw6 pv3'>
+                        <h5>Training session example</h5>
+                        <p> @BAR/ 3 sets * 3 reps</p>
+                        <p>@30%/ 3 sets * 3 reps</p>
+                        <p>@40%/ 3 sets * 3 reps</p>
+                        <p>@50%/ 3 sets * 3 reps</p>
+                        <p>@60%/ 3 sets * 3 reps</p>
+                        <p>@70%/ 3 sets * 3 reps </p>
+                        <p>@75%/ 3 sets * 3 reps</p>
+                        <p><span class='fw6'>@80%/ 3 sets * 3 reps</span> - record this one</p>
+                        <p>@85%/ 3 sets * 3 reps</p>
+                        <p><span class='fw6'>@90%/ 3 sets * 3 reps</span> - record this one as well</p>
+                        <p><span class='fw6'>@92-100%/ 3 sets * 3 reps</span> - record this one</p>
+                      </div>
+                      <div class="fl pv3 w-100">
+		                <label>Please choose exercise you are uploading</label><br>
+                        <label for="snatchExName">
+                          <input class="exerciseName" type="radio" id="snatchExName" name="exerciseName" value="snatch">SNATCH
+                        </label>
+                        <label for="clean&jerkExName">
+ 			              <input class="exerciseName" type="radio" id="clean&jerkExName" name="exerciseName" value="clean&jerk" style="margin-left: 4rem;">CLEAN & JERK
+                        </label>
+                      </div>
+                      <div  class=" mb4 cf w-100">
+                        <label for="video" style="display:none">Please upload your exercise video</label>
+			            <div class="medium-up--one-half cf w-100">
+            	          <div class="fl mw6 w-100 pr3-l">
+					        <!--<input data-fp-button-text="Upload video 1" data-fp-maxFiles=1
+                		      data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" data-fp-mimetypes="video/*"
+                              value="" data-fp-maxSize="262144000"
+                       		  data-fp-button-class="ratesItemBtn bg-white w-100 mv3" type="filepicker" 
+                   		      onchange="myfunction(event.fpfile.url,'video1')"/>-->
+                     <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100 mv3">Upload video 1</a>
+
+					        <input  class="videos" id="video1" name="video1" style="display:none;">
+            		        <div id="video1_link"  class="fl w-100 tl-ns tc ph3 pb3" style="display:none;">
+                              <i class="f3 fa fa-check green" aria-hidden="true"></i> Exercise video 1 uploaded
+            		        </div>
+
+                            <label for="video1Link">or add a link to video 1</label>
+                	        <input class="videolinks" name="video1Link" id="video1Link" placeholder="Exercise video link at youtube, vimeo, facebook, etc...">
+                      
+            		        <label for="video1description">Enter description of video 1</label>
+         			        <input  class="inputs" id="video1description" name="video1description" >
+              	          </div>
+                          <div class="fl mw6 w-100 pr3-l">
+					        <!--<input data-fp-button-text="Upload video 2" data-fp-maxFiles=1
+                		      data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" data-fp-mimetypes="video/*"
+                              value="" data-fp-maxSize="262144000"
+                   		      data-fp-button-class="ratesItemBtn bg-white w-100 mv3" type="filepicker" 
+                   		      onchange="myfunction(event.fpfile.url,'video2')"/>-->
+                                                 <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100 mv3">Upload video 2</a>
+
+
+					        <input  class="videos" id="video2" name="video2" style="display:none;">
+        		            <div id="video2_link"  class="fl w-100 tl-ns tc ph3 pb3" style="display:none;">
+                    	      <i class="f3 fa fa-check green" aria-hidden="true"></i> Exercise video 2 uploaded
+            		        </div>
+
+                  	        <label for="video2Link">or add a link to video 2</label>
+                	        <input class="videolinks" name="video2Link" id="video2Link" placeholder="Exercise video link at youtube, vimeo, facebook, etc...">
+
+                  	        <label for="video1description">Enter description of video 2</label>
+		         	        <input  class="inputs" id="video2description" name="video2description" >
+
+              	          </div>
+                          <div class="fl mw6 w-100 pr3-l">
+						    <!--<input data-fp-button-text="Upload video 3" data-fp-maxFiles=1
+                		      data-fp-apikey="AXwomK3sGQlC5CBOr5xCGz" data-fp-mimetypes="video/*"
+                              value="" data-fp-maxSize="262144000"
+                   		      data-fp-button-class="ratesItemBtn bg-white w-100 mv3" type="filepicker" 
+                   		      onchange="myfunction(event.fpfile.url,'video3')"/>-->
+                                                 <a href="https://wetransfer.com/" style="text-align: center;" target="_blank" rel="noopener noreferrer" class="ratesItemBtn bg-white w-100 mv3">Upload video 3</a>
+
+            		       <div id="video3_link"  class="fl w-100 tl-ns tc ph3 pb3" style="display:none;">
+                    	     <i class="f3 fa fa-check green" aria-hidden="true"></i> Exercise video 3 uploaded
+            		       </div>
+                  	       <label for="video3Link">or add a link to video 3</label>
+                	       <input class="videolinks" name="video3Link" id="video3Link" placeholder="Exercise video link at youtube, vimeo, facebook, etc...">
+
+					       <input  class="videos" id="video3" name="video3" style="display:none;">
+
+                  	       <label for="video1description">Enter description of video 3</label>
+         			       <input  class="inputs" id="video3description" name="video3description" >
+
+              	         </div>
+   			             <input  id="analysisType" name="analysisType" value="basic" style="display:none;">
+                         <input  id="lineId" name="lineId" value="{{line_item.id}}" style="display:none;">
+                       </div>
+
+                     </div>
+                     <input id="submit" style="font-size:1.2rem" class="btn" type="button" name="submit" value="submit">
+                   </div>
+          
+          		{% endif %}
+			
+      		  {% endif %}
+      		{% endfor %}
+      	  {% endif %}
+        {% endfor %}
+
+      </form>
+      <a id='buyVidA' class="btn" style="display:none; font-size:1.1rem" href="/products/video-analysis">Buy Video Analysis</a>
+
+    </div>
+ 
+  </div>
+
+  <script src="{{ 'md5.min.js' | asset_url }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    var confirmation_videoanalysis=document.getElementById("confirmation_videoanalysis");
+    var span = document.getElementById("close_videoanalysis");
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      confirmation_videoanalysis.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == confirmation) {
+        confirmation_videoanalysis.style.display = "none";
+      }
+    }          
+    function myfunction(x, y) {
+      $('#'+y).val(x);
+      $('#'+y+'_link').css("display", "inline-block");
+    }
+
+    var id = md5("{{customer.id}}"+"{{customer.email}}")
+ 
+  
+    $(document).ready(function(){ 
+      $.get("https://wbcm-5b3a6.firebaseio.com/athletes/"+id+".json", function(data, status){
+      console.log(JSON.stringify(data.videoanalysis))
+      var videoanalysis = data.videoanalysis;
+      if (videoanalysis) {
+        if (videoanalysis["basic"]) {
+          for (var line in videoanalysis["basic"]) {
+		    var sentEx=new Date(videoanalysis["basic"][line]["date"]);
+            var today=new Date();
+            var difference=(today-sentEx)/(1000 * 60 * 60 * 24);
+        	if (difference>15 && videoanalysis["basic"][line]['addexercises'] === 'false') {
+              //if (videoanalysis["basic"][line]['addexercises'] === 'false' && difference<15) {
+              	for (var key in videoanalysis["basic"][line]) {   
+		  			$('#'+key).val(videoanalysis["basic"][line][key]);
+              	}
+                $('input:radio[name=goal]').val([videoanalysis["basic"][line].goal]);
+    			$('input:radio[name=blocks]').val([videoanalysis["basic"][line].blocks]);
+        		$('input:radio[name=racks]').val([videoanalysis["basic"][line].racks]);
+      			$('input:radio[name=metricUnits]').val([videoanalysis["basic"][line].metricUnits]);
+   			    $('input:radio[name=exerciseName]').val([videoanalysis["basic"][line].exerciseName]);
+
+              //}
+           		$('#'+line).css('display', 'none');
+                $('#'+line).addClass('dn');
+				$('#buyVidA').css('display', 'block');
+				$('#'+line).remove();
+
+        	} else {
+			    for (var key in videoanalysis["basic"][line]) {   
+		  			$('#'+key).val(videoanalysis["basic"][line][key]);
+
+				}
+      
+
+		    	$('input:radio[name=goal]').val([videoanalysis["basic"][line].goal]);
+    			$('input:radio[name=blocks]').val([videoanalysis["basic"][line].blocks]);
+        		$('input:radio[name=racks]').val([videoanalysis["basic"][line].racks]);
+      			$('input:radio[name=metricUnits]').val([videoanalysis["basic"][line].metricUnits]);
+   			    $('input:radio[name=exerciseName]').val([videoanalysis["basic"][line].exerciseName]);
+            }
+          }
+        }
+      } else { 
+        if (data.formdata) {
+		  for (var key in data.formdata) {   
+  			$('#'+key).val(data.formdata[key]);
+		  }
+      
+
+    	  $('input:radio[name=goal]').val([data.formdata.goal]);
+    	  $('input:radio[name=blocks]').val([data.formdata.blocks]);
+          $('input:radio[name=racks]').val([data.formdata.racks]);
+          $('input:radio[name=metricUnits]').val([data.formdata.metricUnits]);
+        }
+      }
+
+    }); 
+  })
+  
+
+  var labels = document.getElementsByTagName('LABEL');
+  for (var i = 0; i < labels.length; i++) {
+    if (labels[i].htmlFor != '') {
+         var elem = document.getElementById(labels[i].htmlFor);
+         if (elem)
+            elem.label = labels[i];         
+    }
+  }
+
+  function validateForm() {
+	var inputs = document.getElementsByClassName("inputs");
+	var missing = [];
+	for(var i =0; i < inputs.length; i++) {
+      	if ($(inputs[i]).val()=="" || $(inputs[i]).val()==" ") {
+          $(inputs[i]).addClass('inputError');
+        	missing.push(document.getElementById(inputs[i].id).label.innerHTML);
+      	}  
+	}
+  	var goal=document.getElementsByClassName("goal")
+   	var blocks=document.getElementsByClassName("blocks")
+   	var racks=document.getElementsByClassName("racks")
+   	var metric=document.getElementsByClassName("metric")
+   	var exerciseName=document.getElementsByClassName("exerciseName")
+
+
+      if ($(blocks).is(":checked")==false) {
+		missing.push("Blocks")
+         $(blocks).addClass('inputError')
+      }
+      if ($(racks).is(":checked")==false) {
+		missing.push("Racks")
+         $(racks).addClass('inputError')
+      }
+      if ($(metric).is(":checked")==false) {
+		missing.push("Metric units")
+         $(metric).addClass('inputError')
+      }
+        if ($(exerciseName).is(":checked")==false) {
+		missing.push("Name of the exercise you are uploading")
+         $(exerciseName).addClass('inputError')
+      }
+
+    var videolinks=document.getElementsByClassName("videolinks");
+  		var videos=document.getElementsByClassName("videos");
+    	  	if ($(videos[0]).val()=="" || $(videos[0]).val()==" ") {
+              if ($(videolinks[0]).val()=="" || $(videolinks[0]).val()==" ") {
+                $(document.getElementById(videos[0].id).label).css("display", "block")
+        		missing.push(document.getElementById(videos[0].id).label.innerHTML.slice(18))
+              }
+      		}
+        
+  		
+  			
+  
+   	return missing;
+  }
+  
+
+  $( "input" ).click(function() {
+	$('input').removeClass('inputError');
+  });
+
+  
+    $(document).ready(function(){
+
+        // click on button submit
+        $("#submit").on('click', function(){
+          var date=new Date();
+          var arr=validateForm()
+          if (arr.length>0) {
+            var errors=""
+            for(var i =0; i < arr.length; i++) {
+              errors+="<p class='black f4'>"+arr[i]+"</p>"
+             	 
+            }
+            document.getElementById("error_videoanalysis").innerHTML="<p>You left empty the following fields:</p>"+errors+"<p>Please fill them out</p>"
+            $("#confirmation_videoanalysis").css("display", "none");  
+
+            $("#error_videoanalysis").css("display", "block");  
+
+            $(window).scrollTop(0);
+          } else {
+
+
+            $.ajax({
+                url: 'https://hooks.zapier.com/hooks/catch/2032528/1hd0hk/', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'json', // data type
+                data : "customerId="+id+"&"+($("#videoanalysisform").serialize())+"&date="+date+"&addexercises=false"+"&customerEmail="+"{{customer.email}}",  // post data || get data
+                success : function(result) {
+
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })  
+                       $("#error_videoanalysis").css("display", "none");  
+
+                  $("#confirmation_videoanalysis").css("display", "block");  
+                  $(window).scrollTop(0);
+          } 
+        });
+        
+    });
+
+  </script>
+  </div>
+  <div class="fl-ns w-50-ns pa3 w-100">
+     <p class="f4">You have bought the following video analysis {{ Vnumber | pluralize: 'product', 'products' }}:</p>
+	 <h6>{{ videoanalyses  }} </h6>
+
+  </div>
+  </div>
+    
+    {% comment %}
+    Video Analysis
+    {% endcomment %}
+  </div>
+  {% endif %}
+  {% if showPrograms == true or videoAnalysis == true %}
+
+  <div id="tab-3">
+     
+    <div class="grid__item medium-up--two-thirds">
+      <div class="content-block">
+        <h1>{{ 'customer.orders.title' | t }}</h1>
+
+        {% paginate customer.orders by 20 %}
+          {% if customer.orders.size != 0 %}
+
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <th>{{ 'customer.orders.payment_status' | t }}</th>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th>{{ 'customer.orders.total' | t }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr>
+                    <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                    <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                    <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                    <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                    <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+
+            <p>{{ 'customer.orders.none' | t }}</p>
+
+          {% endif %}
+          {% if paginate.pages > 1 %}
+            <div class="pagination">
+              {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+            </div>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+    </div>
+
+    <div class="grid__item medium-up--one-third">
+      <div class="content-block">
+        <h3 class="h6 content-block__title">{{ 'customer.account.details' | t }}</h3>
+
+        {{ customer.default_address | format_address }}
+
+        <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+<!-- Begin ReCharge code -->
+<p id="rc_link_container">
+    <a href="/tools/recurring/login">Manage Subscriptions</a>
+</p>
+<!-- End ReCharge code -->
+
+
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+  
+  {%unless showPrograms %}
+	<div class="grid__item pt4">
+             	<div class="pa3">
+
+		<h1>My account</h1>
+			<a  href="/account?view=edit">Edit account</a>
+      	</div>
+    </div> 
+  
+    <div class="grid__item medium-up--two-thirds">
+      <div class="content-block">
+        <h1>{{ 'customer.orders.title' | t }}</h1>
+
+        {% paginate customer.orders by 20 %}
+          {% if customer.orders.size != 0 %}
+
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <th>{{ 'customer.orders.payment_status' | t }}</th>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th>{{ 'customer.orders.total' | t }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr>
+                    <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                    <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                    <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                    <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                    <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+
+            <p>{{ 'customer.orders.none' | t }}</p>
+
+          {% endif %}
+          fbq('track', 'InitiateCheckout');{% if paginate.pages > 1 %}
+            <div class="pagination">
+              {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+            </div>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+    </div>
+
+    <div class="grid__item medium-up--one-third">
+      <div class="content-block">
+        <h3 class="h6 content-block__title">{{ 'customer.account.details' | t }}</h3>
+
+        {{ customer.default_address | format_address }}
+
+        <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+      </div>
+    </div>
+    
+        {% endunless%}
+
+  </div>
+</div>
+
+<div>
+	{tpa-account}
+</div>

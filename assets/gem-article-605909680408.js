@@ -1,0 +1,150 @@
+
+
+    
+    
+    
+  
+    
+  
+    
+  
+    
+    
+    
+  
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+  
+    
+  
+    
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1689689500399').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1692009566241').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1692009647866').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1690810321205').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    (function( jQuery ){
+  // var $module = jQuery('#m-1693123349797').children('.module');
+  // You can add custom Javascript code right here.
+})( window.GemQuery || jQuery );
+  
+    
+    
+    
+    
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+    
+  
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+  
+    
+  
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (function( jQuery ){
+  var $module = jQuery('#m-1692114575910').children('.module');
+  $module.gfV1Popup();
+
+  var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+  if(mode == 'dev') {
+    var moduleId = "1692114575910";
+    var moduleIdSlug = moduleId.toString().replace(/-/g, '');
+    if (moduleIdSlug == "1692114575910") {
+      window.getPopup1692114575910 = function() {
+        return $module.data('gfv1popup');
+      }
+    }
+  }
+})( window.GemQuery || jQuery );
+  
+    
+  

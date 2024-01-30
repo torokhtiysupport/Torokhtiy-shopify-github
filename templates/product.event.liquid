@@ -1,0 +1,146 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+<div class="page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" data-ajax="{{ section.settings.enable_ajax }}" data-stock="{{ section.settings.stock_enable }}">
+  {% assign product_image_size = '480x480' %}
+
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '600x600' }}">
+  {%- if settings.product_vendor_enable -%}
+    <meta itemprop="brand" content="{{ product.vendor }}">
+  {%- endif -%}
+
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+
+  <div class="grid product-single">
+    <div class="grid__item {% if product.images.size > 1 %}medium-up--three-fifths{% else %}medium-up--one-half{% endif %}">
+      <div class="photos">
+        <div class="photos__item photos__item--main">
+          <div class="product-single__photo" id="ProductPhoto">
+            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+            <a href="{{ featured_image | img_url: '1024x1024' }}" class="js-modal-open-product-modal" id="ProductPhotoLink-{{ section.id }}">
+              <img src="{{ featured_image | img_url: product_image_size }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg-{{ section.id }}">
+            </a>
+          </div>
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="photos__item photos__item--thumbs">
+            <div class="product-single__thumbnails{% unless product.images.size > 2 %} product-single__thumbnails--static{% endunless %}" id="ProductThumbs-{{ section.id }}">
+              {% for image in product.images %}
+                <div class="product-single__thumbnail-item {% if image == featured_image %} is-active {% endif %}">
+                  <a href="{{ image.src | img_url: product_image_size }}" data-zoom="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail product-single__thumbnail-{{ section.id }}">
+                    <img src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {% if product.images.size > 2 %}
+          {% comment %}
+            Add SVG icon snippets to an object for custom slider arrows
+          {% endcomment %}
+          <script>
+            {% capture arrow_left %}{% include 'icon-arrow-left' %}{% endcapture %}
+            {% capture arrow_right %}{% include 'icon-arrow-right' %}{% endcapture %}
+            {% capture arrow_up %}{% include 'icon-arrow-up' %}{% endcapture %}
+            {% capture arrow_down %}{% include 'icon-arrow-down' %}{% endcapture %}
+            var sliderArrows = {
+              left: {{ arrow_left | json }},
+              right: {{ arrow_right | json }},
+              up: {{ arrow_up | json }},
+              down: {{ arrow_down | json }}
+            }
+          </script>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid__item {% if product.images.size > 1 %}medium-up--two-fifths{% else %}medium-up--one-half{% endif %}" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <div class="product-single__info-wrapper">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+        <div class="product-single__meta small--text-center">
+          {% if settings.product_vendor_enable %}
+            <p class="product-single__vendor">{{ product.vendor }}</p>
+          {% endif %}
+          
+
+          <h1 itemprop="name" class="product-single__title">{{ product.title }}</h1>
+          {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+{% assign description=product.description | split: '---split---' %}
+      <p>Address: {% assign map_link = 'https://www.google.com/maps/place/' | append: description[2]%}
+      <a class="tc" href="{{ map_link }}">{{description[0]}}, {{description[2]}}</a></p>
+      <p>Date: {{description[1]}}</p>
+          <p>Contact: {{description[3]}} <a rel="noopener noreferrer" href="{{description[4]}}">{{description[4]}}</a></p>
+          <p><a rel="noopener noreferrer" href="{{description[6]}}">{{description[6]}}</a></p>
+          <p><a rel="noopener noreferrer" href="{{description[7]}}">{{description[7]}}</a></p>
+          {% if description[8] %}
+         	 <a class="btn" rel="noopener noreferrer" href="{{description[8]}}">Buy tickets</a>
+		  {% endif %}
+          
+
+        </div>
+
+        <hr>
+
+       
+
+
+
+        
+
+        
+      </div>
+    </div>
+            
+  </div>
+  <hr>
+    <div class="rte product-single__description" >
+
+          <span>{{description[6]}}</span>
+
+
+  </div>
+    {% if section.settings.social_sharing_products %}
+          <hr>
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+        {% endif %}
+</div>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+  
+{% endunless %}
+
+<!--fbq('track', 'ViewContent', {% if collection %}-->
+  <div class="full-width full-width--return-link">
+    <a href="{{ collection.url }}" class="h1 return-link">
+      {% include 'icon-arrow-thin-left' %}
+      {{ 'products.product.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}
+
+
+
+<!--<div class="page-width">{% include "easydisqus" %}</div>-->
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  window.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>{% render 'product_infox' %}

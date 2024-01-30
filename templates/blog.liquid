@@ -1,0 +1,95 @@
+{% paginate blog.articles by 20 %}
+
+<div class="pa4-ns pa3">
+
+  <h1 class="ml4-l tc">
+    {% if current_tags %}
+      {{ current_tags.first }}
+    {% endif %}
+
+  </h1>
+
+  <div class="grid">
+    <div class="grid__item{% if blog.all_tags.size > 0 %} medium-up--three-quarters {% endif %}">
+      {% for article in blog.articles %}
+        <div class="page-width pa3 f4-ns" style="text-align:justify">
+
+          <p class="blog__meta">
+            {% if article.tags.size > 0 %}
+              {% for tag in article.tags %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-body-color"><strong>{{ tag }}</strong></a>{% if forloop.last %} - {% else %}, {% endif %}
+              {% endfor %}
+            {% endif %}
+            {{ article.published_at | time_tag: format: 'month_day_year' }}
+          </p>
+
+          <h2 class="h1 blog__title-link" style="height:auto" ><a href="{{ article.url }}">{{ article.title }}</a></h2>
+
+          {% if article.image %}
+            <div class="content-block__full-image content-block__full-image--large">
+              <a href="{{ article.url }}">
+                {{ article | img_url: '1024x1024' | img_tag: article.title }}
+              </a>
+            </div>
+          {% endif %}
+
+          <div class=" rte rte--indented-images" >
+            {% if article.excerpt.size > 0 %}
+              {{ article.excerpt }}
+            {% else %}
+              <p>{{ article.content | strip_html | truncatewords: 50 }}</p>
+            {% endif %}
+          </div>
+
+          <p><a href="{{ article.url }}"><strong>{{ 'blogs.article.read_more' | t }}</strong></a></p>
+
+        </div>
+      {% endfor %}
+    </div>
+    {% if blog.all_tags.size > 0 %}
+      <div class="grid__item medium-up--one-quarter small--hide">
+        <div class="content-block">
+          <h6 class="content-block__title">{{ 'blogs.article.tags' | t }}</h6>
+          <ul class="list--no-bullets list--bold">
+            <li>
+              <a href="{{ blog.url }}">{{ 'blogs.article.all_tags' | t }}</a>
+            </li>
+            {% for tag in blog.all_tags %}
+              {% if current_tags contains tag %}
+              <li>{{ tag }}</li>
+              {% else %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="pl4 pa3  dn-m">
+		
+	    <hr>
+		<div >
+		    <h3 class="tc">Our training programs</h3>
+		    <div class="grid grid--no-gutters grid--uniform">
+		      {% for product in collections.personal-training-program.products limit: 2 %}
+ 		       <div class="grid__item">
+ 		         {% include 'product-card', product: product %}
+ 		       </div>
+ 		     {% endfor %}
+		    </div>
+		</div>
+
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% section 'featured-products-subsection' %}
+
+  {% if paginate.pages > 1 %}
+    <div class="pagination">
+      {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+    </div>
+  {% endif %}
+
+</div>
+
+{% endpaginate %}

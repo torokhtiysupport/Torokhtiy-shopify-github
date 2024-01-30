@@ -1,0 +1,51 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+<script>
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=67df572257c13f7a055c26b8510ae7b7&photoset_id={{ page.content }}&user_id=154165776%40N05&extras=original_format&format=json&nojsoncallback=1",
+  "method": "GET",
+  "headers": {}
+}
+
+$.ajax(settings).done(function (data) {
+  console.log(data);
+  
+
+$("#galleryTitle").append(data.photoset.photo[0].title + " Gallery");
+    	$.each( data.photoset.photo, function( i, gp ) {
+
+var farmId = gp.farm;
+var serverId = gp.server;
+var id = gp.id;
+var secret = gp.secret;
+var originalsecret = gp.originalsecret;
+
+
+
+console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
+
+
+$("#flickr").append('<a rel="noopener noreferrer" target="_blank" href="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + originalsecret + '_o.jpg"><img  style="padding-left:2px; padding-right:2px; max-height:280px; width:auto;" src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/></a>');
+
+})
+})
+
+/* https://www.flickr.com/photos/154165776@N05/48088076338/player/ 
+
+fetch('https://www.flickr.com/photos/154165776@N05/48088076338/player/')
+.then(res => console.log(res.json()))*/
+
+</script>
+<div class='cf mw9 center pv5'>
+
+  <h1 class="pl6-l tc tl-l small--text-center">{{ page.title }}</h1>
+  <div style="clear:both;"></div>
+  <div class='tc ph3 ph4-l' id="flickr"> </div>
+
+
+  {% section 'featured-products-subsection' %}
+</div>

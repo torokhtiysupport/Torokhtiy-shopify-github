@@ -1,0 +1,349 @@
+
+.tor-header-bg {
+	background-image: url("firstScreenBgMobile.png");
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+@media (min-width: 1000px) {
+  .tor-header-bg {
+  	background-image: url("firstScreenBg.png") !important;
+  	background-repeat: no-repeat;
+  	background-position: left bottom;
+		background-size: 50%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .tor-header-bg {
+    background-size: 45% !important;
+  }
+}
+
+
+.red {
+	color: #df1f1f !important;
+    font-size: 24px;
+}
+
+.b--red {
+	border-color: #df1f1f !important;
+}
+
+.tor-programs {
+	width: 100%;
+  background: url('ratesBg.jpg') no-repeat;
+  background-size: cover;
+}
+
+.ratesItemList li {
+	margin-left: -35px;
+	color: #928383;
+	margin-bottom: 10px;
+	font-size: 1.1rem;
+}
+
+.ratesItemList li:before {
+  content: "\2714";
+	padding-right: 10px;
+}
+.ratesItemList2 li {
+	margin-left: -35px;
+	color: #928383;
+	margin-bottom: 10px;
+	font-size: 1rem;
+}
+
+.ratesItemList2 li:before {
+  content: "\2714";
+	padding-right: 10px;
+}
+
+ul.ratesItemList {
+	list-style:none;
+}
+ul.ratesItemList2 {
+	list-style:none;
+}
+.container, .container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.ratesItem {
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(255, 255, 255);
+  /*margin-bottom: 30px;*/
+  padding-top: 23px;
+  padding-right: 23px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #F4F4F4;
+  margin-left: auto; /* added for centering in middle, also along with clearing floats from middle and small view */
+  margin-right: auto;
+}
+
+/*.ratesItem:nth-child(3) {
+  border-right-width: initial;
+  border-right-style: none;
+  border-right-color: initial;
+}*/
+
+.ratesItemName {
+ /* color: rgb(0, 0, 0);*/
+  font-size: 1.45rem;
+  line-height: 1.4rem;
+  margin-bottom: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+}
+
+.ratesItemPriceWrap {
+  margin-bottom: 12px;
+}
+
+.ratesItemPrice {
+  color: rgb(223, 31, 31);
+  font-size: 30px;
+  line-height: 29px;
+  position: relative;
+  z-index: 1;
+  padding-left: 20px;
+  display: inline-block;
+  letter-spacing: 1.35px;
+}
+
+.ratesItemPrice::before {
+  content: "$";
+  font-size: 20px;
+  color: rgb(223, 31, 31);
+  line-height: 18px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.ratesItemText {
+  color: rgb(104, 104, 104);
+  font-size: 1.1rem;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.ratesItemList {
+  padding-left: 28px;
+  text-align: left;
+}
+.ratesItemList2 {
+  padding-left: 28px;
+  text-align: left;
+}
+.ratesItemList li {
+  line-height: 24px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.35px;
+}
+.ratesItemList2 li {
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.35px;
+}
+
+.ratesItemList li::before {
+  content: "\2714";
+  position: absolute;
+  top: 0px;
+  left: -26px;
+  color: rgb(99, 99, 99);
+  font-family: fontello;
+}
+
+.ratesItemList2 li::before {
+  content: "\2714";
+  position: absolute;
+  top: 0px;
+  left: -26px;
+  color: rgb(99, 99, 99);
+  font-family: fontello;
+}
+
+.ratesItemList li:last-child {
+  margin-bottom: 15px;
+}
+
+.campInfoAddress, .campInfoBtnWrap, .galleryFollowersWrap, .galleryTitle, .galleryTitleWrap, .ratesItemBtnWrap, .videoChannelTitle, .videoChannelTitleWrap, .videoChannelWrap {
+  text-align: center;
+}
+
+.BtnCircle, .mainFooterBtnSubmit, .mainHeaderRequest, .ratesItemBtn {
+  color: rgb(223, 31, 31);
+  font-size: 1.25rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(223, 31, 31);
+  border-right-color: rgb(223, 31, 31);
+  border-bottom-color: rgb(223, 31, 31);
+  border-left-color: rgb(223, 31, 31);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  padding-top: 12px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  line-height: 1.3rem;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ratesItemChampion {
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(223, 31, 31);
+  color: rgb(255, 255, 255);
+  border-right-width: initial;
+  border-right-style: none;
+  border-right-color: initial;
+}
+
+.gallery, .ratesItemChampion .ratesItemChampionBg, .ratesItemFree .ratesItemPrice::before {
+  display: none;
+}
+
+.ratesItemChampion .ratesItemChampionHeader {
+  position: relative;
+  z-index: 1;
+  margin-top: 78px;
+  margin-bottom: 93px;
+}
+
+.ratesItemChampion .ratesItemChampionHeader::after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.298039);
+  width: 202px;
+  height: 2px;
+  position: absolute;
+  bottom: 15px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+}
+
+.ratesItemChampion .ratesItemChampionHeader::before {
+  content: "";
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  width: 185px;
+  height: 185px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background-color: rgb(227, 58, 58);
+  position: absolute;
+  top: -62px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+.ratesItemChampion .ratesItemName {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  color: rgb(255, 255, 255);
+  position: relative;
+  z-index: 2;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.ratesItemChampion .ratesItemPrice {
+  color: rgb(255, 255, 255);
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(227, 58, 58);
+  padding-left: 32px;
+  padding-right: 14px;
+  position: relative;
+  z-index: 2;
+  font-size: 38px;
+  letter-spacing: 5.5px;
+}
+
+.ratesItemChampion .ratesItemPrice::before {
+  color: rgb(255, 255, 255);
+  left: 15px;
+  z-index: 2;
+}
+
+.ratesItemChampion .ratesItemList li, .ratesItemChampion .ratesItemList li::before {
+  color: white !important;
+}
+
+.ratesItemChampion .ratesItemBtn {
+  background-color: rgb(255, 255, 255);
+}
+
+.text-shadow {
+	text-shadow: 1px 1px 2px black;
+}
+
+
+@media (max-width: 460px) {
+  .superTable td {
+      display: block;
+      text-align: center;
+  }
+}
+

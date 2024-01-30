@@ -1,0 +1,75 @@
+<div class="pa4-ns pa3">
+  
+  <article itemscope itemtype="http://schema.org/Article" class="grid">
+    
+
+    <div class="grid__item  large-up--three-quarters">
+      
+      {% comment %}
+        The article contents can be found in /sections/article-content.liquid
+      {% endcomment %}
+
+      {% section 'article-content' %}
+<!--{% include 'relatedblogs' %}-->
+      
+      <!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://torokhtiy.us15.list-manage.com/subscribe/post?u=138b5c441b71b757fff75ba6c&amp;id=019330a511" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Do you want more tips? </br> Subscribe to my blog:</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_138b5c441b71b757fff75ba6c_019330a511" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup-->
+      	<div class="page-width  large-up--hide">
+    <h3>Our training programs</h3>
+    <div class="grid grid--no-gutters grid--uniform">
+      {% for product in collections.sidebar2-collection.products limit: 4 %}
+        <div class="grid__item medium-up--one-quarter small--one-half">
+          {% include 'product-card', product: product %}
+        </div>
+      {% endfor %}
+      
+    </div>
+</div>
+
+      <div class="full-width full-width--return-link">
+        <a href="{{ blog.url }}" class="h1 return-link">
+          {% include 'icon-arrow-thin-left' %}
+          {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+        </a>
+        <!--<div class="">{% include "easydisqus" %}</div>-->
+      </div>
+    </div>
+
+      <div class="grid__item large-up--one-quarter small--hide">
+        <div class="fr-l bg-near-white pa3  dn-m" style="max-width: 20rem;">
+		
+		<div >
+		    <h3 class="tc">Our nutrition programs</h3>
+		    <div class="grid grid--no-gutters grid--uniform">
+		      {% for product in collections.sidebar2-collection.products limit: 4 %}
+ 		       <div class="grid__item">
+ 		         {% include 'product-card-blog-sidebar', product: product %}
+ 		       </div>
+ 		     {% endfor %}
+		    </div>
+		</div>
+
+        </div>
+      </div>
+
+  </article>
+</div>
+

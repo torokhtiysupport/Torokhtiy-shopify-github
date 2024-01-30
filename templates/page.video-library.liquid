@@ -1,0 +1,107 @@
+
+{% if customer %}
+
+	<!-- Bold: Memberships (page) -->
+    {% include 'bold-memberships-salt' %}
+    {% assign subscription = true %}
+    <!-- end Bold code -->
+    <script>
+      var boldLink={%if customer %}'/apps/memberships/accountDetails/?id='+'{{customer.id}}&h='+'{{bold_memberships_hash}}'{% else %} '/pages/membership-login' {% endif %}
+      links=[
+        {href:'/pages/video-library', icon:'allvideos', title:'Video Library'},
+        {href:'/', icon:'home', title:'Torokhtiy Store'},
+        {href:boldLink, icon:'billing', title:'Subscription settings'},
+        {% if subscription %}
+          {href:'/account/logout', icon:'logout', title:'Log out'}
+        {% else %}
+          {href:'/pages/membership-login', icon:'login', title:'Log in'}
+        {% endif %}
+      ]
+    </script>
+    <div id="container">
+    </div>
+    <script src="{{ 'libraryBundle.js' | asset_url }}" defer="defer"></script>
+
+{% else%}
+
+<div class="page-width">
+  <div class="grid">
+
+    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+      <div class="content-block text-center">
+
+        <div class="form-success hide" id="ResetSuccess">
+          {{ 'customer.recover_password.success' | t }}
+        </div>
+
+        <div id="CustomerLoginForm" class="form-vertical">
+          {% form 'customer_login' %}
+          	<input type="hidden" name="checkout_url" value="/pages/video-library" />
+
+            <h1>{{ 'customer.login.title' | t }}</h1>
+
+            {{ form.errors | default_errors }}
+
+            <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
+            <input type="email" name="customer[email]" id="CustomerEmail" class="{% if form.errors contains 'email' %} input--error{% endif %}" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
+
+            {% if form.password_needed %}
+              <label for="CustomerPassword" class="label--hidden">{{ 'customer.login.password' | t }}</label>
+              <input type="password" value="" name="customer[password]" id="CustomerPassword" class="{% if form.errors contains 'password' %} input--error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
+            {% endif %}
+
+            <p>
+              <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+            </p>
+            {% if form.password_needed %}
+              <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+            {% endif %}
+
+            <p>{{ 'layout.customer.create_account' | t | customer_register_link }}</p>
+
+          {% endform %}
+        </div>
+
+        <script>
+          if(document.referrer == '/account') document.location = '/pages/video-1'
+        </script>
+        
+        {% comment %}
+          JS shows/hides this form in ShopifySlate.loginForms()
+        {% endcomment %}
+        <div id="RecoverPasswordForm" class="hide">
+
+          <h2 class="h1">{{ 'customer.recover_password.title' | t }}</h2>
+          <p>{{ 'customer.recover_password.subtext' | t }}</p>
+
+          <div class="form-vertical">
+            {% form 'recover_customer_password' %}
+
+              {{ form.errors | default_errors }}
+
+              {% comment %}
+                Add a hidden span to indicate the form was submitted succesfully.
+              {% endcomment %}
+              {% if form.posted_successfully? %}
+                <span class="hide reset-password-success"></span>
+              {% endif %}
+
+              <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
+              <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+
+              <p>
+                <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+              </p>
+
+              <button type="button" id="HideRecoverPasswordLink" class="text-link link-accent-color">{{ 'customer.recover_password.cancel' | t }}</button>
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+

@@ -1,0 +1,135 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!--GEM_HEADER-->
+
+<link data-instant-track rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="{{ 'gem-article-603949662279.css' | asset_url }}" class="gf_page_style">
+<link data-instant-track class="gf_fonts" data-fonts="Montserrat" href="//fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Noto Sans" href="//fonts.googleapis.com/css2?family=Noto Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Work Sans" href="//fonts.googleapis.com/css2?family=Work Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Open Sans" href="//fonts.googleapis.com/css2?family=Open Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<link data-instant-track class="gf_fonts" data-fonts="Lobster" href="//fonts.googleapis.com/css2?family=Lobster:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<!--GEM_HEADER_END-->
+<div class="page-width">
+  <article itemscope itemtype="http://schema.org/Article" class="grid">    <div class="grid__item{% if blog.all_tags.size > 0 %} medium-up--three-quarters large-up--four-fifths{% endif %}">
+            {% assign number_of_comments = article.comments_count %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}<div class="ph4 pb4 f4-ns">  {% if article.image %}
+    <div class="content-block__full-image--large">
+      {{ article | img_url: '1024x1024' | img_tag: article.title }}
+    </div>
+  {% endif %}  <p class="blog__meta">
+    {% if article.tags.size > 0 %}
+      {% for tag in article.tags %}
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="link-body-color"><strong>{{ tag }}</strong></a>{% if forloop.last %} - {% else %}, {% endif %}
+      {% endfor %}
+    {% endif %}
+    {{ article.published_at | time_tag: format: 'month_day_year' }}
+  </p>  <h1 class="h1 fl-l w-100" style="height: auto;">{{ article.title }}</h1>  <div class="fl-l w-100 mt3 rte rte--indented-images"  style="text-align:justify" itemprop="articleBody">
+    <!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor"><div class="element-wrap" data-label="Text Block" id="e-1659036424320" data-icon="gpicon-textblock" data-ver="1" data-id="1659036424320"><div class="elm text-edit gf_gs-text-paragraph-1"><p><strong>This article also available as audio. Check this out!</strong></p><p><iframe src="https://anchor.fm/torokhtiy/embed/episodes/Deadlift-Must-Have-Drill---Torokhtiy-Weightlifting-Digest-read-by-Sergii-Putsov-e1i5l6r/a-a7skoj9" height="" width="100%" frameborder="0" scrolling="no"></iframe></p><p>Subscribe and listen it anywhere:</p><div style="text-align: left;"><a href="https://apple.co/3yjoQCP" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/1_575003d3-eb10-433d-b0a6-b62859cb8f40_50x50.jpg?v=1651831724" style="float: none;"></a>&nbsp;<a href="https://bit.ly/3831yqg" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/1200x630wa.png?v=1651831680" alt=""></a>&nbsp;<a href="https://spoti.fi/3P2fNMw" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/3243323_342332_50x50.png?v=1651831655" alt=""></a>&nbsp;<a href="https://bit.ly/3ykTJqE" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/855fc6079de3027d4dfc644c9db3836b_50x50.jpg?v=1651829583" style="float: none;"></a>&nbsp;<a href="https://bit.ly/3sBFkCr" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/unnamed_50x50.png?v=1652791520" alt=""></a></div><p><span style="font-weight: 400;">&nbsp; &nbsp; The deadlift is a must-have exercise for beginners since it builds up the strength of the biggest body muscles. Nevertheless, it is essential for advanced athletes too – the progress of all other exercises highly depends on leg and back strength. But for the sake of safety and significant results, you should stick to the proper technique at each stage.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; The deadlift mainly involves:</span></p><ul><li style="font-weight: 400;"><span style="font-weight: 400;">quadriceps;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">back flexors;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">glutes;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">hamstrings;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">lats.</span></li></ul><p><span style="font-weight: 400;">&nbsp; &nbsp; Using particular variations of the deadlift, you can focus on different muscles. Each of them additionally involves finger flexors, biceps, rear delts, and traps.&nbsp;</span></p><div style="text-align: left;"><a href="https://torokhtiy.com/products/deadlift-2-0" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/67676_-2.png?v=1651581036" alt="" style="float: none;"></a></div><p><span style="font-weight: 400;">&nbsp; &nbsp; Deadlift variations</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; Depending on the starting position and technique, we distinguish such kinds of the deadlift:</span></p><p style="text-align: left;"><b>&nbsp; &nbsp; Standard or weightlifting.</b><span style="font-weight: 400;"> Use the shoulder-width stance.</span><span style="font-weight: 400;">&nbsp;</span></p><p><span style="font-weight: 400;"><a href="https://torokhtiy.com/pages/deadlift-2" target="_blank" rel="noopener noreferrer"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/2022-05-03_15.47.11.png?v=1651582234" alt=""></a></span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; &nbsp;It equally involves back muscles, glutes, and hamstrings. Both newbies and experienced athletes can use it.&nbsp;</span></p><p><b>&nbsp; &nbsp; Sumo.</b><span style="font-weight: 400;"> Use the wide stance, and point your toes outside in line with the knees to nearly touch the plates. In this case, you mainly aim your leg muscles. It suits advanced athletes and beginners, especially those who lack back strength.&nbsp;</span></p><p><b>&nbsp; &nbsp; The Romanian deadlift</b><span style="font-weight: 400;">. Use the standard stance but barely bend your knees. If you find it difficult to keep the knees straight, you can bend them a little bit but don’t squat.&nbsp;</span></p><p><a href="https://torokhtiy.com/pages/romanian-deadlift" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/2022-05-03_15.47.38.png?v=1651582163" alt=""></span></a></p><p><span style="font-weight: 400;">&nbsp; &nbsp; The </span><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/rdl-what-is-it" target="_blank" rel="noopener noreferrer"><span style="color: #2b00ff;"><span style="font-weight: 400;">Romanian deadlift</span></span></a><span style="font-weight: 400;"> actively involves hamstrings and upper glutes. It is recommended to experienced athletes with good technical skills and strong back muscles.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; You can also try out different equipment.</span></p><p><b>&nbsp; &nbsp; A barbell</b><span style="font-weight: 400;">. The kind of sport and standards (European or American) define the diameter, weight, and knurling.&nbsp;</span></p><p><b>&nbsp; &nbsp; A trap bar</b><span style="font-weight: 400;">. It is a traditional deadlift variation with special equipment. A bar is a rhombus, hexagon, or octagon. There are two handles for the grip at the edges inside and sleeves for plates outside the bar. It is easier to control and keep your back straight due to the parallel grip. This option is comfortable for beginners and amateurs.&nbsp;</span></p><p><b>&nbsp; &nbsp; Dumbbells</b><span style="font-weight: 400;">. This variation allows you to perform all kinds of deadlifts with different grips and lower weights. It involves more stabilizers than a barbell does.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;Sometimes, athletes additionally use resistance bands or chains. They increase the load gradually during the upward movement creating the highest muscle tension in the final phase.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; If you have a rather weak grip, small palms or short fingers, use different kinds of </span><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/straps" target="_blank" rel="noopener noreferrer"><span style="color: #2b00ff;"><span style="font-weight: 400;">straps</span></span></a><span style="font-weight: 400;">. They are helpful for lifting heavy weights during training sessions though are banned at some competitions. Read more about <a href="https://torokhtiy.com/blogs/guides/how-to-use-lifting-straps" class="">how to use lifting straps</a> in our guide.</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;There are a number of deadlift mistakes that at best prevent muscles from working properly. At worst, an athlete may get an injury.</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;The most dangerous mistakes are:</span></p><ol><li style="font-weight: 400;"><span style="font-weight: 400;">Too narrow stance and pointing toes too far outside. Such a position reduces stability and increases the range of motion.&nbsp;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">The center of gravity is moved to the toes. A bar becomes difficult to drive off the platform, it puts a higher load on the back and increases the risk of injury.&nbsp;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">Not pushing knees out enough. Lifting a bar in this position overloads your knee joints and lower back which entails injuries in these areas. Knees must be strictly in line with toes.&nbsp;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">Asymmetric grip. Inexperienced athletes sometimes make this mistake in a rush or because of inattentiveness. It creates an imbalance in muscle tension, threatens stability, and provokes injuries.&nbsp;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">Curved back and tilted head. This position takes the load away from back muscles and puts it all on the lower back increases the risk of injuries too.&nbsp;</span></li><li style="font-weight: 400;"><span style="font-weight: 400;">Harsh hip lifting at the start and premature leg straightening. In this case, the weight is moved forward, suddenly overloading the lower back.&nbsp;</span></li></ol><p><span style="font-weight: 400;">&nbsp; &nbsp; Find more helpful tricks for the deadlift </span><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/8-tips-to-increase-your-deadlift" target="_blank" rel="noopener noreferrer"><span style="color: #2b00ff;"><span style="font-weight: 400;">here</span></span></a><span style="font-weight: 400;">.</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; In my upgraded training program </span><a href="https://torokhtiy.com/products/deadlift-2-0" target="_blank" rel="noopener noreferrer"><span style="color: #2b00ff;"><span style="font-weight: 400;">DeadLift Cycle 2.0</span></span></a><span style="font-weight: 400;">., I'm sharing all the peculiarities of such workouts and teaching weightlifters to boost muscle strength using this exercise.</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp;Our team released the first version of the program in 2017. Since then, approximately 700 athletes all around the world have finished it (some of them even managed to do it several times).</span></p><p><span style="font-weight: 400;"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/2022-05-03_14.50.54.png?v=1651578681" alt=""></span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; I am so delighted with such numbers as I realize that a lot of athletes have become stronger and set plenty of personal records.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; We have learnt a lot of things about design and methodical information delivery. Moreover, our athletes’ feedback and suggestions have helped us make our programs convenient and, what is more important, effective and productive.&nbsp;</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; The updatings of DeadLift Cycle 2.0. are connected both with the visual side and working loads. Now, DeadLift Cycle completely corresponds to our training program “gold standards”.&nbsp;</span></p><p><span style="font-weight: 400;"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/OT_DEADLIFT_CYCLE_2_0_PROGRAM_mockup_76e88fc2-bea9-4cc1-abce-ac70114d559c.png?v=1651582695" alt=""></span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; Athletes will have such innovations:</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Interactive video library</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Pre and post-workout stretch</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Detailed special warm-up</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Auxiliary exercises to attack your weak points</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - More exercises to strengthen your core</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Strength Training Reps and Sets Schemes</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Truly interactive design</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; - Mobile version for greater experience on a smartphone</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; More information and details are available </span><span style="color: #2b00ff;"><a href="https://torokhtiy.com/products/deadlift-2-0" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer"><b>here</b></a></span><span style="font-weight: 400;">.</span></p><p><span style="font-weight: 400;">&nbsp; &nbsp; In conclusion, I want to repeat one of my thoughts that I often say at my </span><a href="https://torokhtiy.com/collections/seminars" target="_blank" rel="noopener noreferrer"><span style="color: #2b00ff;"><b style="color: #2b00ff;">seminars</b></span></a><span style="font-weight: 400;">. A HEAVY deadlift is a very vague term: for someone, it means lifting 300 kilos at a competition, or performing as many reps as possible after a set of burpees of pull ups, or simply straightening your body in the morning, for others, it is about a strength reserve for a powerful second pull and turnover in the snatch.&nbsp;</span></p><p><span style="font-weight: 400;">Welcome to<span style="color: #2b00ff;"><a href="https://torokhtiy.com/products/deadlift-2-0" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">DEADLIFT 2.0</a></span></span></p><p><a href="https://torokhtiy.com/products/deadlift-2-0" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;"><span style="color: #2b00ff;"><img src="https://cdn.shopify.com/s/files/1/1806/0489/files/2022-05-03_16.25.26.png?v=1651584342" alt="" style="display: block; margin-left: auto; margin-right: auto;"></span></span></a></p><p><span style="font-weight: 400;"><strong>RELATED ARTICLES:</strong></span></p><meta charset="utf-8"><p><span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/help-ukraine" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">7 ESSENTIAL ITEMS FOR EVERY OLYMPIC WEIGHTLIFTER`S GYM BAG </a></span></p><p><span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/top-5-weightlifters-nutrition-mistakes" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">TOP 5 WEIGHTLIFTERS NUTRITION MISTAKES </a></span></p><p><span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/split-vs-power-jerk" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">SPLIT VS POWER JERK </a></span></p><p><span style="color: #2b00ff;"><a href="https://torokhtiy.com/blogs/warm-body-cold-mind/power-position" target="_blank" style="color: #2b00ff;" rel="noopener noreferrer">POWER POSITION </a></span></p></div></div><!--gfsplit--><script>window.__gemStoreData = {};window.__gemStoreData.gemKeyValid = {};window.__gemStoreData.gemKeyValid.bestWayAddToCart = 1;</script></div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+  </div>  {% if section.settings.social_sharing_blog %}
+    <hr>
+    {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+  {% endif %}
+</div>{% if blog.comments_enabled? %}
+  {% if number_of_comments > 0 %}
+    <div class="content-block">
+      <h2 class="h3">{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h2>      {% paginate article.comments by 5 %}        
+        <div id="comments">          {% if comment and comment.created_at %}
+            <p class="form-success">
+              {% if blog.moderated? %}
+                {{ 'blogs.comments.success_moderated' | t }}
+              {% else %}
+                {{ 'blogs.comments.success' | t }}
+              {% endif %}
+            </p>
+          {% endif %}          {% if number_of_comments > 0 %}
+            <ul class="comments list--no-bullets">
+              
+              {% if comment and comment.created_at %}
+                <li id="{{ comment.id }}" class="comment">
+                  {% include 'comment' %}
+                </li>
+              {% endif %}              {% for comment in article.comments %}
+                <li id="{{ comment.id }}" class="comment">
+                  {% include 'comment' %}
+                </li>
+              {% endfor %}
+            </ul>            {% if paginate.pages > 1 %}
+              <div class="pagination">
+                {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endpaginate %}
+    </div>
+  {% endif %}  <div class="content-block">
+    <div class="comment-form form-vertical">
+      {% form 'new_comment', article %}        <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>        {{ form.errors | default_errors }}        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+            <label for="CommentAuthor" class="label--hidden">{{ 'blogs.comments.name' | t }}</label>
+            <input type="text" name="comment[author]" id="CommentAuthor" class="{% if form.errors contains 'author' %} input--error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}">
+          </div>          <div class="grid__item medium-up--one-half">
+            <label for="CommentEmail" class="label--hidden">{{ 'blogs.comments.email' | t }}</label>
+            <input type="email" name="comment[email]" id="CommentEmail" class="{% if form.errors contains 'email' %} input--error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+          </div>
+        </div>        <label for="CommentBody" class="label--hidden">{{ 'blogs.comments.message' | t }}</label>
+        <textarea name="comment[body]" id="CommentBody" class="{% if form.errors contains 'body' %} input--error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>        <input type="submit" onClick='$.ajax({
+                	url: "https://hooks.zapier.com/hooks/catch/2032528/s6d11m/", // url where to submit the request
+                	type : "POST", // type of action POST || GET
+                	dataType : "json", // data type
+                	data : $("#comment_form").serialize()+"&article="+"{{article.title}}",  // post data || get data
+                	success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                	},
+                	error: function(xhr, resp, text) {
+                    	console.log(xhr, resp, text);
+                	}
+            	})' class="btn" value="{{ 'blogs.comments.post' | t }}">        {% if blog.moderated? %}
+          <p class="text-center"><small>{{ 'blogs.comments.moderated' | t }}</small></p>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+{% endif %}      {% section 'featured-products-subsection' %}      <div class="full-width full-width--return-link">
+        <a href="{{ blog.url }}" class="h1 return-link">
+          {% include 'icon-arrow-thin-left' %}
+          {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+        </a>
+      </div>
+    </div>    {% if blog.all_tags.size > 0 %}
+      <div class="grid__item medium-up--one-quarter large-up--one-fifth small--hide">
+        <div class="content-block content-block--small">
+          <h3 class="h6 content-block__title">{{ 'blogs.article.tags' | t }}</h3>
+          <ul class="list--no-bullets list--bold">
+            {% for tag in blog.all_tags %}
+              {% if current_tags contains tag %}
+              <li>{{ tag }}</li>
+              {% else %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}  </article>
+</div>
+<!--GEM_FOOTER-->
+{% capture GEM_FOOTER_SCRIPT %}
+<script data-instant-track type="text/javascript">
+	var pageLibs = [		'{{ 'gem-article-603949662279.js' | asset_url }}',	];
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+{% endcapture %}
+<!--GEM_FOOTER_END-->

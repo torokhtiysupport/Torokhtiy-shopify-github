@@ -1,0 +1,90 @@
+<div class="page-width">
+  <h1 class="small--text-center">{{ page.title }}</h1>
+  <div class="content-block flex flex-column flex-wrap">
+      {{ page.content }}
+    <h1>Products</h1>
+    <div class='flex flex-row flex-wrap w-100'>
+  {% for collection in collections %}
+    {% unless collection.handle == 'frontpage' or collection.title == 'Sidebar collection' or collection.title == 'Seminars'%}
+	  <div class='fl w-third-l w-auto pa3 mw5-m'>
+       <a href="{{ collection.url }}">
+            <p class="h1 collection-card__title">{{ collection.title }}</p>
+         </a>
+ 
+      {% for product in collection.products %}
+      <p class='pv2'><a href='/products/{{product.handle}}'>{{product.title}}</a></p>
+        
+      {% endfor %}
+      </div>
+
+    {% endunless %}
+  {% endfor %}
+    </div>
+   <h1><a href='/pages/video-library-for-the-best-leg-strength'>Video Library</a></h1>
+
+    <h1><a href="/pages/events">Events</a></h1>
+    <div class='w-100 flex-row flex-wrap pv3'>
+    
+    {% for collection in collections %}
+    {% if collection.title == 'Seminars'%}
+      <div class='fl w-auto pa3'>
+       <a href="{{ collection.url }}">
+         <p class="h1 collection-card__title">{{ collection.title }}</p>
+       </a>
+ 
+      {% for product in collection.products %}
+        <p class='pv2'><a href='/products/{{product.handle}}'>{{product.title}}</a></p>
+        
+      {% endfor %}
+      </div>
+
+    {% endif %}
+  {% endfor %}
+       <a class='fl w-auto pa3' href="/pages/certification">
+            <p class="h1 collection-card__title">Certification</p>
+         </a>
+           <a  class='fl w-auto pa3'href="/products/training-camp">
+            <p class="h1 collection-card__title">Camp</p>
+         </a>
+    </div>
+    <h1><a href="/blogs/warm-body-cold-mind">Blog</a></h1>
+
+{% assign featuredBlogs = 'warm-body-cold-mind' | split:',' %}
+
+{% comment %}
+Set the featuredArticles variable to false by default.
+{% endcomment %}
+{% assign featuredArticles = false %}
+
+
+{% for featuredBlog in featuredBlogs %}
+	{% if blogs[featuredBlog].articles %}
+		{% if featuredArticles %}
+			{% assign featuredArticles = featuredArticles | concat:blogs[featuredBlog].articles %}
+		{% else %}
+			{% assign featuredArticles = blogs[featuredBlog].articles %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+    {% if featuredArticles %}
+	{% assign featuredArticles = featuredArticles | sort:'published_at' | reverse %}
+
+	{% comment %}
+	Now a quick example of showing the latest 10 articles from our master article list
+	{% endcomment %}
+
+	{% for article in featuredArticles limit:10 %}
+    <p><a href='{{article.url}}'>{{ article.title }}</a></p>
+	{% endfor %}
+
+{% endif %}
+    <h1><a href='/pages/about-me'>About me</a></h1>
+      <h1><a href='/pages/contact-us'>Contact us</a></h1>
+          <h1><a href='/pages/return-policy'>Return policy</a></h1>
+              <h1><a href='/pages/agreement-and-release-of-liability'>Agreement and Release of Liability</a></h1>
+
+
+
+    </div>
+  </div>
+
